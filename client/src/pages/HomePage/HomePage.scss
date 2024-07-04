@@ -1,0 +1,66 @@
+.restaurants {
+
+  &_title {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 30px;
+
+    svg{
+      filter: drop-shadow(3px 3px 3px #FFDB58);
+    }
+  }
+
+  &_group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+.categories {
+  padding-top: 50px;
+
+  &_title {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 30px;
+  }
+
+  &_group {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &_category {
+    display: inline-flex;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+    transition: width 0.2s ease-in-out;
+    border-radius: 5px;
+    flex-shrink: 0;
+    cursor: pointer;
+
+
+    &:hover{
+      transform: scale(1.05);
+    }
+  }
+}

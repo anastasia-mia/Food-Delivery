@@ -1,0 +1,26 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  &_account {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      transform: scale(1.5);
+    }
+  }
+
+  &_cart {
+    cursor: pointer;
+
+    svg {
+      transform: scale(1.5);
+    }
+
+  }
+}
