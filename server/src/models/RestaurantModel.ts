@@ -5,5 +5,6 @@ export interface IRestaurant {
     delivery_price_to: number,
     delivery_time_from: number,
     delivery_time_to: number,
-    ranking: number
+    ranking: number,
+    category: string
 }
