@@ -1,13 +1,16 @@
 import {NavBar} from "../NavBar/NavBar.tsx";
 import './Header.scss';
+import {Link} from "react-router-dom";
 
 export const Header = () => {
 
-    return(
+    return (
         <div className="header">
             <div className="header_container container">
-                <div className="header_logo">DELIVERY</div>
-                <NavBar />
+                <Link to="/">
+                    <div className="header_logo">DELIVERY</div>
+                </Link>
+                <NavBar/>
             </div>
         </div>
     )

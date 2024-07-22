@@ -1,0 +1,70 @@
+.restaurant {
+  padding: 50px 0;
+
+
+  &_container {
+    display: grid;
+    grid-template-areas: "categories menu cart" ;
+    grid-template-columns: 1fr 1fr 320px;
+    gap: 30px;
+  }
+
+  &_card{
+    grid-column-start: categories;
+    grid-row-start: categories;
+    grid-column-end: menu;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 10px;
+    height: 250px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  }
+
+  &_name{
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  &_text{
+    font-size: 16px;
+    color: #808B96;
+  }
+
+  &_details {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    .details_group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+
+      span{
+        font-size: 16px;
+
+      }
+    }
+  }
+
+  &_cart{
+    grid-area: cart;
+    min-height: 400px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+    border-radius: 10px;
+    padding: 20px;
+  }
+}
+
+.cart{
+  &_title{
+    font-size: 24px;
+    color: #006A4E;
+    font-weight: bold;
+  }
+
+}

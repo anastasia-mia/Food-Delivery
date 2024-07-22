@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: calc((100% - 45px) / 4);
+  width: 100%;
   cursor: pointer;
   transition: 0.2s ease-in-out;
   overflow: hidden;

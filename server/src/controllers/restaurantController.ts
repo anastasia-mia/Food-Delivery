@@ -1,4 +1,4 @@
-import {getAll, getByLimitAndSorting, getAllCategories} from "../queries/restaurantQueries";
+import {getAll, getById, getByLimitAndSorting, getAllCategories} from "../queries/restaurantQueries";
 import {IRestaurant} from "../models/RestaurantModel";
 import{Response, Request} from 'express';
 
@@ -9,6 +9,17 @@ const getAllRestaurants = async(_, res: Response) => {
     }catch{
         res.status(500).send("Error getting all restaurants");
     }
+}
+
+const getRestaurantById = async (req: Request, res: Response) => {
+    try{
+        const {id} = req.params;
+        const restaurant: IRestaurant = await getById(id);
+        res.json(restaurant);
+    }catch{
+        res.status(500).send("Error getting Restaurant");
+    }
+
 }
 
 const getLimitedAndSortedRestaurants = async(req: Request , res: Response) => {
@@ -32,4 +43,4 @@ const getAllCategoriesFromDB = async(req: Request, res: Response) => {
     }
 }
 
-export {getAllRestaurants, getLimitedAndSortedRestaurants, getAllCategoriesFromDB}
+export {getAllRestaurants, getRestaurantById, getLimitedAndSortedRestaurants, getAllCategoriesFromDB}

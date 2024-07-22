@@ -4,6 +4,7 @@ import {RestoCard} from "../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";
 import {IRestaurant} from "../../models/interfaces/interfaces.ts";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 export const HomePage = () => {
@@ -34,7 +35,9 @@ export const HomePage = () => {
                         </p>
                         <div className="restaurants_group">
                             {restaurants.map((restaurant: IRestaurant) => (
-                                <RestoCard key={restaurant.id} restaurantData={restaurant}/>
+                                <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+                                    <RestoCard restaurantData={restaurant}/>
+                                </Link>
                             ))}
                         </div>
                     </div>

@@ -11,7 +11,7 @@
     font-weight: 700;
     padding-bottom: 30px;
 
-    svg{
+    svg {
       filter: drop-shadow(3px 3px 3px #FFDB58);
     }
   }
@@ -21,6 +21,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
+
+    a {
+      width: calc((100% - 45px) / 4);
+      color: black
+    }
   }
 }
 
@@ -59,7 +64,7 @@
     cursor: pointer;
 
 
-    &:hover{
+    &:hover {
       transform: scale(1.05);
     }
   }
