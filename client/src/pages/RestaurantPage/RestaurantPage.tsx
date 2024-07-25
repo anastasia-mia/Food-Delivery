@@ -4,6 +4,8 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {IRestaurant} from "../../models/interfaces/interfaces.ts";
 import sprite from "../../assets/icons/sprite.svg";
+import {Cart} from "./Cart/Cart.tsx";
+import {Categories} from "./Categories/Categories.tsx";
 
 export const RestaurantPage = () => {
     const {id} = useParams();
@@ -53,13 +55,9 @@ export const RestaurantPage = () => {
                         </div>
                     </div>
                 </div>
-                <div></div>
-                <div className="restaurant_cart cart">
-                    <p className="cart_title">Your order</p>
-                    <div className="cart_body"></div>
-                    <div className="cart_sum"></div>
-                </div>
-                <div></div>
+                <Categories />
+                {/*<MenuBody />*/}
+                <Cart />
             </div>
         </section>
     )
