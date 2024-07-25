@@ -3,7 +3,7 @@ import {getAllMenuCategories, getAllItemsByCategory, getAllMenuItems} from '../c
 
 const router = Router();
 
-router.get('/categories/:restaurantId', getAllMenuCategories);
+router.get('/categories', getAllMenuCategories);
 router.get('/:restaurantId/:category', getAllItemsByCategory);
 router.get('/:restaurantId', getAllMenuItems);
 

@@ -25,7 +25,10 @@ const getAllItemsByCategory = async (req: Request, res: Response) => {
 
 const getAllMenuCategories = async (req: Request, res: Response) => {
     try{
-        const restaurantId: number = parseInt(req.params.restaurantId,10);
+        const restaurantId: number = parseInt(req.query.restaurantId as string,10);
+        if (isNaN(restaurantId)) {
+            return res.status(400).send("Invalid restaurant ID");
+        }
         const categories: string[]= await getAllCategories(restaurantId);
         res.json(categories);
     }catch{
