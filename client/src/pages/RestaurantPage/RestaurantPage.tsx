@@ -6,6 +6,7 @@ import {IRestaurant} from "../../models/interfaces/interfaces.ts";
 import sprite from "../../assets/icons/sprite.svg";
 import {Cart} from "./Cart/Cart.tsx";
 import {Categories} from "./Categories/Categories.tsx";
+import {MenuBody} from "./MenuBody/MenuBody.tsx";
 
 export const RestaurantPage = () => {
     const {id} = useParams();
@@ -56,7 +57,7 @@ export const RestaurantPage = () => {
                     </div>
                 </div>
                 <Categories />
-                {/*<MenuBody />*/}
+                <MenuBody />
                 <Cart />
             </div>
         </section>
