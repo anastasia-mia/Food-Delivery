@@ -12,7 +12,12 @@ export const FoodCard= ({menuItem}: FoodCardProps) => {
     const dispatch: AppDispatch = useDispatch();
 
     const addToCart = () => {
-        dispatch(addItem({id: menuItem.id, quantity: 1}));
+        dispatch(addItem({
+            id: menuItem.id,
+            quantity: 1,
+            name: menuItem.name,
+            price: menuItem.price
+        }));
     }
 
     return(

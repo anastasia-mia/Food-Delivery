@@ -21,4 +21,6 @@ export interface IMenuItem{
 export interface CartItem{
     id?: number;
     quantity: number;
+    name: string;
+    price: number;
 }
