@@ -1,11 +1,19 @@
 import './FoodCard.scss';
 import {IMenuItem} from "../../../models/interfaces/interfaces.ts";
+import {useDispatch} from "react-redux";
+import {addItem} from '../../../redux/cartSlice.ts'
+import {AppDispatch} from "../../../redux/store.ts";
 
 interface FoodCardProps {
     menuItem: IMenuItem;
 }
 
 export const FoodCard= ({menuItem}: FoodCardProps) => {
+    const dispatch: AppDispatch = useDispatch();
+
+    const addToCart = () => {
+        dispatch(addItem({id: menuItem.id, quantity: 1}));
+    }
 
     return(
         <div className="food_card">
@@ -19,7 +27,7 @@ export const FoodCard= ({menuItem}: FoodCardProps) => {
                 </div>
                 <div className="food_card_bottom">
                     <span className="food_card_price">{menuItem.price}€</span>
-                    <div className="food_card_buy"><span>+</span></div>
+                    <div className="food_card_buy" onClick={addToCart}><span>+</span></div>
                 </div>
             </div>
         </div>

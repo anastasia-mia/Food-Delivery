@@ -17,3 +17,8 @@ export interface IMenuItem{
     category: string,
     restaurant_id?: number
 }
+
+export interface CartItem{
+    id?: number;
+    quantity: number;
+}
