@@ -1,7 +1,11 @@
 import './FoodCard.scss';
+import {IMenuItem} from "../../../models/interfaces/interfaces.ts";
 
+interface FoodCardProps {
+    menuItem: IMenuItem;
+}
 
-export const FoodCard= () => {
+export const FoodCard= ({menuItem}: FoodCardProps) => {
 
     return(
         <div className="food_card">
@@ -9,12 +13,12 @@ export const FoodCard= () => {
                 <div className="food_card_top">
                     <div className="food_card_image"></div>
                     <div className="food_card_details">
-                        <p className="food_card_name">AAAA</p>
-                        <p className="food_card_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut blanditiis d</p>
+                        <p className="food_card_name">{menuItem.name}</p>
+                        <p className="food_card_description">{menuItem.description}</p>
                     </div>
                 </div>
                 <div className="food_card_bottom">
-                    <span className="food_card_price">128€</span>
+                    <span className="food_card_price">{menuItem.price}€</span>
                     <div className="food_card_buy"><span>+</span></div>
                 </div>
             </div>

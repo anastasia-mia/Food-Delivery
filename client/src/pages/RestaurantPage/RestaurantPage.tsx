@@ -11,6 +11,7 @@ import {MenuBody} from "./MenuBody/MenuBody.tsx";
 export const RestaurantPage = () => {
     const {id} = useParams();
     const [restaurant, setRestaurant] = useState<IRestaurant | null>(null);
+    const [category, setCategory] = useState<string>('');
 
     useEffect(() => {
         axios.get(`http://localhost:3001/api/restaurants/${id}`)
@@ -56,8 +57,8 @@ export const RestaurantPage = () => {
                         </div>
                     </div>
                 </div>
-                <Categories />
-                <MenuBody />
+                <Categories setCategory={setCategory}/>
+                <MenuBody category={category}/>
                 <Cart />
             </div>
         </section>

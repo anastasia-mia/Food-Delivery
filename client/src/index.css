@@ -13,6 +13,7 @@
 body {
     /* min-width: 320px; */
     font-family: "Noto Sans";
+
 }
 
 html,body{
@@ -59,18 +60,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #root {
-    height: 100%;
-
-    --white-white : #FFF;
-    --light-blue-gray : #EEF1FF;
-    --dark-purple : #6566AC;
-    --blue: #AAC4FF;
-    --dark-blue: #84A9FC;
-    --light-blue: #D2DAFF;
-    --blue-transparent: rgba(177, 178, 255, 0.30);
-    --white: #FEFEFE;
-    --orange-sale : #FF5E00;
-    --black: #2B2B2B;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -87,6 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 .wrapper{
     padding-top: 50px;
     padding-bottom: 80px;
+}
+
+.content_wrap{
+    flex: 1;
 }
 
 @media screen and (min-width: 768px) {

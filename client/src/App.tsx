@@ -7,20 +7,22 @@ import {RestaurantPage} from "./pages/RestaurantPage/RestaurantPage.tsx";
 
 function App() {
 
-  return (
-    <>
-      <Router>
-        <Header />
-        <Routes>
-            {/*<Route path="/" element={<Layout />}/>*/}
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<NotFound />}/>
-          <Route path="/restaurant/:id" element={<RestaurantPage />}/>
-        </Routes>
-        <Footer />
-      </Router>
-    </>
-  )
+    return (
+        <>
+            <Router>
+                <Header/>
+                <div className="content_wrap">
+                    <Routes>
+                        {/*<Route path="/" element={<Layout />}/>*/}
+                        <Route path="/" element={<HomePage/>}/>
+                        <Route path="*" element={<NotFound/>}/>
+                        <Route path="/restaurant/:id" element={<RestaurantPage/>}/>
+                    </Routes>
+                </div>
+                <Footer/>
+            </Router>
+        </>
+    )
 }
 
 export default App

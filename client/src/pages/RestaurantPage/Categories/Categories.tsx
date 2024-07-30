@@ -3,7 +3,11 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
-export const Categories = () => {
+interface CategoriesProps{
+    setCategory:(category:string) => void;
+}
+
+export const Categories = ({setCategory}: CategoriesProps) => {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [categories, setCategories] = useState<string[]>([]);
     const {id} = useParams<string>();
@@ -14,7 +18,8 @@ export const Categories = () => {
     }, []);
 
     const chooseCategory = (item: string): void => {
-        setSelectedCategory(item)
+        setSelectedCategory(item);
+        setCategory(item);
     }
 
     return (
