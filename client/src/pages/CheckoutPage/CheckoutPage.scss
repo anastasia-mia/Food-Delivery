@@ -1,0 +1,21 @@
+.checkout {
+  padding: 50px 0;
+
+  &_container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 40px;
+  }
+
+  &_info {
+  }
+
+  &_map {
+  }
+
+  &_personal_info {
+  }
+
+  &_order {
+  }
+}
