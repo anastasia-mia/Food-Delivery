@@ -10,7 +10,16 @@ import {MenuBody} from "./MenuBody/MenuBody.tsx";
 
 export const RestaurantPage = () => {
     const {id} = useParams();
-    const [restaurant, setRestaurant] = useState<IRestaurant | null>(null);
+    const [restaurant, setRestaurant] = useState<IRestaurant>({
+        id: 0,
+        name: '',
+        delivery_price_from: 0,
+        delivery_price_to: 0,
+        delivery_time_from: 0,
+        delivery_time_to: 0,
+        ranking: 0,
+        category: ''
+    });
     const [category, setCategory] = useState<string>('');
 
     useEffect(() => {
@@ -59,7 +68,7 @@ export const RestaurantPage = () => {
                 </div>
                 <Categories setCategory={setCategory}/>
                 <MenuBody category={category}/>
-                <Cart />
+                <Cart restaurantName={restaurant.name} restaurant_id={Number(id)}/>
             </div>
         </section>
     )

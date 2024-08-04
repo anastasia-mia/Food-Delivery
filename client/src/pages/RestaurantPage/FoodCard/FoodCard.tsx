@@ -1,23 +1,30 @@
 import './FoodCard.scss';
 import {IMenuItem} from "../../../models/interfaces/interfaces.ts";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addItem} from '../../../redux/cartSlice.ts'
-import {AppDispatch} from "../../../redux/store.ts";
+import {AppDispatch, RootState} from "../../../redux/store.ts";
+import {IRestaurantObject} from "../../../models/interfaces/interfaces.ts";
+import {useParams} from "react-router-dom";
 
 interface FoodCardProps {
     menuItem: IMenuItem;
 }
 
 export const FoodCard= ({menuItem}: FoodCardProps) => {
+    const {id} = useParams();
     const dispatch: AppDispatch = useDispatch();
+    const restaurant: IRestaurantObject = useSelector((state: RootState) => state.cart.restaurant);
+    const isRestaurantAvailable: boolean = Number(id) === restaurant.restaurant_id;
 
     const addToCart = () => {
-        dispatch(addItem({
-            id: menuItem.id,
-            quantity: 1,
-            name: menuItem.name,
-            price: menuItem.price
-        }));
+        if(isRestaurantAvailable){
+            dispatch(addItem({
+                id: menuItem.id,
+                quantity: 1,
+                name: menuItem.name,
+                price: menuItem.price,
+            }));
+        }
     }
 
     return(
@@ -32,7 +39,10 @@ export const FoodCard= ({menuItem}: FoodCardProps) => {
                 </div>
                 <div className="food_card_bottom">
                     <span className="food_card_price">{menuItem.price}€</span>
-                    <div className="food_card_buy" onClick={addToCart}><span>+</span></div>
+                    <div className={`${isRestaurantAvailable ? 'food_card_buy' : "food_card_buy_unavailable"}`}
+                         onClick={addToCart}>
+                        <span>+</span>
+                    </div>
                 </div>
             </div>
         </div>

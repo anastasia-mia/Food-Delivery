@@ -23,4 +23,10 @@ export interface CartItem{
     quantity: number;
     name: string;
     price: number;
+    restaurant_id?: number;
+}
+
+export interface IRestaurantObject{
+    restaurant_id: number,
+    restaurantName: string
 }

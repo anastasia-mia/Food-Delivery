@@ -1,12 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {CartItem} from "../models/interfaces/interfaces.ts";
+import {CartItem, IRestaurantObject} from "../models/interfaces/interfaces.ts";
 
 interface Cart{
     menuItems: CartItem[];
+    restaurant: IRestaurantObject
 }
 
 const initialState: Cart = {
     menuItems: [],
+    restaurant: {restaurant_id: 0, restaurantName: ''}
 }
 
 const cartSlice = createSlice({
@@ -35,8 +37,11 @@ const cartSlice = createSlice({
                 state.menuItems = state.menuItems.filter(item => item.id !== action.payload);
             }
         },
+        setRestaurant: (state, action: PayloadAction<{ restaurant_id: number, restaurantName: string}>) => {
+            state.restaurant = action.payload;
+        }
     },
 });
 
-export const {addItem, increaseQuantity, decreaseQuantity} = cartSlice.actions;
+export const {addItem, increaseQuantity, decreaseQuantity, setRestaurant} = cartSlice.actions;
 export default cartSlice.reducer;

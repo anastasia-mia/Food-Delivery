@@ -1,16 +1,32 @@
 import './Cart.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../redux/store.ts";
-import {CartItem} from "../../../models/interfaces/interfaces.ts";
+import {CartItem,IRestaurantObject} from "../../../models/interfaces/interfaces.ts";
 import {useEffect, useState} from "react";
-import {increaseQuantity, decreaseQuantity} from '../../../redux/cartSlice.ts'
+import {increaseQuantity, decreaseQuantity, setRestaurant} from '../../../redux/cartSlice.ts'
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
-export const Cart = () => {
+interface ICartProps{
+    restaurantName: string,
+    restaurant_id: number
+}
+
+interface IReduxCart {
+    menuItems: CartItem[];
+    restaurant: IRestaurantObject
+}
+
+export const Cart = ({restaurantName, restaurant_id}: ICartProps) => {
     const [totalPrice, setTotalPrice] = useState(0);
-    const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
+    const {menuItems, restaurant}: IReduxCart = useSelector((state: RootState) => state.cart);
     const dispatch : AppDispatch = useDispatch();
+    const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
+        if(menuItems && menuItems.length === 0){
+            dispatch(setRestaurant({restaurant_id, restaurantName: restaurantName }))
+        }
+
         const total = menuItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
         setTotalPrice(total);
     }, [menuItems]);
@@ -26,7 +42,7 @@ export const Cart = () => {
     return (
         <div className="cart_wrapper">
             <div className="cart">
-                <p className="cart_title">Your order</p>
+                <p className="cart_title">Your order from <span>{restaurant.restaurantName}</span></p>
                 <div className="cart_body">
                     {menuItems.length > 0 ? (
                         menuItems.map((item: CartItem, index: number) => (
@@ -54,6 +70,11 @@ export const Cart = () => {
                     <p className="cart_sum_text">Total:</p>
                     <p className="cart_sum_total">{totalPrice.toFixed(2)}€</p>
                 </div>
+                <button className="cart_button"
+                        onClick={() => navigate('/checkout')}
+                >
+                     PROCEED TO CHECKOUT
+                </button>
             </div>
         </div>
     )

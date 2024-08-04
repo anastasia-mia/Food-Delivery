@@ -53,20 +53,23 @@
     font-weight: 600;
   }
 
-  &_buy {
+  &_buy,  &_buy_unavailable{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 35px;
     width: 35px;
-    color: #006A4E;
-    background-color: rgba(175, 216, 200, 0.7);
     font-weight: bold;
     font-size: 35px;
     border-radius: 50%;
     margin: 5px;
     cursor: pointer;
     user-select: none;
+  }
+
+  &_buy{
+    color: #006A4E;
+    background-color: rgba(175, 216, 200, 0.7);
 
     &:hover:before{
       content: 'Add to cart';
@@ -78,4 +81,8 @@
     }
   }
 
+  &_buy_unavailable{
+    background-color: #e4e4e4;
+    color: gray;
+  }
 }
