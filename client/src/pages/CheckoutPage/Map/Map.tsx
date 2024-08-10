@@ -53,20 +53,33 @@ const MapComponent = () => {
                                     L.latLng(randomCoords.lat, randomCoords.lng)
                                 ],
                                 routeWhileDragging: true,
-                                showAlternatives: false
+                                showAlternatives: false,
+                                lineOptions: {
+                                    styles: [{color: 'darkgreen', weight: 5}],
+                                    extendToWaypoints: false,
+                                    addWaypoints: false,
+                                    missingRouteTolerance: 0
+                                },
                             }).addTo(mapInstance.current);
+
                             const element = document.querySelector('.leaflet-routing-container');
                             if (element) {
                                 (element as HTMLElement).style.display = 'none';
                             }
+
+                            const draggableMarkers = document.querySelectorAll('.leaflet-marker-draggable');
+                            draggableMarkers.forEach((marker) => {
+                                (marker as HTMLElement).style.display = 'none';
+                            })
+                            mapInstance.current.off('click');
                         }
                     }
                 },
             );
         }
-        }, []);
+    }, []);
 
-    return <div ref={mapRef} style={{ height: '400px', width: '100%' }}></div>;
+    return <div ref={mapRef} id="map" style={{height: '400px', width: '100%', cursor: "not-allowed"}}></div>;
 };
 
 export default MapComponent;
