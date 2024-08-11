@@ -23,13 +23,15 @@ export const Cart = ({restaurantName, restaurant_id}: ICartProps) => {
     const navigate: NavigateFunction = useNavigate();
 
     useEffect(() => {
-        if(menuItems && menuItems.length === 0){
-            dispatch(setRestaurant({restaurant_id, restaurantName: restaurantName }))
-        }
-
         const total = menuItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
         setTotalPrice(total);
     }, [menuItems]);
+
+    useEffect(() => {
+        if(restaurantName && menuItems.length === 0){
+            dispatch(setRestaurant({restaurant_id, restaurantName }))
+        }
+    }, [menuItems, restaurantName]);
 
     const decreaseAmount = (id: number): void => {
         dispatch(decreaseQuantity(id))
@@ -42,7 +44,7 @@ export const Cart = ({restaurantName, restaurant_id}: ICartProps) => {
     return (
         <div className="cart_wrapper">
             <div className="cart">
-                <p className="cart_title">Your order from <span>{restaurant.restaurantName}</span></p>
+                <p className="cart_title">Your order from <span>{restaurant?.restaurantName}</span></p>
                 <div className="cart_body">
                     {menuItems.length > 0 ? (
                         menuItems.map((item: CartItem, index: number) => (
