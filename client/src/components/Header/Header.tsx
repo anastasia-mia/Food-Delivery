@@ -1,8 +1,18 @@
 import {NavBar} from "../NavBar/NavBar.tsx";
 import './Header.scss';
 import {Link} from "react-router-dom";
+import sprite from "../../assets/icons/sprite.svg";
+import {Dispatch, SetStateAction} from "react";
 
-export const Header = () => {
+interface IHeaderProps {
+    setIsPopUpDisplayed: Dispatch<SetStateAction<boolean>>;
+}
+
+export const Header = ({setIsPopUpDisplayed}: IHeaderProps) => {
+
+    const handleClickLocationPopup = () => {
+        setIsPopUpDisplayed(true)
+    }
 
     return (
         <div className="header">
@@ -10,6 +20,16 @@ export const Header = () => {
                 <Link to="/">
                     <div className="header_logo">DELIVERY</div>
                 </Link>
+                <div className="header_geolocation" onClick={handleClickLocationPopup}>
+                    <svg width="24" height="24">
+                        <use
+                            href={sprite + "#map-pin"}
+                            fill="none"
+                            stroke="#006A4E"
+                        ></use>
+                    </svg>
+                    <p>Enter your location</p>
+                </div>
                 <NavBar/>
             </div>
         </div>

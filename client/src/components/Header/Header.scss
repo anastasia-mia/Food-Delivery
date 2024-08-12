@@ -23,4 +23,22 @@
     font-size: 35px;
     font-weight: bold;
   }
+
+  &_geolocation{
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    cursor: pointer;
+
+    &:hover{
+      text-decoration: underline;
+    }
+
+    p{
+      font-size: 18px;
+      font-weight: 500;
+      color: #808B96;
+    }
+
+  }
 }
