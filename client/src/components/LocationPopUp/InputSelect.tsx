@@ -8,15 +8,21 @@ export interface BaseOption {
 }
 
 export const InputSelect = <T extends BaseOption>(
-        {handleFunction, selectedOption, setSelectedOption, filterFunction}: SelectProps<T>) => {
+        {handleFunction, selectedOption, setSelectedOption, filterFunction, placeholder, countryCode}: SelectProps<T>) => {
 
     const [suggestions, setSuggestions] = useState<T[]>([]);
     const [typedValue, setTypedValue] = useState<string>('');
     const [filteredOptions, setFilteredOptions] = useState<T[]>([]);
+    const optionsToDisplay: T[] = filteredOptions.length ? filteredOptions : suggestions;
 
     useEffect(() => {
-        handleFunction(setSuggestions as (suggestions: T[]) => void)
-    }, [handleFunction]);
+        if(countryCode){
+            handleFunction(setSuggestions as (suggestions: T[]) => void, typedValue, countryCode)
+        }else{
+            handleFunction(setSuggestions as (suggestions: T[]) => void)
+        }
+
+    }, [handleFunction, typedValue]);
 
     useEffect(() => {
         if (typedValue && filterFunction) {
@@ -35,16 +41,16 @@ export const InputSelect = <T extends BaseOption>(
     return (
         <div>
             <input type="text"
-                   placeholder="Select a country"
+                   placeholder={placeholder}
                    className="locationPopUp_input"
                    value={typedValue}
                    onChange={(e) => handleInputChange(e)}
             />
             {typedValue && !selectedOption && <ul className="locationPopUp_options">
-                {filteredOptions.map((option: T, index: number) => (
+                {optionsToDisplay.map((option: T, index: number) => (
                     <li key={index} onClick={() => {
-                        setSelectedOption(option)
-                        setTypedValue(option.name)
+                        setSelectedOption(option);
+                        setTypedValue(option.name);
                     }}>
                         <span>{option.name}</span>
                         <span>{option.code}</span>

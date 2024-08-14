@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Country, CountryOption} from "./interfaces.ts";
+import {CityOption, CityResponse, Country, CountryOption} from "./interfaces.ts";
 
 export const getCountries = (setterFunction: (suggestions: CountryOption[]) => void): void => {
     axios.get<Country[]>('https://restcountries.com/v3.1/all').then((res) => {
@@ -20,4 +20,16 @@ export const filterCountryOptions = (typedValue: string,
         country.name.toLowerCase().includes(lowercasedInput)
     );
     setFilteredCountries(filtered);
+}
+
+export const getCities = (setterFunction: (suggestions: CityOption[]) => void, tapedValue?: string, countryCode?: string): void => {
+    axios.get<CityResponse>(`http://api.geonames.org/searchJSON?q=${tapedValue}&country=${countryCode}&maxRows=30&username=''`)
+        .then((res) => {
+            const cityOptions: CityOption[] = res.data.geonames
+                .filter((city) => tapedValue ? city.name.toLowerCase().includes(tapedValue.toLowerCase()) : true)
+                .map((city) => ({
+                name: city.name
+            }));
+            return(cityOptions);
+    }).then((cityOptions) => setterFunction(cityOptions));
 }
