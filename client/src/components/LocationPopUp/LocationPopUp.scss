@@ -1,6 +1,6 @@
 .locationPopUp{
   width: 1000px;
-  height: 500px;
+  height: 520px;
   background-color: white;
   margin: 0 auto;
   padding: 20px;
@@ -21,7 +21,7 @@
   &_container{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
   }
 
   &_header{
@@ -104,20 +104,6 @@
       label{
         font-weight: bold;
       }
-
-      button{
-        height: 40px;
-        border-radius: 5px;
-        font-size: 16px;
-        color: white;
-        background-color: #31906E;
-        font-weight: 600;
-        transition: all 0.3s ease-in-out;
-
-        &:hover{
-          background-color: darken(#31906E, 10%);
-        }
-      }
     }
   }
 
@@ -157,10 +143,38 @@
     }
   }
 
+  button{
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    background-color: #31906E;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+
+    &:hover{
+      background-color: darken(#31906E, 10%);
+    }
+  }
+
   &_map{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
     height: 100%;
     width: 50%;
-    border: 1px solid #808B96;
+
+    span{
+      font-weight: 600;
+    }
+
+    p{
+      text-align: center;
+      font-size: 16px;
+    }
+
+    #map{
+      border: 1px solid #808B96;
+    }
   }
 }

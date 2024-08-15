@@ -1,8 +1,8 @@
 import './LocationPopUp.scss';
-import {useState} from "react";
+import React, {useState} from "react";
 import {InputSelect} from "./InputSelect.tsx";
-import {CityOption, CountryOption} from "./interfaces.ts";
-import {getCountries, filterCountryOptions, getCities} from "./selectFunctions.ts";
+import {CityOption, CountryOption, ICoords} from "./interfaces.ts";
+import {getCountries, filterCountryOptions, getCities, fetchCityCoordinates} from "./selectFunctions.ts";
 import sprite from "../../assets/icons/sprite.svg";
 import MapComponent from '../../pages/CheckoutPage/Map/Map.tsx'
 
@@ -11,6 +11,18 @@ type SelectedCountry = CountryOption | null;
 export const LocationPopUp = () => {
     const [selectedCountry, setSelectedCountry] = useState<SelectedCountry>(null);
     const [selectedCity, setSelectedCity] = useState<CityOption | null>(null);
+    const [coords, setCoords] = useState<ICoords>({lat: 0, lon: 0});
+    const [address, setAddress] = useState<string | null>(null);
+
+    const setLocationByUserData = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        if (selectedCountry && selectedCity) {
+            const coords = await fetchCityCoordinates(selectedCountry.name, selectedCity.name);
+            if (coords) {
+                setCoords({lat: coords.lat, lon: coords.lon});
+            }
+        }
+    }
 
     return (
         <div className="locationPopUp_background">
@@ -48,11 +60,14 @@ export const LocationPopUp = () => {
                                     placeholder="Select a city"
                                     countryCode={selectedCountry?.code}
                                 />
-                                <button>Find</button>
                             </form>
+                            <button onClick={setLocationByUserData}>Find</button>
                         </div>
                         <div className="locationPopUp_map">
-                            <MapComponent />
+                            <p><span>Address:</span> {address}</p>
+                            <div>
+                                <MapComponent coords={coords} setAddress={setAddress}/>
+                            </div>
                         </div>
                     </div>
                 </div>

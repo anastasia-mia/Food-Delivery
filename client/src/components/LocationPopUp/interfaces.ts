@@ -23,6 +23,11 @@ export interface CityOption{
     name: string;
 }
 
+export interface ICoords {
+    lat: number,
+    lon: number
+}
+
 export interface SelectProps<T> {
     handleFunction: (setterFunction: (suggestions: T[]) => void, tapedValue?: string, countryCode?: string) => void;
     selectedOption: T | null;
