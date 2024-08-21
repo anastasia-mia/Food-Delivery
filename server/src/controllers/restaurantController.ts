@@ -29,7 +29,7 @@ const getLimitedAndSortedRestaurants = async(req: Request , res: Response) => {
 
         const restaurants: IRestaurant[] = await getByLimitAndSorting(column, numericLimit);
         res.json(restaurants);
-    }catch{
+    }catch(err){
         res.status(500).send("Error getting restaurants");
     }
 }

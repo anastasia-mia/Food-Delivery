@@ -1,5 +1,5 @@
 import axios from "axios";
-import {CityOption, CityResponse, Country, CountryOption} from "./interfaces.ts";
+import {CityOption, CityResponse, Country, CountryOption, ICoords} from "./interfaces.ts";
 
 
 export const getCountries = (setterFunction: (suggestions: CountryOption[]) => void): void => {
@@ -74,13 +74,25 @@ export const fetchAddress = async (lat: number, lon: number, setAddress: (addres
             }
         });
         const result = response.data.results[0];
-        if (result) {
+        if (result && lat !== 0 && lon !== 0) {
             const formattedAddress = result.formatted;
             setAddress(formattedAddress);
-        } else {
-            setAddress('No address found');
         }
     } catch (error) {
         console.error('Error fetching address:', error);
     }
 };
+
+export const fetchCurrentAddress = async(): Promise<ICoords> => {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                resolve({ lat: latitude, lon: longitude });
+            },
+            (error) => {
+                reject(error);
+            }
+        );
+    });
+}

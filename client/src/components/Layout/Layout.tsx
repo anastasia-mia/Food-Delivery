@@ -16,7 +16,7 @@ export const Layout = () => {
                 </Suspense>
             </div>
             <Footer/>
-            {isPopUpDisplayed && <LocationPopUp />}
+            {isPopUpDisplayed && <LocationPopUp setIsPopUpDisplayed={setIsPopUpDisplayed}/>}
         </>
     )
 }
