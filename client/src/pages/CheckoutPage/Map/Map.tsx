@@ -8,10 +8,11 @@ import {fetchAddress} from "../../../components/LocationPopUp/selectFunctions.ts
 
 interface IMapProps {
     coords: ICoords;
-    setAddress: (address: string) => void;
+    setAddress?: (address: string) => void;
+    setCoords?: (coords: ICoords) => void;
 }
 
-const MapComponent = ({coords, setAddress}: IMapProps) => {
+const MapComponent = ({coords, setAddress, setCoords}: IMapProps) => {
     const mapRef = useRef<HTMLDivElement | null>(null);
     const mapInstance = useRef<L.Map | null>(null);
     const markerRef = useRef<L.Marker | null>(null);
@@ -35,11 +36,17 @@ const MapComponent = ({coords, setAddress}: IMapProps) => {
 
                 markerRef.current.on('moveend', (event) => {
                     const newLatLng = event.target.getLatLng();
-                    fetchAddress(newLatLng.lat, newLatLng.lng, setAddress);
+                    if(setCoords && setAddress){
+                        setCoords({lat: newLatLng.lat, lon: newLatLng.lng});
+                        fetchAddress(newLatLng.lat, newLatLng.lng, setAddress);
+                    }
+
                 });
             }
 
-            fetchAddress(coords.lat, coords.lon, setAddress);
+            if(setAddress){
+                fetchAddress(coords.lat, coords.lon, setAddress);
+            }
         } else {
             console.error("Map instance is not initialized.");
         }

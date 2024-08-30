@@ -1,5 +1,5 @@
 import './LocationPopUp.scss';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {InputSelect} from "./InputSelect.tsx";
 import {CityOption, CountryOption, ICoords} from "./interfaces.ts";
 import {
@@ -11,6 +11,7 @@ import {
 } from "./selectFunctions.ts";
 import sprite from "../../assets/icons/sprite.svg";
 import MapComponent from '../../pages/CheckoutPage/Map/Map.tsx'
+import useStoredCoords from "../../hooks/useStoredCoords.ts";
 
 type SelectedCountry = CountryOption | null;
 
@@ -23,6 +24,17 @@ export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
     const [selectedCity, setSelectedCity] = useState<CityOption | null>(null);
     const [coords, setCoords] = useState<ICoords>({lat: 0, lon: 0});
     const [address, setAddress] = useState<string | null>(null);
+    const storedCoords = useStoredCoords();
+
+    useEffect(() => {
+        if(storedCoords){
+            setCoords(storedCoords);
+        }
+    }, [storedCoords]);
+
+    useEffect(() => {
+        console.log(coords)
+    }, [coords]);
 
     const setLocationByUserData = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -41,6 +53,12 @@ export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
 
     const closePopUp = (): void => {
         setIsPopUpDisplayed(false);
+    }
+
+    const confirmUserLocation = () => {
+        localStorage.setItem('coords', JSON.stringify(coords));
+        window.dispatchEvent(new Event('storageChange'));
+        closePopUp();
     }
 
     return (
@@ -88,7 +106,7 @@ export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
                             <button
                                 className={`locationPopUp_confirmBtn 
                                 ${!address ? `nonactive` : ''}`}
-                                onClick={closePopUp}
+                                onClick={confirmUserLocation}
                             >
                                 Confirm my address
                             </button>
@@ -96,7 +114,7 @@ export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
                         <div className="locationPopUp_map">
                             <p><span>Address:</span> {address}</p>
                             <div>
-                                <MapComponent coords={coords} setAddress={setAddress}/>
+                                <MapComponent coords={coords} setAddress={setAddress} setCoords={setCoords}/>
                             </div>
                         </div>
                     </div>

@@ -2,13 +2,30 @@ import {NavBar} from "../NavBar/NavBar.tsx";
 import './Header.scss';
 import {Link} from "react-router-dom";
 import sprite from "../../assets/icons/sprite.svg";
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {fetchAddress} from "../LocationPopUp/selectFunctions.ts";
+import {ICoords} from "../LocationPopUp/interfaces.ts";
 
 interface IHeaderProps {
     setIsPopUpDisplayed: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Header = ({setIsPopUpDisplayed}: IHeaderProps) => {
+    const [address, setAddress] = useState<string>("");
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const storedCoords = localStorage.getItem('coords');
+            if (storedCoords) {
+                const coords: ICoords = JSON.parse(storedCoords);
+                fetchAddress(coords.lat, coords.lon, setAddress);
+            }
+        };
+        window.addEventListener('storageChange', handleStorageChange);
+        handleStorageChange();
+
+        return () => window.removeEventListener('storageChange', handleStorageChange);
+    }, []);
 
     const handleClickLocationPopup = () => {
         setIsPopUpDisplayed(true)
@@ -28,7 +45,7 @@ export const Header = ({setIsPopUpDisplayed}: IHeaderProps) => {
                             stroke="#006A4E"
                         ></use>
                     </svg>
-                    <p>Enter your location</p>
+                    <p>{address ? address : 'Enter your location'}</p>
                 </div>
                 <NavBar/>
             </div>
