@@ -12,29 +12,25 @@ import {
 import sprite from "../../assets/icons/sprite.svg";
 import MapComponent from '../../pages/CheckoutPage/Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
+import {useDispatch} from "react-redux";
+import {closePopup} from "../../redux/locationPopUpSlice.ts";
 
 type SelectedCountry = CountryOption | null;
 
-interface IPopUpProps {
-    setIsPopUpDisplayed: (isPopUpDisplayed: boolean) => void;
-}
-
-export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
+export const LocationPopUp = () => {
     const [selectedCountry, setSelectedCountry] = useState<SelectedCountry>(null);
     const [selectedCity, setSelectedCity] = useState<CityOption | null>(null);
     const [coords, setCoords] = useState<ICoords>({lat: 0, lon: 0});
     const [address, setAddress] = useState<string | null>(null);
+
     const storedCoords = useStoredCoords();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if(storedCoords){
+        if (storedCoords) {
             setCoords(storedCoords);
         }
     }, [storedCoords]);
-
-    useEffect(() => {
-        console.log(coords)
-    }, [coords]);
 
     const setLocationByUserData = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -46,13 +42,13 @@ export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
         }
     }
 
-    const setCurrentLocation = async() => {
+    const setCurrentLocation = async () => {
         const coords = await fetchCurrentAddress();
-        setCoords({lat: coords.lat, lon: coords.lon })
+        setCoords({lat: coords.lat, lon: coords.lon})
     }
 
     const closePopUp = (): void => {
-        setIsPopUpDisplayed(false);
+        dispatch(closePopup())
     }
 
     const confirmUserLocation = () => {
@@ -121,5 +117,6 @@ export const LocationPopUp = ({setIsPopUpDisplayed}: IPopUpProps) => {
                 </div>
             </div>
         </div>
+
     )
 }

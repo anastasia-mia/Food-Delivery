@@ -2,16 +2,15 @@ import {NavBar} from "../NavBar/NavBar.tsx";
 import './Header.scss';
 import {Link} from "react-router-dom";
 import sprite from "../../assets/icons/sprite.svg";
-import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {fetchAddress} from "../LocationPopUp/selectFunctions.ts";
 import {ICoords} from "../LocationPopUp/interfaces.ts";
+import {useDispatch} from "react-redux";
+import {openPopup} from "../../redux/locationPopUpSlice.ts";
 
-interface IHeaderProps {
-    setIsPopUpDisplayed: Dispatch<SetStateAction<boolean>>;
-}
-
-export const Header = ({setIsPopUpDisplayed}: IHeaderProps) => {
+export const Header = () => {
     const [address, setAddress] = useState<string>("");
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -28,7 +27,7 @@ export const Header = ({setIsPopUpDisplayed}: IHeaderProps) => {
     }, []);
 
     const handleClickLocationPopup = () => {
-        setIsPopUpDisplayed(true)
+        dispatch(openPopup());
     }
 
     return (

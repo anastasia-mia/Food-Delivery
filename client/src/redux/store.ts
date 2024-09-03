@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import cartReducer from './cartSlice'
+import cartReducer from './cartSlice';
+import locationPopUpReducer from './locationPopUpSlice.ts';
 
 const persistConfig = {
     key: 'root',
@@ -13,6 +14,7 @@ const persistedReducer = persistReducer(persistConfig, cartReducer);
 const store = configureStore({
     reducer: {
         cart: persistedReducer,
+        locationPopUp: locationPopUpReducer,
     },
 });
 
