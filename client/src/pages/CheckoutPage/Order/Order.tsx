@@ -1,14 +1,16 @@
 import {CartItem} from "../../../models/interfaces/interfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
-import './Order.scss'
+import './Order.scss';
+
+
 
 export const Order = () => {
     const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
+    const price: number = useSelector((state: RootState) => state.deliveryPrice.price)
     const serviceFee: number = 0.90;
-    const deliveryPrice: number = 3;
     const totalCartPrice: number =
-        (menuItems.reduce((acc, item) => acc + item.price * item.quantity, 0)) + serviceFee + deliveryPrice;
+        (menuItems.reduce((acc, item) => acc + item.price * item.quantity, 0)) + serviceFee + price;
 
 
     return(
@@ -36,7 +38,7 @@ export const Order = () => {
                     </div>
                     <div className="order_payment_fee">
                         <p>Delivery:</p>
-                        <p>{deliveryPrice}€</p>
+                        <p>{price}€</p>
                     </div>
                     <div className="order_payment_total">
                         <p>Total:</p>
