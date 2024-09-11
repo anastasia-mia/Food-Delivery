@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {closePopup, openPopup} from "../../redux/locationPopUpSlice.ts";
 import {useDispatch} from "react-redux";
 import {ICoords} from "../../components/LocationPopUp/interfaces.ts";
+import {CustomerInfo} from "./CustomerInfo/CustomerInfo.tsx";
 
 export const CheckoutPage = () => {
     const storedCoords = useStoredCoords();
@@ -34,6 +35,10 @@ export const CheckoutPage = () => {
         }
     }, [storedCoords]);
 
+    const onSubmitOrder = () => {
+
+    }
+
     return(
         <section className="checkout">
             <div className="checkout_container container">
@@ -41,7 +46,10 @@ export const CheckoutPage = () => {
                     <div className="checkout_map">
                         <MapComponent coords={coords}/>
                     </div>
-                    <div className="checkout_personal_info"></div>
+                    <div className="checkout_personal_info">
+                        <p className="checkout_personal_info_title">Customer data</p>
+                        <CustomerInfo onSubmitOrder={onSubmitOrder}/>
+                    </div>
                 </div>
                 <div className="checkout_order">
                     <Order />
