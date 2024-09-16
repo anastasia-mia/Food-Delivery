@@ -1,4 +1,4 @@
-import {Customer, OrderItem} from "../models/CheckoutModel";
+import {Customer, OrderItem} from "../models/orderModel";
 import {connection} from "../config/database";
 import {OkPacket, RowDataPacket} from 'mysql2';
 
@@ -41,8 +41,8 @@ export const insertOrderItems = async (orderId: number, orderItems: OrderItem[])
     await connection.query(sql, [orderItemsData]);
 }
 
-export const getAllUserOrders = async (userId: number) => {
-    const sql = `SELECT o.id,
+export const getOrders = async (userId?: number) => {
+    let sql = `SELECT o.id,
                         o.total,
                         o.status,
                         o.order_date,
@@ -60,8 +60,15 @@ export const getAllUserOrders = async (userId: number) => {
                           JOIN
                       order_customer_details c ON o.id = c.order_id
                           JOIN
-                      order_items oi ON o.id = oi.order_id
-                 WHERE o.user_id = ?;`
-    const [rows] = await connection.execute<RowDataPacket[]>(sql, [userId]);
+                      order_items oi ON o.id = oi.order_id`
+
+    const params: (number | undefined)[] = [];
+
+    if (userId) {
+        sql += ` WHERE o.user_id = ?`;
+        params.push(userId);
+    }
+
+    const [rows] = await connection.execute<RowDataPacket[]>(sql, params);
     return rows;
 }
