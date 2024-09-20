@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import {fetchAddress} from "../LocationPopUp/selectFunctions.ts";
 import {ICoords} from "../LocationPopUp/interfaces.ts";
 import {useDispatch} from "react-redux";
-import {openPopup} from "../../redux/locationPopUpSlice.ts";
+import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 
 export const Header = () => {
     const [address, setAddress] = useState<string>("");
@@ -27,7 +27,7 @@ export const Header = () => {
     }, []);
 
     const handleClickLocationPopup = () => {
-        dispatch(openPopup());
+        dispatch(setIsLocationPopUpDisplayed(true));
     }
 
     return (

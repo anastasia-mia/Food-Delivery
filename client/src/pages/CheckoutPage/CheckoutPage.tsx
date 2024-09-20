@@ -3,7 +3,7 @@ import {Order} from "./Order/Order.tsx";
 import MapComponent from "./Map/Map.tsx";
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useEffect, useState} from "react";
-import {closePopup, openPopup} from "../../redux/locationPopUpSlice.ts";
+import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
 import {ICoords} from "../../components/LocationPopUp/interfaces.ts";
 import {CustomerInfo} from "./CustomerInfo/CustomerInfo.tsx";
@@ -29,9 +29,9 @@ export const CheckoutPage = () => {
 
     useEffect(() => {
         if(storedCoords.lat === 0 && storedCoords.lon === 0) {
-            dispatch(openPopup())
+            dispatch(setIsLocationPopUpDisplayed(true))
         }else{
-            dispatch(closePopup())
+            dispatch(setIsLocationPopUpDisplayed(false))
         }
     }, [storedCoords]);
 

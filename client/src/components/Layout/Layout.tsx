@@ -5,9 +5,10 @@ import {Footer} from "../Footer/Footer.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store.ts";
 import {LocationPopUp} from "../LocationPopUp/LocationPopUp.tsx";
+import {Login} from "../Login/Login.tsx";
 
 export const Layout = () => {
-    const isPopupOpen = useSelector((state: RootState) => state.locationPopUp.isPopupOpen);
+    const {isLocationPopUpDisplayed, isLoginPopUpDisplayed} = useSelector((state: RootState) => state.popUpDisplaying);
 
     return (
         <>
@@ -18,7 +19,8 @@ export const Layout = () => {
                 </Suspense>
             </div>
             <Footer/>
-            {isPopupOpen && <LocationPopUp />}
+            {isLocationPopUpDisplayed && <LocationPopUp />}
+            {isLoginPopUpDisplayed && <Login />}
         </>
     )
 }

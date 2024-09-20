@@ -13,7 +13,7 @@ import sprite from "../../assets/icons/sprite.svg";
 import MapComponent from '../../pages/CheckoutPage/Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useDispatch} from "react-redux";
-import {closePopup} from "../../redux/locationPopUpSlice.ts";
+import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 
 type SelectedCountry = CountryOption | null;
 
@@ -22,7 +22,6 @@ export const LocationPopUp = () => {
     const [selectedCity, setSelectedCity] = useState<CityOption | null>(null);
     const [coords, setCoords] = useState<ICoords>({lat: 0, lon: 0});
     const [address, setAddress] = useState<string | null>(null);
-
     const storedCoords = useStoredCoords();
     const dispatch = useDispatch();
 
@@ -48,7 +47,7 @@ export const LocationPopUp = () => {
     }
 
     const closePopUp = (): void => {
-        dispatch(closePopup())
+        dispatch(setIsLocationPopUpDisplayed(false))
     }
 
     const confirmUserLocation = () => {
@@ -58,12 +57,12 @@ export const LocationPopUp = () => {
     }
 
     return (
-        <div className="locationPopUp_background">
+        <div className="popUp-background">
             <div className="locationPopUp">
                 <div className="locationPopUp_container">
                     <div className="locationPopUp_header">
                         <p className="locationPopUp_title">Your location</p>
-                        <div className="locationPopUp_cross" onClick={closePopUp}></div>
+                        <div className="cross" onClick={closePopUp}></div>
                     </div>
                     <div className="locationPopUp_main">
                         <div className="locationPopUp_location">
