@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {addUser, getUserByEmail} from "../queries/userQueries";
 import {IUser} from "../models/UserModel";
-import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const createNewUser = async (req: Request, res: Response)  => {
     try{
@@ -12,8 +12,11 @@ const createNewUser = async (req: Request, res: Response)  => {
         if(user){
             return res.status(400).send("User already exists");
         }
-        const newUser: IUser = {name, email, password};
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser: IUser = {name, email, password: hashedPassword};
         await addUser(newUser);
+
         res.status(201).send('User Created Successfully');
     }catch{
         res.status(500).send('Error Creating User');
@@ -28,18 +31,22 @@ const loginUser = async (req: Request, res: Response) => {
         return res.status(400).send("User Not Found");
     }
 
-    if(password !== user.password){
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
         return res.status(401).send('Invalid Password');
     }
 
-    const token = jwt.sign({ userId: user.id }, 'secret');
-
-    res.cookie('token', token, {
-        // httpOnly: true,
-        // secure: true,
-    });
+    req.session.user = { userId: user.id, name: user.name };
 
     res.json({ message: 'Login successful' });
 }
 
-export { createNewUser, loginUser };
+const checkSession = (req: Request, res: Response) => {
+    if (req.session.user) {
+        return res.json({ isLoggedIn: true, user: req.session.user });
+    } else {
+        return res.json({ isLoggedIn: false });
+    }
+};
+
+export { createNewUser, loginUser, checkSession };
