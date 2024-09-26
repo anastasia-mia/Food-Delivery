@@ -4,8 +4,13 @@ import {NotFound} from "./pages/NotFound/NotFound.tsx";
 import {RestaurantPage} from "./pages/RestaurantPage/RestaurantPage.tsx";
 import {CheckoutPage} from "./pages/CheckoutPage/CheckoutPage.tsx";
 import {Layout} from "./components/Layout/Layout.tsx";
+import {checkSession} from "./redux/authSlice.ts";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "./redux/store.ts";
 
 function App() {
+    const dispatch: AppDispatch = useDispatch();
+    dispatch(checkSession())
 
     return (
         <>

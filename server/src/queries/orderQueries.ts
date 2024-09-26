@@ -1,5 +1,5 @@
 import {Customer, OrderItem} from "../models/orderModel";
-import {connection} from "../config/database";
+import connection from "../config/database";
 import {OkPacket, RowDataPacket} from 'mysql2';
 
 export const insertOrder = async (total: number, customer: Customer, date: string, orderItems: OrderItem[]) => {

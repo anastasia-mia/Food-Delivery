@@ -1,4 +1,4 @@
-import {connection} from "../config/database";
+import connection from "../config/database";
 import {IMenuItem} from "../models/menuModel";
 
 const getAllItems = async(restaurantId: number): Promise<IMenuItem[]> => {

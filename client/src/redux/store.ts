@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import cartReducer from './cartSlice';
 import popUpDisplayingReducer from './popUpDisplayingSlice.ts';
 import deliveryPriceReducer from './deliveryPriceSlice.ts';
+import authReducer from './authSlice.ts';
 
 const persistConfig = {
     key: 'root',
@@ -16,7 +17,8 @@ const store = configureStore({
     reducer: {
         cart: persistedReducer,
         popUpDisplaying: popUpDisplayingReducer,
-        deliveryPrice: deliveryPriceReducer
+        deliveryPrice: deliveryPriceReducer,
+        auth: authReducer
     },
 });
 

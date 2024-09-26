@@ -1,4 +1,4 @@
-import {connection} from "../config/database";
+import connection from "../config/database";
 import {IRestaurant} from "../models/RestaurantModel";
 
 const getAll = async(): Promise<IRestaurant[] | null> => {

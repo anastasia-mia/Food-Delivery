@@ -1,4 +1,4 @@
-import {connection} from '../config/database';
+import connection from '../config/database';
 import {IUser} from "../models/UserModel";
 import {RowDataPacket} from "mysql2";
 

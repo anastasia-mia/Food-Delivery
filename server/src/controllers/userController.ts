@@ -2,6 +2,13 @@ import { Request, Response } from "express";
 import {addUser, getUserByEmail} from "../queries/userQueries";
 import {IUser} from "../models/UserModel";
 import bcrypt from "bcrypt";
+import 'express-session';
+
+declare module 'express-session' {
+    interface Session {
+        user: { userId: number; name: string };
+    }
+}
 
 const createNewUser = async (req: Request, res: Response)  => {
     try{
@@ -38,14 +45,17 @@ const loginUser = async (req: Request, res: Response) => {
 
     req.session.user = { userId: user.id, name: user.name };
 
-    res.json({ message: 'Login successful' });
+    res.json({
+        message: 'Login successful',
+        user: { userId: user.id, name: user.name }
+    });
 }
 
 const checkSession = (req: Request, res: Response) => {
     if (req.session.user) {
         return res.json({ isLoggedIn: true, user: req.session.user });
     } else {
-        return res.json({ isLoggedIn: false });
+        return res.json({ isLoggedIn: false});
     }
 };
 

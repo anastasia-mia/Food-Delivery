@@ -2,15 +2,15 @@ import './Login.scss';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {loginSchema} from "../../validations/loginSchema.ts";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setIsLoginPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
-import {useState} from "react";
-import axios from "axios";
 import {IUserLogin} from "../../models/interfaces/userInterfaces.ts";
+import {loginUser} from "../../redux/authSlice.ts";
+import {AppDispatch, RootState} from "../../redux/store.ts";
 
 export const Login = () => {
-    const dispatch = useDispatch();
-    const [error, setError] = useState<string>("");
+    const dispatch: AppDispatch = useDispatch();
+    const {error} = useSelector((state: RootState) => state.auth);
 
     const {register, handleSubmit, formState: {errors}} = useForm({
         resolver: yupResolver(loginSchema),
@@ -18,9 +18,9 @@ export const Login = () => {
     });
 
     const handleLogin = (data: IUserLogin) => {
-        axios.post('http://localhost:3001/api/login', data)
-            .then(() => closePopup())
-            .catch(err => setError(err.response.data));
+        dispatch(loginUser(data)).unwrap().then(() => {
+            closePopup()
+        })
     }
 
     const closePopup = () => {

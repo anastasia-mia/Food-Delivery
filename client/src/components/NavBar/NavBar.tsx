@@ -1,10 +1,12 @@
 import sprite from '../../assets/icons/sprite.svg';
 import "./NavBar.scss";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setIsLoginPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
+import {AppDispatch, RootState} from "../../redux/store.ts";
 
 export const NavBar = () => {
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
+    const {user, isLoggedIn} = useSelector((state: RootState) => state.auth);
 
     const openLoginPopUp = () => {
         dispatch(setIsLoginPopDisplayed(true))
@@ -12,12 +14,16 @@ export const NavBar = () => {
 
     return (
         <div className="navbar">
-            <div className="navbar_account" onClick={openLoginPopUp}>
-                <span>Login</span>
-            </div>
+            {isLoggedIn ? (
+                <p className="navbar_greeting">Hello, {user}!</p>
+            ) : (
+                <div className="navbar_account" onClick={openLoginPopUp}>
+                    <span>Login</span>
+                </div>
+            )}
             <div className="navbar_cart">
                 <svg width="26" height="26">
-                    <use
+                <use
                         href={sprite + "#cart"}
                         fill="none"
                         stroke="#006A4E"

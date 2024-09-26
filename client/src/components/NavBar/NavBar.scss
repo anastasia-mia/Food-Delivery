@@ -4,6 +4,11 @@
   justify-content: center;
   gap: 30px;
 
+  &_greeting{
+    font-size: 20px;
+    font-weight: 600;
+  }
+
   &_account {
     cursor: pointer;
     display: flex;

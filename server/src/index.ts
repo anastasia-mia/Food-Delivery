@@ -6,17 +6,20 @@ import restaurantRoutes from "./routes/restaurantRoutes";
 import menuRoutes from "./routes/menuRoutes";
 import orderRoutes from "./routes/orderRoutes";
 import dashboardRoutes from "./routes/dashboardRoutes";
+import {sessionStore} from "./config/database";
 const app = express();
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:5173'}))
 
 app.use(session({
     secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: false,
+    store: sessionStore,
     cookie: {
         secure: process.env.NODE_ENV === 'production',
+        httpOnly: false,
         maxAge: 3600000
-    }
+    },
 }));
 
 app.use(express.json());
