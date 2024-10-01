@@ -2,28 +2,16 @@ import {NavBar} from "../NavBar/NavBar.tsx";
 import './Header.scss';
 import {Link} from "react-router-dom";
 import sprite from "../../assets/icons/sprite.svg";
-import {useEffect, useState} from "react";
-import {fetchAddress} from "../LocationPopUp/selectFunctions.ts";
-import {ICoords} from "../LocationPopUp/interfaces.ts";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
+import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.tsx";
+import {useState} from "react";
+
 export const Header = () => {
     const [address, setAddress] = useState<string>("");
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const handleStorageChange = () => {
-            const storedCoords = localStorage.getItem('coords');
-            if (storedCoords) {
-                const coords: ICoords = JSON.parse(storedCoords);
-                fetchAddress(coords.lat, coords.lon, setAddress);
-            }
-        };
-        window.addEventListener('storageChange', handleStorageChange);
-        handleStorageChange();
-
-        return () => window.removeEventListener('storageChange', handleStorageChange);
-    }, []);
+    useGetAddressWithCoords(setAddress)
 
     const handleClickLocationPopup = () => {
         dispatch(setIsLocationPopUpDisplayed(true));

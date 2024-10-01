@@ -1,0 +1,16 @@
+.addresses {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.addresses_name {
+  font-size: 16px;
+
+  span{
+    font-weight: bold;
+    color: #006A4E;
+    font-size: 18px;
+    padding-right: 8px;
+  }
+}

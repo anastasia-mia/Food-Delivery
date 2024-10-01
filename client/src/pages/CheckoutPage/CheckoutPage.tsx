@@ -7,6 +7,7 @@ import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
 import {ICoords} from "../../components/LocationPopUp/interfaces.ts";
 import {CustomerInfo} from "./CustomerInfo/CustomerInfo.tsx";
+import {Addresses} from "./Addresses/Addresses.tsx";
 
 export const CheckoutPage = () => {
     const storedCoords = useStoredCoords();
@@ -53,6 +54,7 @@ export const CheckoutPage = () => {
                 </div>
                 <div className="checkout_order">
                     <Order />
+                    <Addresses />
                 </div>
             </div>
         </section>
