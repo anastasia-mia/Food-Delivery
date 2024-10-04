@@ -3,8 +3,9 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import cartReducer from './cartSlice';
 import popUpDisplayingReducer from './popUpDisplayingSlice.ts';
-import deliveryPriceReducer from './deliveryPriceSlice.ts';
+import deliveryPriceReducer from './deliverySlice.ts';
 import authReducer from './authSlice.ts';
+import chosenRestaurantReducer from './chosenRestaurantSlice.ts';
 
 const persistConfig = {
     key: 'root',
@@ -18,7 +19,8 @@ const store = configureStore({
         cart: persistedReducer,
         popUpDisplaying: popUpDisplayingReducer,
         deliveryPrice: deliveryPriceReducer,
-        auth: authReducer
+        auth: authReducer,
+        chosenRestaurant: chosenRestaurantReducer
     },
 });
 

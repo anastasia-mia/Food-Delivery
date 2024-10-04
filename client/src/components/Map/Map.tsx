@@ -1,12 +1,14 @@
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
-import {ICoords} from "../../../components/LocationPopUp/interfaces.ts";
-import {fetchAddress} from "../../../components/LocationPopUp/selectFunctions.ts";
+import {ICoords} from "../LocationPopUp/interfaces.ts";
+import {fetchAddress} from "../LocationPopUp/selectFunctions.ts";
 import {useDispatch} from "react-redux";
-import {setDistance} from "../../../redux/deliveryPriceSlice.ts";
+import {setDistance, setTime} from "../../redux/deliverySlice.ts";
+import {addRestaurantAddress} from "../../redux/chosenRestaurantSlice.ts";
+import {AppDispatch} from "../../redux/store.ts";
 
 interface IMapProps {
     coords: ICoords;
@@ -15,10 +17,15 @@ interface IMapProps {
 }
 
 const MapComponent = ({coords, setAddress, setCoords}: IMapProps) => {
+    const [restaurantAddress, setRestaurantAddress] = useState<string>('')
     const mapRef = useRef<HTMLDivElement | null>(null);
     const mapInstance = useRef<L.Map | null>(null);
     const markerRef = useRef<L.Marker | null>(null);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(addRestaurantAddress(restaurantAddress));
+    }, [restaurantAddress]);
 
     useEffect(() => {
         if (mapRef.current && !mapInstance.current) {
@@ -58,6 +65,10 @@ const MapComponent = ({coords, setAddress, setCoords}: IMapProps) => {
                     .bindPopup('Restaurant')
                     .openPopup();
 
+                if(randomCoords){
+                    fetchAddress(randomCoords.lat, randomCoords.lng, setRestaurantAddress);
+                }
+
                 L.marker([coords.lat, coords.lon]).addTo(mapInstance.current)
                     .bindPopup('You')
                     .openPopup();
@@ -65,7 +76,7 @@ const MapComponent = ({coords, setAddress, setCoords}: IMapProps) => {
                 dispatch(setDistance((L.latLng(coords.lat, coords.lon).distanceTo(L.latLng(randomCoords.lat, randomCoords.lng))) / 1000));
 
                 if (mapInstance.current) {
-                    L.Routing.control({
+                    const routingControl = L.Routing.control({
                         waypoints: [
                             L.latLng(coords.lat, coords.lon),
                             L.latLng(randomCoords.lat, randomCoords.lng)
@@ -79,6 +90,14 @@ const MapComponent = ({coords, setAddress, setCoords}: IMapProps) => {
                             missingRouteTolerance: 0
                         },
                     }).addTo(mapInstance.current);
+
+                    routingControl.on('routesfound', function (e) {
+                        const routes = e.routes;
+                        const summary = routes[0].summary;
+                        const durationMinutes = summary.totalTime / 60;
+
+                        dispatch(setTime(durationMinutes));
+                    });
 
                     const element = document.querySelector('.leaflet-right');
                     if (element) {

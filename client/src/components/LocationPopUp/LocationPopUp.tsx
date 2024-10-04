@@ -10,7 +10,7 @@ import {
     fetchCurrentAddress
 } from "./selectFunctions.ts";
 import sprite from "../../assets/icons/sprite.svg";
-import MapComponent from '../../pages/CheckoutPage/Map/Map.tsx'
+import MapComponent from '../Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";

@@ -1,13 +1,13 @@
 import './CheckoutPage.scss';
 import {Order} from "./Order/Order.tsx";
-import MapComponent from "./Map/Map.tsx";
+import MapComponent from "../../components/Map/Map.tsx";
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useEffect, useState} from "react";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
 import {ICoords} from "../../components/LocationPopUp/interfaces.ts";
 import {CustomerInfo} from "./CustomerInfo/CustomerInfo.tsx";
-import {Addresses} from "./Addresses/Addresses.tsx";
+import {Delivery} from "./Delivery/Delivery.tsx";
 
 export const CheckoutPage = () => {
     const storedCoords = useStoredCoords();
@@ -54,7 +54,7 @@ export const CheckoutPage = () => {
                 </div>
                 <div className="checkout_order">
                     <Order />
-                    <Addresses />
+                    <Delivery />
                 </div>
             </div>
         </section>

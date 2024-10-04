@@ -3,15 +3,17 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 interface IState {
     price: number;
     distance: number;
+    time: number;
 }
 
 const initialState: IState = {
     price: 0,
-    distance: 0
+    distance: 0,
+    time: 0,
 }
 
-const deliveryPriceSlice = createSlice({
-    name: "deliveryPrice",
+const deliverySlice = createSlice({
+    name: "delivery",
     initialState,
     reducers: {
         setDistance: (state, action: PayloadAction<number>) => {
@@ -23,9 +25,12 @@ const deliveryPriceSlice = createSlice({
             }else{
                 state.price = 4;
             }
+        },
+        setTime: (state, action: PayloadAction<number>) => {
+            state.time = action.payload;
         }
     }
 })
 
-export const {setDistance} = deliveryPriceSlice.actions;
-export default deliveryPriceSlice.reducer;
+export const {setDistance, setTime} = deliverySlice.actions;
+export default deliverySlice.reducer;

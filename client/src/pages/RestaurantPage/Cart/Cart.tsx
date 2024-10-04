@@ -1,24 +1,21 @@
 import './Cart.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../redux/store.ts";
-import {CartItem,IRestaurantObject} from "../../../models/interfaces/interfaces.ts";
+import {CartItem} from "../../../models/interfaces/interfaces.ts";
 import {useEffect, useState} from "react";
-import {increaseQuantity, decreaseQuantity, setRestaurant} from '../../../redux/cartSlice.ts'
+import {increaseQuantity, decreaseQuantity} from '../../../redux/cartSlice.ts'
 import {NavigateFunction, useNavigate} from "react-router-dom";
+import {setRestaurant} from "../../../redux/chosenRestaurantSlice.ts";
 
 interface ICartProps{
     restaurantName: string,
     restaurant_id: number
 }
 
-interface IReduxCart {
-    menuItems: CartItem[];
-    restaurant: IRestaurantObject
-}
-
 export const Cart = ({restaurantName, restaurant_id}: ICartProps) => {
     const [totalPrice, setTotalPrice] = useState(0);
-    const {menuItems, restaurant}: IReduxCart = useSelector((state: RootState) => state.cart);
+    const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
+    const restaurant = useSelector((state: RootState) => state.chosenRestaurant);
     const dispatch : AppDispatch = useDispatch();
     const navigate: NavigateFunction = useNavigate();
 

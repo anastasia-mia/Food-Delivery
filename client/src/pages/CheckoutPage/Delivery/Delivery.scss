@@ -1,0 +1,25 @@
+.delivery {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  border-radius: 10px;
+  gap: 25px;
+  width: 100%;
+
+  &-name {
+    display: flex;
+    gap: 20px;
+
+    span{
+      min-width: 19%;
+      font-weight: bold;
+      color: #006A4E;
+      font-size: 18px;
+    }
+
+    p{
+      font-size: 16px;
+    }
+  }
+}

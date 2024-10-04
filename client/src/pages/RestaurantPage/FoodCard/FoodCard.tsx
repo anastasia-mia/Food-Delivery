@@ -3,7 +3,6 @@ import {IMenuItem} from "../../../models/interfaces/interfaces.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem} from '../../../redux/cartSlice.ts'
 import {AppDispatch, RootState} from "../../../redux/store.ts";
-import {IRestaurantObject} from "../../../models/interfaces/interfaces.ts";
 import {useParams} from "react-router-dom";
 
 interface FoodCardProps {
@@ -13,7 +12,7 @@ interface FoodCardProps {
 export const FoodCard= ({menuItem}: FoodCardProps) => {
     const {id} = useParams();
     const dispatch: AppDispatch = useDispatch();
-    const restaurant: IRestaurantObject = useSelector((state: RootState) => state.cart.restaurant);
+    const restaurant = useSelector((state: RootState) => state.chosenRestaurant);
     const isRestaurantAvailable: boolean = Number(id) === restaurant.restaurant_id;
 
     const addToCart = () => {
