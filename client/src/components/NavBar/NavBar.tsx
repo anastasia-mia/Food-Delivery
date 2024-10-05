@@ -14,6 +14,9 @@ export const NavBar = () => {
 
     return (
         <div className="navbar">
+            <ul>
+                <li>Orders</li>
+            </ul>
             {isLoggedIn ? (
                 <p className="navbar_greeting">Hello, {user}!</p>
             ) : (
@@ -26,7 +29,7 @@ export const NavBar = () => {
                 <use
                         href={sprite + "#cart"}
                         fill="none"
-                        stroke="#006A4E"
+                        stroke="#473C33"
                     ></use>
                 </svg>
             </div>

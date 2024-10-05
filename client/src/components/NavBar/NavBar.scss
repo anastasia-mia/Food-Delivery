@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .navbar {
   display: flex;
   align-items: center;
@@ -9,6 +11,22 @@
     font-weight: 600;
   }
 
+  ul{
+    display: flex;
+    gap: 17px;
+
+    li{
+      font-size: 20px;
+      font-weight: 600;
+      color: $dark-brown;
+      cursor: pointer;
+
+      &:hover{
+        border-bottom: 1px solid $dark-brown;
+      }
+    }
+  }
+
   &_account {
     cursor: pointer;
     display: flex;
@@ -17,11 +35,11 @@
 
     span {
       color: white;
-      background: #006A4E;
+      background: $light-brown;
       font-weight: bold;
       font-size: 16px;
-      padding: 10px;
-      border-radius: 15px;
+      padding: 7px 20px;
+      border-radius: 10px;
       letter-spacing: 1px;
 
       &:hover{

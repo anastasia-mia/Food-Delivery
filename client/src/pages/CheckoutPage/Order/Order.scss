@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .order {
   padding: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
@@ -60,7 +62,7 @@
       align-items: center;
 
       p{
-        color: #808B96;
+        color: $gray;
         font-weight: bold;
       }
     }

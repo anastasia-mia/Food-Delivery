@@ -1,5 +1,7 @@
+@import '../../styles/variables.scss';
+
 .login {
-  width: 500px;
+  width: 400px;
   height: 500px;
   background-color: white;
   margin: 0 auto;
@@ -14,6 +16,7 @@
     &-title {
       font-size: 25px;
       font-weight: bold;
+      color: $dark-brown;
     }
   }
 
@@ -23,7 +26,7 @@
 
     &-label{
       font-size: 16px;
-      color: #006A4E;
+      color: $dark-brown;
       font-weight: bold;
       display: flex;
       flex-direction: column;
@@ -35,9 +38,13 @@
       width: 100%;
       height: 40px;
       border-radius: 10px;
-      border: 1px solid #808B96;
+      border: 1px solid $gray;
       padding: 5px;
       font-size: 14px;
+
+      &::placeholder{
+        color: $gray;
+      }
     }
 
     &-error{
@@ -53,12 +60,12 @@
       border-radius: 5px;
       font-size: 16px;
       color: white;
-      background-color: #31906E;
+      background-color: $light-green;
       font-weight: 600;
       transition: all 0.3s ease-in-out;
 
       &:hover{
-        background-color: darken(#31906E, 10%);
+        background-color: darken($light-green, 10%);
       }
     }
   }

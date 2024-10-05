@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .customer-info{
   display: flex;
   flex-direction: column;
@@ -25,12 +27,13 @@
     gap: 8px;
     position: relative;
     padding-bottom: 15px;
+    color: $dark-brown;
   }
 
   &-input{
     height: 40px;
     border-radius: 10px;
-    border: 1px solid #808B96;
+    border: 1px solid $gray;
     padding: 10px;
     font-size: 16px;
   }
@@ -48,13 +51,13 @@
     border-radius: 15px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #31906E;
+    background-color: $light-green;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 
     &:hover{
-      background-color: darken(#31906E, 10%);
+      background-color: darken($light-green, 10%);
     }
   }
 }

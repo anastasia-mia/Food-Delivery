@@ -28,7 +28,7 @@ export const Header = () => {
                         <use
                             href={sprite + "#map-pin"}
                             fill="none"
-                            stroke="#006A4E"
+                            stroke="#473C33"
                         ></use>
                     </svg>
                     <p>{address ? address : 'Enter your location'}</p>
