@@ -43,16 +43,29 @@
       letter-spacing: 1px;
 
       &:hover{
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        box-shadow: rgba(50, 50, 93, 0.25) 0 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
       }
     }
   }
 
   &_cart {
     cursor: pointer;
+    position: relative;
 
     svg {
       transform: scale(1.5);
+    }
+
+    span{
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: $beige;
+      color: $dark-brown;
+      border-radius: 50%;
+      padding: 3px 5px;
     }
 
   }

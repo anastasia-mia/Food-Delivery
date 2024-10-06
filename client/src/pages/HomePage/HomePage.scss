@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .restaurants {
 
   &_title {
@@ -12,7 +14,7 @@
     padding-bottom: 30px;
 
     svg {
-      filter: drop-shadow(3px 3px 3px #FFDB58);
+      filter: drop-shadow(3px 3px 3px $yellow);
     }
   }
 

@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .notfound {
   display: flex;
   height: calc(100% - 160px);
@@ -17,8 +19,8 @@
 
   &_button {
     padding: 15px;
-    color: #31906E;
-    border: 1px solid #31906E;
+    color: $light-green;
+    border: 1px solid $light-green;
     border-radius: 5px;
     font-weight: bold;
     font-size: 16px;

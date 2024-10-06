@@ -7,20 +7,26 @@ import deliveryPriceReducer from './deliverySlice.ts';
 import authReducer from './authSlice.ts';
 import chosenRestaurantReducer from './chosenRestaurantSlice.ts';
 
-const persistConfig = {
-    key: 'root',
+const cartPersistConfig = {
+    key: 'cart',
     storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, cartReducer);
+const chosenRestaurantPersistConfig = {
+    key: 'chosenRestaurant',
+    storage,
+};
+
+const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
+const persistedChosenRestaurantReducer = persistReducer(chosenRestaurantPersistConfig, chosenRestaurantReducer);
 
 const store = configureStore({
     reducer: {
-        cart: persistedReducer,
+        cart: persistedCartReducer,
         popUpDisplaying: popUpDisplayingReducer,
         deliveryPrice: deliveryPriceReducer,
         auth: authReducer,
-        chosenRestaurant: chosenRestaurantReducer
+        chosenRestaurant: persistedChosenRestaurantReducer
     },
 });
 
