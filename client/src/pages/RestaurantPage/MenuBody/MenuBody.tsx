@@ -3,7 +3,7 @@ import './MenuBody.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-import {IMenuItem} from "../../../models/interfaces/interfaces.ts";
+import {IMenuItem} from "../../../interfaces/interfaces.ts";
 
 interface MenuBodyProps {
     category: string;

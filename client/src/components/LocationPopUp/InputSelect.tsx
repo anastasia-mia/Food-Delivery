@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './LocationPopUp.scss';
-import {SelectProps} from "./interfaces.ts";
+import {SelectProps} from "../../interfaces/geoInterfaces.ts";
 
 export interface BaseOption {
     name: string;

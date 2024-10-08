@@ -1,14 +1,14 @@
 import './LocationPopUp.scss';
 import React, {useEffect, useState} from "react";
 import {InputSelect} from "./InputSelect.tsx";
-import {CityOption, CountryOption, ICoords} from "./interfaces.ts";
+import {CityOption, CountryOption, ICoords} from "../../interfaces/geoInterfaces.ts";
 import {
     getCountries,
     filterCountryOptions,
     getCities,
     fetchCityCoordinates,
     fetchCurrentAddress
-} from "./selectFunctions.ts";
+} from "./locationService.ts";
 import sprite from "../../assets/icons/sprite.svg";
 import MapComponent from '../Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";

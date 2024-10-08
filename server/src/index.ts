@@ -7,6 +7,7 @@ import menuRoutes from "./routes/menuRoutes";
 import orderRoutes from "./routes/orderRoutes";
 import dashboardRoutes from "./routes/dashboardRoutes";
 import {sessionStore} from "./config/database";
+import geoRoutes from "./routes/geoRoutes";
 const app = express();
 app.use(cors({ credentials: true, origin: 'http://localhost:5173'}))
 
@@ -25,8 +26,9 @@ app.use(session({
 app.use(express.json());
 app.use('/api', userRoutes);
 app.use('/api', restaurantRoutes);
-app.use('/api/menu-items', menuRoutes)
-app.use('/api', orderRoutes)
+app.use('/api/menu-items', menuRoutes);
+app.use('/api', orderRoutes);
+app.use('/api', geoRoutes);
 app.use(dashboardRoutes);
 
 app.listen(3001, () => {

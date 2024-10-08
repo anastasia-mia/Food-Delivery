@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {CartItem} from "../models/interfaces/interfaces.ts";
+import {CartItem} from "../interfaces/interfaces.ts";
 
 interface Cart{
     menuItems: CartItem[];

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { fetchAddress } from '../components/LocationPopUp/selectFunctions.ts';
-import {ICoords} from "../components/LocationPopUp/interfaces.ts";
+import { fetchAddress } from '../components/LocationPopUp/locationService.ts';
+import {ICoords} from "../interfaces/geoInterfaces.ts";
 
 const useGetAddressWithCoords = (setAddress: (address: string) => void) => {
 

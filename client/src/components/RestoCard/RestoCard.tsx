@@ -1,5 +1,5 @@
 import './RestoCard.scss';
-import {IRestaurant} from "../../models/interfaces/interfaces.ts";
+import {IRestaurant} from "../../interfaces/interfaces.ts";
 import sprite from "../../assets/icons/sprite.svg";
 
 interface RestoCardProps{

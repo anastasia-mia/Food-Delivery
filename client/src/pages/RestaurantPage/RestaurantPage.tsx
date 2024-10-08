@@ -2,7 +2,7 @@ import "./RestaurantPage.scss"
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {IRestaurant} from "../../models/interfaces/interfaces.ts";
+import {IRestaurant} from "../../interfaces/interfaces.ts";
 import sprite from "../../assets/icons/sprite.svg";
 import {Cart} from "./Cart/Cart.tsx";
 import {Categories} from "./Categories/Categories.tsx";

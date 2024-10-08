@@ -2,7 +2,7 @@ import sprite from "../../assets/icons/sprite.svg";
 import "./HomePage.scss"
 import {RestoCard} from "../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";
-import {IRestaurant} from "../../models/interfaces/interfaces.ts";
+import {IRestaurant} from "../../interfaces/interfaces.ts";
 import axios from "axios";
 import {Link} from "react-router-dom";
 

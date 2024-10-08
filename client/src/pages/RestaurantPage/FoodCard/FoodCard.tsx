@@ -1,5 +1,5 @@
 import './FoodCard.scss';
-import {IMenuItem} from "../../../models/interfaces/interfaces.ts";
+import {IMenuItem} from "../../../interfaces/interfaces.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {addItem} from '../../../redux/cartSlice.ts'
 import {AppDispatch, RootState} from "../../../redux/store.ts";

@@ -4,7 +4,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {loginSchema} from "../../validations/loginSchema.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoginPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
-import {IUserLogin} from "../../models/interfaces/userInterfaces.ts";
+import {IUserLogin} from "../../interfaces/userInterfaces.ts";
 import {loginUser} from "../../redux/authSlice.ts";
 import {AppDispatch, RootState} from "../../redux/store.ts";
 

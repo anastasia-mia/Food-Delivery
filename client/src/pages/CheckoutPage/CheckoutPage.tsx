@@ -5,7 +5,7 @@ import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useEffect, useState} from "react";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
-import {ICoords} from "../../components/LocationPopUp/interfaces.ts";
+import {ICoords} from "../../interfaces/geoInterfaces.ts";
 import {CustomerInfo} from "./CustomerInfo/CustomerInfo.tsx";
 import {Delivery} from "./Delivery/Delivery.tsx";
 

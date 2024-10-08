@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IRestaurantObject} from "../models/interfaces/interfaces.ts";
+import {IRestaurantObject} from "../interfaces/interfaces.ts";
 
 interface Restaurant {
     restaurantAddress: string,

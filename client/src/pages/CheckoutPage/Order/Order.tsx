@@ -1,9 +1,7 @@
-import {CartItem} from "../../../models/interfaces/interfaces.ts";
+import {CartItem} from "../../../interfaces/interfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 import './Order.scss';
-
-
 
 export const Order = () => {
     const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);

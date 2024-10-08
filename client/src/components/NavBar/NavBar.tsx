@@ -3,7 +3,7 @@ import "./NavBar.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoginPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {AppDispatch, RootState} from "../../redux/store.ts";
-import {CartItem} from "../../models/interfaces/interfaces.ts";
+import {CartItem} from "../../interfaces/interfaces.ts";
 
 export const NavBar = () => {
     const dispatch: AppDispatch = useDispatch();

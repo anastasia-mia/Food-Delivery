@@ -1,7 +1,7 @@
 import './Cart.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../../redux/store.ts";
-import {CartItem} from "../../../models/interfaces/interfaces.ts";
+import {CartItem} from "../../../interfaces/interfaces.ts";
 import {useEffect, useState} from "react";
 import {increaseQuantity, decreaseQuantity} from '../../../redux/cartSlice.ts'
 import {NavigateFunction, useNavigate} from "react-router-dom";

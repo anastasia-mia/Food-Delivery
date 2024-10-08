@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IUserLogin} from "../models/interfaces/userInterfaces.ts";
+import {IUserLogin} from "../interfaces/userInterfaces.ts";
 import axios from "axios";
 
 interface AuthState {

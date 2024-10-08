@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {ICoords} from "../components/LocationPopUp/interfaces.ts";
+import {ICoords} from "../interfaces/geoInterfaces.ts";
 
 const useStoredCoords = () => {
     const [coords, setCoords] = useState<ICoords>({lat: 0, lon: 0});
