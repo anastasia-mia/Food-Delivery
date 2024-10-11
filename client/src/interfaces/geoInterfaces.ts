@@ -21,4 +21,5 @@ export interface SelectProps<T> {
                       suggestions: T[],
                       setFilteredCountries: (filteredOptions: T[]) => void) => void;
     countryCode?: string;
+    isDisabled?: boolean
 }

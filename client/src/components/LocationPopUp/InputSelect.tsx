@@ -8,7 +8,14 @@ export interface BaseOption {
 }
 
 export const InputSelect = <T extends BaseOption>(
-        {handleFunction, selectedOption, setSelectedOption, filterFunction, placeholder, countryCode}: SelectProps<T>) => {
+        {handleFunction,
+            selectedOption,
+            setSelectedOption,
+            filterFunction,
+            placeholder,
+            countryCode,
+            isDisabled
+        }: SelectProps<T>) => {
 
     const [suggestions, setSuggestions] = useState<T[]>([]);
     const [typedValue, setTypedValue] = useState<string>('');
@@ -45,6 +52,7 @@ export const InputSelect = <T extends BaseOption>(
                    className="locationPopUp_input"
                    value={typedValue}
                    onChange={(e) => handleInputChange(e)}
+                   disabled={isDisabled}
             />
             {typedValue && !selectedOption && <ul className="locationPopUp_options">
                 {optionsToDisplay.map((option: T, index: number) => (

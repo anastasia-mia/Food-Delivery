@@ -91,10 +91,12 @@ export const LocationPopUp = () => {
                                     setSelectedOption={setSelectedCity}
                                     placeholder="Select a city"
                                     countryCode={selectedCountry?.code}
+                                    isDisabled={!selectedCountry}
                                 />
                             </form>
                             <button onClick={setLocationByUserData}
                                     className={`${(selectedCity && selectedCountry) ? '' : `nonactive`}`}
+                                    disabled={!selectedCity}
                             >
                                 Find
                             </button>

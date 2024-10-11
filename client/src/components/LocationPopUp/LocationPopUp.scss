@@ -81,6 +81,10 @@
     font-size: 16px;
   }
 
+  &_input:disabled{
+    background-color: $light-gray;
+  }
+
   &_options{
     width: 100%;
     height: 100px;
@@ -152,9 +156,11 @@
 
   .nonactive{
     background: $gray;
+    opacity: 0.6;
 
     &:hover{
       background: $gray;
+      opacity: 0.6;
       cursor: default;
     }
   }
