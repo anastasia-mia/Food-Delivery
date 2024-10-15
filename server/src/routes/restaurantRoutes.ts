@@ -3,13 +3,14 @@ import {
     getAllRestaurants,
     getRestaurantById,
     getLimitedAndSortedRestaurants,
-    getAllCategoriesFromDB,
+    getAllCategoriesFromDB, getRestaurantIdByName,
 } from "../controllers/restaurantController";
 
 const router = Router();
 
 router.get('/restaurants', getAllRestaurants);
-router.get('/restaurants/:id', getRestaurantById);
+router.get('/restaurants/name/:name', getRestaurantIdByName)
+router.get('/restaurants/id/:id', getRestaurantById);
 router.get('/restaurants/:column/:limit', getLimitedAndSortedRestaurants);
 router.get('/categories', getAllCategoriesFromDB);
 

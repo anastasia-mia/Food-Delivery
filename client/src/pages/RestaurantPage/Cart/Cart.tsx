@@ -7,15 +7,11 @@ import {increaseQuantity, decreaseQuantity} from '../../../redux/cartSlice.ts'
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import {setRestaurant} from "../../../redux/chosenRestaurantSlice.ts";
 
-interface ICartProps{
-    restaurantName: string,
-    restaurant_id: number
-}
-
-export const Cart = ({restaurantName, restaurant_id}: ICartProps) => {
+export const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
-    const restaurant = useSelector((state: RootState) => state.chosenRestaurant);
+    const chosenRestaurant = useSelector((state: RootState) => state.chosenRestaurant);
+    const {id, restaurant} = useSelector((state: RootState) => state.currentRestaurant)
     const dispatch : AppDispatch = useDispatch();
     const navigate: NavigateFunction = useNavigate();
 
@@ -25,23 +21,23 @@ export const Cart = ({restaurantName, restaurant_id}: ICartProps) => {
     }, [menuItems]);
 
     useEffect(() => {
-        if(restaurantName && menuItems.length === 0){
-            dispatch(setRestaurant({restaurant_id, restaurantName }))
+        if(restaurant && restaurant.name && menuItems.length === 0){
+            dispatch(setRestaurant({restaurant_id: id as number, restaurantName: restaurant.name }))
         }
-    }, [menuItems, restaurantName]);
+    }, [menuItems, restaurant]);
 
-    const decreaseAmount = (id: number): void => {
-        dispatch(decreaseQuantity(id))
+    const decreaseAmount = (itemId: number): void => {
+        dispatch(decreaseQuantity(itemId))
     }
 
-    const increaseAmount = (id: number): void => {
-        dispatch(increaseQuantity(id))
+    const increaseAmount = (itemId: number): void => {
+        dispatch(increaseQuantity(itemId))
     }
 
     return (
         <div className="cart_wrapper">
             <div className="cart">
-                <p className="cart_title">Your order from <span>{restaurant?.restaurantName}</span></p>
+                <p className="cart_title">Your order from <span>{chosenRestaurant?.restaurantName}</span></p>
                 <div className="cart_body">
                     {menuItems.length > 0 ? (
                         menuItems.map((item: CartItem, index: number) => (

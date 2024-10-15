@@ -6,6 +6,8 @@ import popUpDisplayingReducer from './popUpDisplayingSlice.ts';
 import deliveryPriceReducer from './deliverySlice.ts';
 import authReducer from './authSlice.ts';
 import chosenRestaurantReducer from './chosenRestaurantSlice.ts';
+import currentRestaurantReducer from "./currentRestaurantSlice.ts";
+import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
 
 const cartPersistConfig = {
     key: 'cart',
@@ -26,7 +28,16 @@ const store = configureStore({
         popUpDisplaying: popUpDisplayingReducer,
         deliveryPrice: deliveryPriceReducer,
         auth: authReducer,
-        chosenRestaurant: persistedChosenRestaurantReducer
+        chosenRestaurant: persistedChosenRestaurantReducer,
+        currentRestaurant: currentRestaurantReducer
+    },
+    middleware: (getDefaultMiddleware) => {
+        const middleware = getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        });
+        return middleware;
     },
 });
 

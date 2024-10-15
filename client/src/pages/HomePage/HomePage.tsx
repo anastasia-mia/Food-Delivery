@@ -35,7 +35,9 @@ export const HomePage = () => {
                         </p>
                         <div className="restaurants_group">
                             {restaurants.map((restaurant: IRestaurant) => (
-                                <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+                                <Link key={restaurant.id}
+                                      to={`/restaurants/${restaurant.name}`}
+                                >
                                     <RestoCard restaurantData={restaurant}/>
                                 </Link>
                             ))}

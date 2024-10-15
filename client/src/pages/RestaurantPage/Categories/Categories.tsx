@@ -1,7 +1,8 @@
 import './Categories.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../redux/store.ts";
 
 interface CategoriesProps{
     setCategory:(category:string) => void;
@@ -10,12 +11,14 @@ interface CategoriesProps{
 export const Categories = ({setCategory}: CategoriesProps) => {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [categories, setCategories] = useState<string[]>([]);
-    const {id} = useParams<string>();
+    const {id} = useSelector((state: RootState) => state.currentRestaurant);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/menu-items/categories`, {params: {restaurantId: id}})
-            .then((res) => setCategories(res.data));
-    }, []);
+        if(id){
+            axios.get(`http://localhost:3001/api/menu-items/categories`, {params: {restaurantId: id}})
+                .then((res) => setCategories(res.data));
+        }
+    }, [id]);
 
     const chooseCategory = (item: string): void => {
         setSelectedCategory(item);

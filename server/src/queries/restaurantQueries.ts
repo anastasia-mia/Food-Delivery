@@ -7,6 +7,12 @@ const getAll = async(): Promise<IRestaurant[] | null> => {
     return restaurants as IRestaurant[];
 }
 
+const getIdByName = async (name: string): Promise<number | null> => {
+    const sql = `SELECT id FROM restaurants WHERE name = ?`;
+    const [rows] = await connection.execute(sql, [name]);
+    return rows[0].id;
+}
+
 const getById = async (id: string): Promise<IRestaurant | null> => {
     const sql = `SELECT * FROM restaurants WHERE id = ?`;
     const [rows] = await connection.execute(sql, [id]);
@@ -32,4 +38,4 @@ const getAllCategories = async(): Promise<string[] | null> => {
     }
 }
 
-export {getAll, getById, getByLimitAndSorting, getAllCategories}
+export {getAll, getById, getByLimitAndSorting, getAllCategories, getIdByName}

@@ -31,6 +31,13 @@
     color: $gray;
   }
 
+  &_loading{
+    grid-area: menu;
+    margin: 40px 0 0 15%;
+    font-size: 20px;
+    color: $dark-green;
+  }
+
   &_details {
     display: flex;
     flex-direction: row;
