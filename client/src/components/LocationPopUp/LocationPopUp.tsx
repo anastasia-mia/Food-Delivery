@@ -10,7 +10,7 @@ import {
     fetchCurrentAddress
 } from "./locationService.ts";
 import sprite from "../../assets/icons/sprite.svg";
-import MapComponent from '../Map/Map.tsx'
+import Map from '../Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
@@ -111,7 +111,7 @@ export const LocationPopUp = () => {
                         <div className="locationPopUp_map">
                             <p><span>Address:</span> {address}</p>
                             <div>
-                                <MapComponent coords={coords} setAddress={setAddress} setCoords={setCoords}/>
+                                <Map coords={coords} setAddress={setAddress} setCoords={setCoords}/>
                             </div>
                         </div>
                     </div>

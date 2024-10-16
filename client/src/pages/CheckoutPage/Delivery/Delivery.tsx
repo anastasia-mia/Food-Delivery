@@ -1,5 +1,5 @@
 import {useState} from "react";
-import useGetAddressWithCoords from "../../../hooks/useGetAddressWithCoords.tsx";
+import useGetAddressWithCoords from "../../../hooks/useGetAddressWithCoords.ts";
 import './Delivery.scss';
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";

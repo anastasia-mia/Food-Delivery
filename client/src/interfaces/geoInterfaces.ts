@@ -1,3 +1,9 @@
+export interface IMapProps {
+    coords: ICoords;
+    setAddress?: (address: string) => void;
+    setCoords?: (coords: ICoords) => void;
+}
+
 export interface CountryOption{
     code: string;
     name: string;

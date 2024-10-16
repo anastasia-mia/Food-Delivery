@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import sprite from "../../assets/icons/sprite.svg";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
-import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.tsx";
+import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
 import {useState} from "react";
 
 export const Header = () => {

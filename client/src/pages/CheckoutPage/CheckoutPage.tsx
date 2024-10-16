@@ -1,6 +1,6 @@
 import './CheckoutPage.scss';
 import {Order} from "./Order/Order.tsx";
-import MapComponent from "../../components/Map/Map.tsx";
+import Map from "../../components/Map/Map.tsx";
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useEffect, useState} from "react";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
@@ -45,7 +45,7 @@ export const CheckoutPage = () => {
             <div className="checkout_container container">
                 <div className="checkout_info">
                     <div className="checkout_map">
-                        <MapComponent coords={coords}/>
+                        <Map coords={coords}/>
                     </div>
                     <div className="checkout_personal_info">
                         <p className="checkout_personal_info_title">Customer data</p>
