@@ -1,0 +1,11 @@
+.banners{
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 50px;
+
+  &_track{
+    display: flex;
+    height: 100%;
+  }
+}

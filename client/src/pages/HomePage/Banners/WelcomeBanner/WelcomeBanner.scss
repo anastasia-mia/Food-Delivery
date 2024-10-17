@@ -1,0 +1,42 @@
+@import '../../../../styles/variables';
+
+.banner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 100%;
+  height: 400px;
+  background-color: rgba(109, 151, 115, 0.3);
+  padding: 20px 50px;
+
+  &_text{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    h2{
+      font-size: 40px;
+      font-weight: 600;
+      color: $dark-green
+    }
+
+    p{
+      color: $dark-brown;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  &_photo{
+    width: 50%;
+    height: calc(100% - 40px);
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      max-width: 100%;
+      display: block;
+    }
+  }
+}

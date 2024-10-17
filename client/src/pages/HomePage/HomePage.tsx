@@ -5,11 +5,13 @@ import {useEffect, useState} from "react";
 import {IRestaurant} from "../../interfaces/interfaces.ts";
 import axios from "axios";
 import {Link} from "react-router-dom";
-
+import {Banners} from "./Banners/Banners.tsx";
 
 export const HomePage = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [categories, setCategories] = useState([]);
+
+
 
     useEffect(() => {
         axios.get("http://localhost:3001/api/restaurants/ranking/8")
@@ -18,9 +20,12 @@ export const HomePage = () => {
             .then((res) => setCategories(res.data));
     }, [])
 
-    return(
+    return (
         <div>
             <main className="wrapper">
+                <div className="container">
+                    <Banners />
+                </div>
                 <section className="restaurants">
                     <div className="container">
                         <p className="restaurants_title">
