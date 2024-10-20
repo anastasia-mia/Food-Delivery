@@ -67,6 +67,7 @@ export const Cart = () => {
                 </div>
                 <button className="cart_button"
                         onClick={() => navigate('/checkout')}
+                        disabled={menuItems.length === 0}
                 >
                      PROCEED TO CHECKOUT
                 </button>
