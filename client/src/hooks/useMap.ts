@@ -1,6 +1,6 @@
 import {useEffect, useRef} from "react";
 import L from "leaflet";
-import {fetchAddress} from "../components/LocationPopUp/locationService.ts";
+import {fetchAddress} from "../utils/fetchAddress.ts";
 import {IMapProps} from "../interfaces/geoInterfaces.ts";
 
 const useMap = ({coords, setCoords, setAddress}: IMapProps) => {

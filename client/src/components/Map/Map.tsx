@@ -4,13 +4,13 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import {IMapProps} from "../../interfaces/geoInterfaces.ts";
-import {fetchAddress} from "../LocationPopUp/locationService.ts";
+import {fetchAddress} from "../../utils/fetchAddress.ts";
 import {useDispatch} from "react-redux";
 import {setDistance} from "../../redux/deliverySlice.ts";
 import {addRestaurantAddress} from "../../redux/chosenRestaurantSlice.ts";
 import {AppDispatch} from "../../redux/store.ts";
 import useMap from "../../hooks/useMap.ts";
-import {setUpMapRouting} from "../../utils/setUpMapRouting.ts";
+import {setUpMapRouting} from "./setUpMapRouting.ts";
 import {getRandomCoordinates} from "../../utils/getRandomCoordinates.ts";
 
 const Map = ({coords, setAddress, setCoords}: IMapProps) => {

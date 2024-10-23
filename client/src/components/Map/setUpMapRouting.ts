@@ -1,7 +1,7 @@
 import L from 'leaflet';
-import {AppDispatch} from "../redux/store";
-import {setTime} from "../redux/deliverySlice.ts";
-import {ICoords} from "../interfaces/geoInterfaces.ts";
+import {AppDispatch} from "../../redux/store.ts";
+import {setTime} from "../../redux/deliverySlice.ts";
+import {ICoords} from "../../interfaces/geoInterfaces.ts";
 
 interface ISetUpMapRoutingProps{
     mapInstance: L.Map | null;
