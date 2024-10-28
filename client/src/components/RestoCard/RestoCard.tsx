@@ -1,6 +1,6 @@
 import './RestoCard.scss';
 import {IRestaurant} from "../../interfaces/interfaces.ts";
-import sprite from "../../assets/icons/sprite.svg";
+import sprite from "../../../public/assets/icons/sprite.svg";
 
 interface RestoCardProps{
     restaurantData: IRestaurant

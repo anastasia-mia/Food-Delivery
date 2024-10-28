@@ -1,7 +1,7 @@
 import "./RestaurantPage.scss"
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import sprite from "../../assets/icons/sprite.svg";
+import sprite from "../../../public/assets/icons/sprite.svg";
 import {Cart} from "./Cart/Cart.tsx";
 import {Categories} from "./Categories/Categories.tsx";
 import {MenuBody} from "./MenuBody/MenuBody.tsx";

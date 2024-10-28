@@ -7,7 +7,7 @@ import deliveryPriceReducer from './deliverySlice.ts';
 import authReducer from './authSlice.ts';
 import chosenRestaurantReducer from './chosenRestaurantSlice.ts';
 import currentRestaurantReducer from "./currentRestaurantSlice.ts";
-import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
+import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/lib/constants";
 
 const cartPersistConfig = {
     key: 'cart',

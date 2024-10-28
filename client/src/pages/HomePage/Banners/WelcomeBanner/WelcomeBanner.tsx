@@ -1,5 +1,5 @@
 import './WelcomeBanner.scss';
-import DeliveryImage from '../../../../assets/delivery.jpg'
+import DeliveryImage from '../../../../../public/assets/delivery.jpg'
 
 export const WelcomeBanner = () => {
 

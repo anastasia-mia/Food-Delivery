@@ -14,6 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": ["jest","testing-library/jest-dom"],
     "jsx": "react-jsx",
 
     /* Linting */
@@ -22,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/components", "src/svg.d.ts", "src/types"],
-  "files": ["svg.d.ts", "env.d.ts"],
+  "include": ["src", "src/components", "src/svg.d.ts", "src/types", "./jest.setup.ts"],
+  "files": ["svg.d.ts", "env.d.ts", "jest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

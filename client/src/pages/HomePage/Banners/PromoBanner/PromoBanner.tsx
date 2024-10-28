@@ -1,5 +1,5 @@
 import './PromoBanner.scss';
-import PromocodeImage from "../../../../assets/promocode.jpg";
+import PromocodeImage from "../../../../../public/assets/promocode.jpg";
 
 export const PromoBanner = () => {
 
