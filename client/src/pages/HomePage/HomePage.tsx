@@ -1,4 +1,4 @@
-import sprite from "../../assets/icons/sprite.svg";
+import sprite from "../../../public/assets/icons/sprite.svg";
 import "./HomePage.scss"
 import {RestoCard} from "../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";

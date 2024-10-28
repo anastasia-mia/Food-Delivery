@@ -1,7 +1,7 @@
-import {NavBar} from "../NavBar/NavBar.tsx";
+import NavBar from "../NavBar/NavBar";
 import './Header.scss';
 import {Link} from "react-router-dom";
-import sprite from "../../assets/icons/sprite.svg";
+const sprite = "/assets/icons/sprite.svg";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
@@ -23,7 +23,7 @@ export const Header = () => {
                 <Link to="/">
                     <div className="header_logo">DELIVERY</div>
                 </Link>
-                <div className="header_geolocation" onClick={handleClickLocationPopup}>
+                <div className="header_geolocation" onClick={handleClickLocationPopup} data-testid="location-icon">
                     <svg width="24" height="24">
                         <use
                             href={sprite + "#map-pin"}
@@ -31,9 +31,9 @@ export const Header = () => {
                             stroke="#473C33"
                         ></use>
                     </svg>
-                    <p>{address ? address : 'Enter your location'}</p>
+                    <p data-testid="address-paragraph">{address ? address : 'Enter your location'}</p>
                 </div>
-                <NavBar/>
+                <NavBar />
             </div>
         </div>
     )

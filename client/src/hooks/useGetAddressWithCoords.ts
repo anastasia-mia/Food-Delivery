@@ -9,7 +9,9 @@ const useGetAddressWithCoords = (setAddress: (address: string) => void) => {
             const storedCoords = localStorage.getItem('coords');
             if (storedCoords) {
                 const coords: ICoords = JSON.parse(storedCoords);
-                fetchAddress(coords.lat, coords.lon, setAddress);
+                if (coords.lat && coords.lon) {
+                    fetchAddress(coords.lat, coords.lon, setAddress);
+                }
             }
         };
 
