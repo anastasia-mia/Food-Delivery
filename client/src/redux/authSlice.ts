@@ -36,10 +36,19 @@ export const loginUser = createAsyncThunk(
 
 export const checkSession = createAsyncThunk(
     'auth/checkSession',
-    async() => {
-        const response = await axios.get('http://localhost:3001/api/checkSession',
-            {withCredentials: true});
-        return response.data;
+    async(_, thunkAPI) => {
+        try{
+            const response = await axios.get('http://localhost:3001/api/checkSession',
+                {withCredentials: true});
+            return response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                return thunkAPI.rejectWithValue({ message: error.response.data });
+            } else {
+                return thunkAPI.rejectWithValue({ message: 'Unexpected error occurred' });
+            }
+        }
+
     }
 )
 
@@ -74,6 +83,7 @@ const authSlice = createSlice({
                 (state, action: PayloadAction<{message: string}>) => {
                     state.loading = false;
                     state.error = action.payload.message;
+                    state.user = null;
                 }
             );
     }

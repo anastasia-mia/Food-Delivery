@@ -53,9 +53,9 @@ const loginUser = async (req: Request, res: Response) => {
 
 const checkSession = (req: Request, res: Response) => {
     if (req.session.user) {
-        return res.json({ isLoggedIn: true, user: req.session.user });
+        return res.status(200).json({ isLoggedIn: true, user: req.session.user });
     } else {
-        return res.json({ isLoggedIn: false});
+        res.status(401).json({ isLoggedIn: false, message: 'Unauthorised'});
     }
 };
 
