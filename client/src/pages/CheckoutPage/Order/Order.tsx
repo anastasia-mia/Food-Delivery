@@ -10,7 +10,6 @@ export const Order = () => {
     const totalCartPrice: number =
         (menuItems.reduce((acc, item) => acc + item.price * item.quantity, 0)) + serviceFee + price;
 
-
     return(
         <div className="order">
             <div className="order_container">
@@ -22,9 +21,9 @@ export const Order = () => {
                         <p>Price</p>
                     </div>
                     {menuItems.map((item: CartItem, index: number) => (
-                        <div key={index} className="order_item">
+                        <div key={index} className="order_item" data-testid="order-item">
                             <p className="order_item_name">{item.name}</p>
-                            <p className="order_item_quantity">{item.quantity}</p>
+                            <p className="order_item_quantity">{item.quantity}х</p>
                             <p className="order_item_price">{(item.price * item.quantity).toFixed(2)}€</p>
                         </div>
                     ))}
@@ -40,7 +39,7 @@ export const Order = () => {
                     </div>
                     <div className="order_payment_total">
                         <p>Total:</p>
-                        <p>{totalCartPrice.toFixed(2)}€</p>
+                        <p data-testid="order-total">{totalCartPrice.toFixed(2)}€</p>
                     </div>
                 </div>
             </div>

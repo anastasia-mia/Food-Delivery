@@ -28,6 +28,10 @@
       &:not(:first-child){
         text-align: center;
       }
+
+      &:last-child{
+        text-align: end;
+      }
     }
   }
 
@@ -47,6 +51,10 @@
 
       &:not(:first-child){
         text-align: center;
+      }
+
+      &:last-child{
+        text-align: end;
       }
     }
   }

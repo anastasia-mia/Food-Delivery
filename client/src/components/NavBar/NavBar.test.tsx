@@ -88,7 +88,7 @@ describe('NavBar', () => {
                         "id": 38,
                         "quantity": 2,
                         "name": "Sangria",
-                        price: 2.00
+                        "price": 2.00
                     }
                 ],
             },
