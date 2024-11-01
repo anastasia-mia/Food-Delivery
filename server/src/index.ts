@@ -24,12 +24,13 @@ app.use(session({
 }));
 
 app.use(express.json());
+app.use(dashboardRoutes);
 app.use('/api', userRoutes);
 app.use('/api', restaurantRoutes);
 app.use('/api/menu-items', menuRoutes);
 app.use('/api', orderRoutes);
 app.use('/api', geoRoutes);
-app.use(dashboardRoutes);
+
 
 app.listen(3001, () => {
     console.log('Listening on port 3001');

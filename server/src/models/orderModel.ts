@@ -1,9 +1,9 @@
 export interface Customer{
     user_id: number,
     name: string;
-    last_name: string;
+    surName: string;
     email: string;
-    phone_number: string;
+    phoneNumber: string;
     address: string;
     comment: string;
 }

@@ -2,10 +2,18 @@ import {getOrders, insertOrder} from "../queries/orderQueries";
 import { Request, Response } from 'express';
 import {Order} from "../models/orderModel";
 import {formatOrders} from "../utils/orderUtils";
+import 'express-session';
 
 export const createNewOrder = async (req: Request, res: Response): Promise<void> => {
     try{
-        const { customer, orderItems, total, order_date }: Order = req.body;
+        const userId = req.session.user.userId;
+
+        if (!userId) {
+            res.status(401).json({ message: 'User is not authenticated' });
+            return;
+        }
+
+        const { customer, orderItems, total}: Order = req.body;
 
         if (!customer) {
             res.status(400).json({ message: 'There are no customer details' });
@@ -15,9 +23,9 @@ export const createNewOrder = async (req: Request, res: Response): Promise<void>
             return;
         }
 
-        const formattedDate = new Date(order_date).toISOString().split('T')[0];
+        const formattedDate = new Date().toISOString().split('T')[0];
 
-        await insertOrder(total, customer, formattedDate, orderItems);
+        await insertOrder(userId, total, customer, formattedDate, orderItems);
 
         res.status(200).json({message: 'The order is added'})
     }catch(err){

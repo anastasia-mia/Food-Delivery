@@ -1,29 +1,22 @@
 import './CustomerInfo.scss';
 import {useForm} from "react-hook-form";
-import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {ClientDetails} from "../../../interfaces/interfaces.ts";
+import {customerInfoSchema} from "../../../validations/customerInfoSchema.ts";
 
 interface ICustomerInfoProps {
-    onSubmitOrder: () => void;
+    onSubmitOrder: (data: ClientDetails) => void;
 }
 
 export const CustomerInfo = ({onSubmitOrder}: ICustomerInfoProps) => {
-
-    const schema = yup.object().shape({
-        name: yup.string().required('Enter name'),
-        surName: yup.string().required('Enter surname'),
-        phoneNumber: yup.string()
-            .matches(/\d+/, 'Incorrect phone number').required('Enter phone number'),
-        email: yup.string()
-            .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+$/i, "Incorrect email").required('Enter email address'),
-    });
-
     const {register, handleSubmit, formState: {errors}} = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(customerInfoSchema)
     });
 
     return (
-        <form className="customer-info" onSubmit={() => {handleSubmit(onSubmitOrder)}}
+        <form className="customer-info"
+              data-testid="customer-info-form"
+              onSubmit={handleSubmit(onSubmitOrder)}
         >
             <div className="customer-info-group">
                 <div className="customer-info-column">
@@ -60,10 +53,12 @@ export const CustomerInfo = ({onSubmitOrder}: ICustomerInfoProps) => {
                 </div>
             </div>
             <label className="customer-info-label"> Comment
-                <textarea placeholder="Write the comment if necessary" className="customer-info-input"/>
+                <textarea placeholder="Write the comment if necessary"
+                          className="customer-info-input"
+                          {...register("comment")}
+                />
             </label>
-            <button type='submit' className="customer-info-btn" >CONFIRM ORDER</button>
-
+            <button type='submit' className="customer-info-btn">CONFIRM ORDER</button>
         </form>
     )
 }

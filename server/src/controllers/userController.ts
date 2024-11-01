@@ -55,7 +55,7 @@ const checkSession = (req: Request, res: Response) => {
     if (req.session.user) {
         return res.status(200).json({ isLoggedIn: true, user: req.session.user });
     } else {
-        res.status(401).json({ isLoggedIn: false, message: 'Unauthorised'});
+        res.status(401).send('Unauthorised');
     }
 };
 

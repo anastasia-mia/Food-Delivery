@@ -2,13 +2,22 @@ import {CartItem} from "../../../interfaces/interfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 import './Order.scss';
+import {useEffect} from "react";
 
-export const Order = () => {
+interface IOrder{
+    setTotalPrice: (totalPrice: number) => void;
+}
+
+export const Order = ({setTotalPrice}: IOrder) => {
     const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
     const price: number = useSelector((state: RootState) => state.deliveryPrice.price)
     const serviceFee: number = 0.90;
     const totalCartPrice: number =
         (menuItems.reduce((acc, item) => acc + item.price * item.quantity, 0)) + serviceFee + price;
+
+    useEffect(() => {
+        setTotalPrice(Number(totalCartPrice.toFixed(2)));
+    }, [totalCartPrice]);
 
     return(
         <div className="order">

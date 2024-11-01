@@ -2,13 +2,13 @@ import {Customer, OrderItem} from "../models/orderModel";
 import connection from "../config/database";
 import {OkPacket, RowDataPacket} from 'mysql2';
 
-export const insertOrder = async (total: number, customer: Customer, date: string, orderItems: OrderItem[]) => {
+export const insertOrder = async (userId: number, total: number, customer: Customer, date: string, orderItems: OrderItem[]) => {
     const sql = `INSERT INTO orders (total, status, user_id, order_date, shipping_address)
                  VALUES (?, ?, ?, ?, ?)`;
     const [orderCreated] = await connection.execute<OkPacket>(sql,
         [total,
             "received",
-            customer.user_id,
+            userId,
             date,
             customer.address
         ]);
@@ -25,9 +25,9 @@ export const insertCustomerDetails = async (orderId: number, customer: Customer)
     await connection.execute(sql,
         [orderId,
             customer.name,
-            customer.last_name,
+            customer.surName,
             customer.email,
-            customer.phone_number,
+            customer.phoneNumber,
             customer.address,
             customer.comment
         ]);

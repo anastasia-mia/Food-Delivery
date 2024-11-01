@@ -23,9 +23,12 @@ const chosenRestaurantSlice = createSlice({
         setRestaurant: (state, action: PayloadAction<IRestaurantObject>) => {
             state.restaurant_id = action.payload.restaurant_id;
             state.restaurantName = action.payload.restaurantName;
+        },
+        resetRestaurant: () => {
+            return { ...initialState };
         }
     }
 })
 
-export const {addRestaurantAddress, setRestaurant} = chosenRestaurantSlice.actions;
+export const {addRestaurantAddress, setRestaurant, resetRestaurant} = chosenRestaurantSlice.actions;
 export default chosenRestaurantSlice.reducer;

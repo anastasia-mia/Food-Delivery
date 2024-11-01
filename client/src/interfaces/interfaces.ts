@@ -28,5 +28,13 @@ export interface CartItem{
 
 export interface IRestaurantObject{
     restaurant_id: number,
-    restaurantName: string
+    restaurantName: string,
+}
+
+export interface ClientDetails{
+    name: string,
+    surName: string,
+    email: string;
+    phoneNumber: string;
+    comment?: string;
 }

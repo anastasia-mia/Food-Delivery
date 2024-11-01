@@ -28,6 +28,11 @@
     position: relative;
     padding-bottom: 15px;
     color: $dark-brown;
+
+    textarea{
+      height: 50px;
+      resize: none;
+    }
   }
 
   &-input{
