@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .banners{
   width: 100%;
   height: 400px;
@@ -7,5 +9,122 @@
   &_track{
     display: flex;
     height: 100%;
+  }
+}
+
+.banner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  min-width: 100%;
+  height: 400px;
+  padding: 30px 50px;
+
+  &_container{
+    min-width: 100%;
+    height: 400px;
+  }
+
+  &_green{
+    background-color: rgba(109, 151, 115, 0.3);
+  }
+
+  &_brown{
+    background-color: rgb(187, 138, 82, 0.3);
+  }
+
+  &_text{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    h2{
+      font-size: 40px;
+      font-weight: 600;
+      color: $dark-green
+    }
+
+    p{
+      color: $dark-brown;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    span{
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(90deg, $dark-green, $light-green);
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  &_photo{
+    width: 50%;
+    height: calc(100% - 60px);
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .banners{
+    height: 300px;
+  }
+
+  .banner{
+    gap: 30px;
+    height: 320px;
+    padding: 30px 50px;
+
+    &_text{
+      gap: 15px;
+
+      h2{
+        font-size: 30px;
+      }
+
+      p{
+        font-size: 16px;
+      }
+
+      span{
+        font-size: 18px;
+      }
+    }
+
+    &_photo{
+      height: calc(100% - 40px);
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .banners{
+    height: 230px;
+    margin-bottom: 30px;
+  }
+
+  .banner{
+    height: 230px;
+    padding: 20px 30px;
+
+    &_text{
+      gap: 10px;
+
+      h2{
+        font-size: 24px;
+      }
+    }
+
+    &_photo{
+      display: none;
+    }
   }
 }

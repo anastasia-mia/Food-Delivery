@@ -1,5 +1,5 @@
-import {WelcomeBanner} from "./WelcomeBanner/WelcomeBanner.tsx";
-import {PromoBanner} from "./PromoBanner/PromoBanner.tsx";
+import {WelcomeBanner} from "./WelcomeBanner.tsx";
+import {PromoBanner} from "./PromoBanner.tsx";
 import {useEffect, useRef, useState} from "react";
 import './Banners.scss';
 
@@ -40,10 +40,10 @@ export const Banners = () => {
     return (
         <section className="banners">
             <div className="banners_track" ref={trackRef}>
-                {cloneBanners.map((banner) => (
-                    <>
+                {cloneBanners.map((banner, index) => (
+                    <div key={index} className="banner_container">
                         {banner}
-                    </>
+                    </div>
                 ))}
             </div>
         </section>
