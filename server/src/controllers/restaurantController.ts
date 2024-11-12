@@ -33,11 +33,12 @@ const getRestaurantById = async (req: Request, res: Response) => {
 
 const getLimitedAndSortedRestaurants = async(req: Request , res: Response) => {
     try{
-        const {column, limit} = req.params;
-        const numericLimit = parseInt(limit, 10);
+        const limit = typeof req.query.limit === 'string' ? parseInt(req.query.limit, 10) : 8;
+        const offset = typeof req.query.offset === 'string' ? parseInt(req.query.offset, 10) : 0;
 
-        const restaurants: IRestaurant[] = await getByLimitAndSorting(column, numericLimit);
-        res.json(restaurants);
+        const restaurantsByLimit: IRestaurant[] = await getByLimitAndSorting(limit, offset);
+        const restaurants: IRestaurant[] = await getAll();
+        res.json({restaurants: restaurantsByLimit, restaurantsAmount: restaurants.length});
     }catch(err){
         res.status(500).send("Error getting restaurants");
     }

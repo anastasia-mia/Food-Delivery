@@ -11,7 +11,7 @@ const router = Router();
 router.get('/restaurants', getAllRestaurants);
 router.get('/restaurants/name/:name', getRestaurantIdByName)
 router.get('/restaurants/id/:id', getRestaurantById);
-router.get('/restaurants/:column/:limit', getLimitedAndSortedRestaurants);
+router.get('/sortedRestaurants', getLimitedAndSortedRestaurants);
 router.get('/categories', getAllCategoriesFromDB);
 
 export default router;

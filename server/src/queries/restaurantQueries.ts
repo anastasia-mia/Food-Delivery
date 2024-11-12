@@ -20,8 +20,8 @@ const getById = async (id: string): Promise<IRestaurant | null> => {
     return restaurants.length ? restaurants[0] : null;
 }
 
-const getByLimitAndSorting = async(column: string, limit: number): Promise<IRestaurant[] | null> => {
-    const sql= `SELECT * FROM restaurants ORDER BY ${column} DESC LIMIT ${limit}`
+const getByLimitAndSorting = async(limit: number, offset: number): Promise<IRestaurant[] | null> => {
+    const sql= `SELECT * FROM restaurants LIMIT ${limit} OFFSET ${offset}`
     const [restaurants] = await connection.execute(sql)
     return restaurants as IRestaurant[];
 }
