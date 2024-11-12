@@ -1,50 +1,5 @@
 @import '../../styles/variables.scss';
 
-.restaurants {
-  &_title {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    color: black;
-    font-size: 24px;
-    font-weight: 700;
-    padding-bottom: 30px;
-
-    svg {
-      filter: drop-shadow(3px 3px 3px $yellow);
-    }
-  }
-
-  &_group {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 15px;
-    grid-row-gap: 20px;
-
-    a {
-      color: black
-    }
-
-    button{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      background-color: transparent;
-      font-size: 20px;
-      color: $dark-green;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-
-      &:hover{
-        font-weight: 600;
-      }
-    }
-  }
-}
-
 .achievements{
   display: flex;
   justify-content: space-around;
@@ -83,12 +38,6 @@
 }
 
 @media screen and (max-width: 768px){
-  .restaurants{
-    &_group{
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-
   .achievements{
     .item{
       &_number{
@@ -103,17 +52,6 @@
 }
 
 @media screen and (max-width: 576px){
-  .restaurants{
-    &_title{
-      font-size: 18px;
-      padding-bottom: 20px;
-    }
-
-    &_group{
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
   .achievements{
     &_item{
       min-width: 50%;

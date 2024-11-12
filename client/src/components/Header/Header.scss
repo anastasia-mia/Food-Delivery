@@ -1,14 +1,17 @@
 @import '../../styles/variables.scss';
 
 .header{
-  background-color: $yellow;
-  min-height: 80px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
   z-index: 1300;
+
+  &_top{
+    background-color: $yellow;
+    display: flex;
+    min-height: 80px;
+  }
 
   &_container{
     display: flex;
@@ -20,26 +23,73 @@
     align-self: center;
   }
 
+  &_burgermenu{
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+
+    span, &::before, &::after{
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $dark-brown;
+    }
+
+    &::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
   &_logo{
     color: $dark-brown;
     font-size: 35px;
     font-weight: bold;
   }
 
-  &_geolocation{
+  &_bottom{
     display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    min-height: 45px;
+    width: 100%;
+    background-color: $light-gray;
 
-    &:hover{
-      text-decoration: underline;
+    .header_bottom_container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .header{
+
+    &_top{
+      min-width: 70px;
     }
 
-    p{
-      font-size: 18px;
-      font-weight: 500;
-      color: $dark-green;
+    &_bottom{
+      min-width: 35px;
+    }
+
+    &_logo{
+      font-size: 30px;
     }
   }
 }

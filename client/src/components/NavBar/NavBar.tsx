@@ -1,3 +1,5 @@
+import useWindowWidth from "../../hooks/useWindowWidth.ts";
+
 const sprite = "/assets/icons/sprite.svg";
 import "./NavBar.scss";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,6 +12,7 @@ const NavBar = () => {
     const {user, isLoggedIn} = useSelector((state: RootState) => state.auth);
     const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
     const totalQuantity: number = menuItems.reduce((total: number, item: CartItem) => total + item.quantity, 0);
+    const windowWidth = useWindowWidth();
 
     const openLoginPopUp = () => {
         dispatch(setIsLoginPopDisplayed(true))
@@ -17,19 +20,23 @@ const NavBar = () => {
 
     return (
         <div className="navbar">
-            <ul>
-                <li>Orders</li>
-            </ul>
-            {isLoggedIn && user ? (
-                <p className="navbar_greeting">Hello, {user}!</p>
-            ) : (
-                <div className="navbar_account" onClick={openLoginPopUp}>
-                    <span>Login</span>
+            {windowWidth > 768 &&
+                <div className="navbar_tabs">
+                    <ul>
+                        <li>Orders</li>
+                    </ul>
+                    {isLoggedIn && user ? (
+                        <p className="navbar_greeting">Hello, {user}!</p>
+                    ) : (
+                        <div className="navbar_account" onClick={openLoginPopUp}>
+                            <span>Login</span>
+                        </div>
+                    )}
                 </div>
-            )}
+            }
             <div className="navbar_cart">
                 <svg width="26" height="26" data-testid="navbar-cart">
-                <use
+                    <use
                         href={sprite + "#cart"}
                         fill="none"
                         stroke="#473C33"

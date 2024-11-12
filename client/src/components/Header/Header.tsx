@@ -1,40 +1,46 @@
 import NavBar from "../NavBar/NavBar";
 import './Header.scss';
 import {Link} from "react-router-dom";
-const sprite = "/assets/icons/sprite.svg";
-import {useDispatch} from "react-redux";
-import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
 import {useState} from "react";
+import useWindowWidth from "../../hooks/useWindowWidth.ts";
+import {Location} from "./Location/Location.tsx";
 
 export const Header = () => {
     const [address, setAddress] = useState<string>("");
-    const dispatch = useDispatch();
+    const windowWidth = useWindowWidth();
 
-    useGetAddressWithCoords(setAddress)
+    useGetAddressWithCoords(setAddress);
 
-    const handleClickLocationPopup = () => {
-        dispatch(setIsLocationPopUpDisplayed(true));
+    const toggleOpenBurgermenu = () => {
+
     }
 
     return (
         <div className="header">
-            <div className="header_container container">
-                <Link to="/">
-                    <div className="header_logo">DELIVERY</div>
-                </Link>
-                <div className="header_geolocation" onClick={handleClickLocationPopup} data-testid="location-icon">
-                    <svg width="24" height="24">
-                        <use
-                            href={sprite + "#map-pin"}
-                            fill="none"
-                            stroke="#473C33"
-                        ></use>
-                    </svg>
-                    <p data-testid="address-paragraph">{address ? address : 'Enter your location'}</p>
+            <div className="header_top">
+                <div className="header_container container">
+                    {windowWidth <= 768 &&
+                        <div className="header_burgermenu" onClick={toggleOpenBurgermenu}>
+                            <span></span>
+                        </div>
+                    }
+                    <Link to="/">
+                        <div className="header_logo">DELIVERY</div>
+                    </Link>
+                    {windowWidth >= 1280 &&
+                        <Location address={address}/>
+                    }
+                    <NavBar/>
                 </div>
-                <NavBar />
             </div>
+            {windowWidth < 1280 &&
+                <div className="header_bottom">
+                    <div className="header_bottom_container container">
+                        <Location address={address}/>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

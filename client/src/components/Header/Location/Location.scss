@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+
+.location{
+  display: flex;
+  flex-direction: row;
+  gap: 2.1%;
+  align-items: flex-end;
+  justify-content: center;
+  width: 47.1%;
+  cursor: pointer;
+
+  &:hover{
+    text-decoration: underline;
+  }
+
+  svg{
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  p{
+    font-size: 18px;
+    font-weight: 500;
+    color: $dark-green;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 1280px){
+  .location{
+    width: 100%;
+    padding: 0 15px;
+    align-items: center;
+    justify-self: center;
+  }
+}
