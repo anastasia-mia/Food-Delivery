@@ -8,3 +8,8 @@ export interface IRestaurant {
     ranking: number,
     category: string
 }
+
+export interface IRestaurantType {
+    id: number,
+    name: string
+}

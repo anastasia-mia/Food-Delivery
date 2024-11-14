@@ -1,5 +1,12 @@
-import {getAll, getById, getByLimitAndSorting, getAllCategories, getIdByName} from "../queries/restaurantQueries";
-import {IRestaurant} from "../models/RestaurantModel";
+import {
+    getAll,
+    getById,
+    getByLimitAndSorting,
+    getAllRestaurantTypes,
+    getIdByName,
+    getRestaurantsNamesByCategory
+} from "../queries/restaurantQueries";
+import {IRestaurant, IRestaurantType} from "../models/RestaurantModel";
 import{Response, Request} from 'express';
 
 const getAllRestaurants = async(_, res: Response) => {
@@ -44,12 +51,23 @@ const getLimitedAndSortedRestaurants = async(req: Request , res: Response) => {
     }
 }
 
-const getAllCategoriesFromDB = async(req: Request, res: Response) => {
+const getRestaurantTypes = async(req: Request, res: Response) => {
     try{
-        const categories: string[]= await getAllCategories();
+        const categories: IRestaurantType[]= await getAllRestaurantTypes();
         res.json(categories);
     }catch{
         res.status(500).send("Error getting all categories");
+    }
+}
+
+const getRestaurantsByType = async(req: Request, res: Response) => {
+    try{
+        const id: number = parseInt(req.query.id as string, 10);
+
+        const restaurantsName: string[] = await getRestaurantsNamesByCategory(id);
+        res.json(restaurantsName);
+    }catch{
+        res.status(500).send("Error getting restaurants by category")
     }
 }
 
@@ -57,5 +75,6 @@ export {getAllRestaurants,
     getRestaurantById,
     getLimitedAndSortedRestaurants,
     getRestaurantIdByName,
-    getAllCategoriesFromDB
+    getRestaurantTypes,
+    getRestaurantsByType
 }

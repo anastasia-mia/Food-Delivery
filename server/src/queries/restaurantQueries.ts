@@ -1,8 +1,19 @@
 import connection from "../config/database";
-import {IRestaurant} from "../models/RestaurantModel";
+import {IRestaurant, IRestaurantType} from "../models/RestaurantModel";
+
+const restaurantSelectFields = `
+    r.id, r.name, r.ranking, rt.name as type, 
+    dt.delivery_time_from, dt.delivery_time_to, 
+    dp.delivery_price_from, dp.delivery_price_to
+`;
 
 const getAll = async(): Promise<IRestaurant[] | null> => {
-    const sql = `SELECT * FROM restaurants`;
+    const sql = `SELECT  ${restaurantSelectFields}
+        FROM restaurants r
+        JOIN restaurant_types rt ON r.type_id = rt.id
+        JOIN delivery_time dt ON r.delivery_time_id = dt.id
+        JOIN delivery_price dp ON r.delivery_price_id = dp.id
+        `;
     const [restaurants] = await connection.execute(sql)
     return restaurants as IRestaurant[];
 }
@@ -14,28 +25,41 @@ const getIdByName = async (name: string): Promise<number | null> => {
 }
 
 const getById = async (id: string): Promise<IRestaurant | null> => {
-    const sql = `SELECT * FROM restaurants WHERE id = ?`;
+    const sql = `SELECT ${restaurantSelectFields}
+                 FROM restaurants r
+                          JOIN restaurant_types rt ON r.type_id = rt.id
+                          JOIN delivery_time dt ON r.delivery_time_id = dt.id
+                          JOIN delivery_price dp ON r.delivery_price_id = dp.id
+                    WHERE r.id = ?
+    `;
     const [rows] = await connection.execute(sql, [id]);
     const restaurants = rows as IRestaurant[];
     return restaurants.length ? restaurants[0] : null;
 }
 
 const getByLimitAndSorting = async(limit: number, offset: number): Promise<IRestaurant[] | null> => {
-    const sql= `SELECT * FROM restaurants LIMIT ${limit} OFFSET ${offset}`
+    const sql = `SELECT ${restaurantSelectFields}
+                 FROM restaurants r
+                          JOIN restaurant_types rt ON r.type_id = rt.id
+                          JOIN delivery_time dt ON r.delivery_time_id = dt.id
+                          JOIN delivery_price dp ON r.delivery_price_id = dp.id
+                     LIMIT ${limit} OFFSET ${offset}
+    `;
     const [restaurants] = await connection.execute(sql)
     return restaurants as IRestaurant[];
 }
 
-const getAllCategories = async(): Promise<string[] | null> => {
-    const sql = `SELECT DISTINCT category FROM restaurants`;
-    const [rows] = await connection.execute(sql);
-    if (Array.isArray(rows)) {
-        const categories= rows.map((row: any) => row.category) as string[];
-        return categories;
-    } else {
-        console.error('Unexpected result format:', rows);
-        return null;
-    }
+const getAllRestaurantTypes = async(): Promise<IRestaurantType[] | null> => {
+    const sql = `SELECT * FROM restaurant_types`;
+    const [categories] = await connection.execute(sql);
+    return categories as IRestaurantType[];
 }
 
-export {getAll, getById, getByLimitAndSorting, getAllCategories, getIdByName}
+const getRestaurantsNamesByCategory = async(id: number) :Promise<string[]> => {
+    const sql = `SELECT name FROM restaurants where type_id = ?`;
+    const [rows] = await connection.execute(sql, [id]);
+
+    return (rows as {name: string}[]).map(row => row.name);
+}
+
+export {getAll, getById, getByLimitAndSorting, getAllRestaurantTypes, getIdByName, getRestaurantsNamesByCategory}
