@@ -1,5 +1,4 @@
 import useWindowWidth from "../../hooks/useWindowWidth.ts";
-
 const sprite = "/assets/icons/sprite.svg";
 import "./NavBar.scss";
 import {useDispatch, useSelector} from "react-redux";

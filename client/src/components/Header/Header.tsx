@@ -5,15 +5,18 @@ import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
 import {useState} from "react";
 import useWindowWidth from "../../hooks/useWindowWidth.ts";
 import {Location} from "./Location/Location.tsx";
+import {setIsBurgerMenuDisplayed} from "../../redux/popUpDisplayingSlice.ts";
+import {useDispatch} from "react-redux";
 
 export const Header = () => {
     const [address, setAddress] = useState<string>("");
     const windowWidth = useWindowWidth();
+    const dispatch = useDispatch();
 
     useGetAddressWithCoords(setAddress);
 
     const toggleOpenBurgermenu = () => {
-
+        dispatch(setIsBurgerMenuDisplayed(true));
     }
 
     return (

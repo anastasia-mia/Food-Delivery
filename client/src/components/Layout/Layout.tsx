@@ -6,9 +6,13 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store.ts";
 import {LocationPopUp} from "../LocationPopUp/LocationPopUp.tsx";
 import {Login} from "../Login/Login.tsx";
+import {BurgerMenu} from "../Burgermenu/BurgerMenu.tsx";
 
 export const Layout = () => {
-    const {isLocationPopUpDisplayed, isLoginPopUpDisplayed} = useSelector((state: RootState) => state.popUpDisplaying);
+    const {isLocationPopUpDisplayed
+        , isLoginPopUpDisplayed,
+        isBurgerMenuDisplayed
+    } = useSelector((state: RootState) => state.popUpDisplaying);
 
     return (
         <>
@@ -21,6 +25,7 @@ export const Layout = () => {
             <Footer/>
             {isLocationPopUpDisplayed && <LocationPopUp />}
             {isLoginPopUpDisplayed && <Login />}
+            {isBurgerMenuDisplayed && <BurgerMenu />}
         </>
     )
 }

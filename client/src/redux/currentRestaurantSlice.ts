@@ -62,7 +62,7 @@ const initialState: IInitialState = {
         delivery_time_from: 0,
         delivery_time_to: 0,
         ranking: 0,
-        category: ''
+        type: ''
     }
 }
 

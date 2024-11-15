@@ -6,7 +6,12 @@ export interface IRestaurant{
     delivery_time_from: number,
     delivery_time_to: number,
     ranking: number,
-    category: string
+    type: string
+}
+
+export interface IRestaurantType {
+    id: number,
+    name: string
 }
 
 export interface IMenuItem{
