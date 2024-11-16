@@ -2,18 +2,17 @@ import './LocationPopUp.scss';
 import React, {useEffect, useState} from "react";
 import {InputSelect} from "./InputSelect.tsx";
 import {CityOption, CountryOption, ICoords} from "../../interfaces/geoInterfaces.ts";
-import {
-    getCountries,
-    filterCountryOptions,
-    getCities,
-    fetchCityCoordinates,
-    fetchCurrentAddress
-} from "./locationService.ts";
-import sprite from "../../assets/icons/sprite.svg";
+import {getCountries} from "./locationService/getCountries.ts";
+import {filterCountryOptions} from "./locationService/filterCountryOptions.ts";
+import {getCities} from "./locationService/getCities.ts";
+import {fetchCityCoordinates} from "./locationService/fetchCityCoordinates.ts";
+import {fetchCurrentAddress} from "./locationService/fetchCurrentAddress.ts"
+const sprite = "/assets/icons/sprite.svg";
 import Map from '../Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
+import useNoScroll from "../../hooks/useNoScroll.ts";
 
 type SelectedCountry = CountryOption | null;
 
@@ -24,6 +23,7 @@ export const LocationPopUp = () => {
     const [address, setAddress] = useState<string | null>(null);
     const storedCoords = useStoredCoords();
     const dispatch = useDispatch();
+    useNoScroll(true);
 
     useEffect(() => {
         if (storedCoords) {
@@ -76,8 +76,8 @@ export const LocationPopUp = () => {
                                 </svg>
                                 <p>Find my position automatically</p>
                             </div>
+                            <label>Or find your city and put a marker on map</label>
                             <form>
-                                <label>Or find your city and put a marker on map</label>
                                 <InputSelect<CountryOption>
                                     handleFunction={getCountries}
                                     selectedOption={selectedCountry}
@@ -100,6 +100,23 @@ export const LocationPopUp = () => {
                             >
                                 Find
                             </button>
+                            {window.innerWidth > 768 &&
+                                <button
+                                    className={`locationPopUp_confirmBtn 
+                                ${!address ? `nonactive` : ''}`}
+                                    onClick={confirmUserLocation}
+                                >
+                                    Confirm my address
+                                </button>
+                            }
+                        </div>
+                        <div className="locationPopUp_map">
+                            <p data-testid="address"><span>Address:</span> {address}</p>
+                            <div>
+                                <Map coords={coords} setAddress={setAddress} setCoords={setCoords}/>
+                            </div>
+                        </div>
+                        {window.innerWidth <= 768 &&
                             <button
                                 className={`locationPopUp_confirmBtn 
                                 ${!address ? `nonactive` : ''}`}
@@ -107,13 +124,7 @@ export const LocationPopUp = () => {
                             >
                                 Confirm my address
                             </button>
-                        </div>
-                        <div className="locationPopUp_map">
-                            <p><span>Address:</span> {address}</p>
-                            <div>
-                                <Map coords={coords} setAddress={setAddress} setCoords={setCoords}/>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
