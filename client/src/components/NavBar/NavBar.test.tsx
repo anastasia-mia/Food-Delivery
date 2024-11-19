@@ -2,7 +2,7 @@ import {act, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 import NavBar from "./NavBar.tsx";
 import configureMockStore from "redux-mock-store";
-import {CartItem} from "../../interfaces/interfaces.ts";
+import {ICartItem} from "../../interfaces/interfaces.ts";
 
 interface NavBarStore {
     auth: {
@@ -10,7 +10,7 @@ interface NavBarStore {
         isLoggedIn: boolean
     },
     cart: {
-        menuItems: CartItem[]
+        menuItems: ICartItem[]
     }
 }
 

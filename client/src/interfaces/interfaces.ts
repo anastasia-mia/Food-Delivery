@@ -23,7 +23,7 @@ export interface IMenuItem{
     restaurant_id?: number
 }
 
-export interface CartItem{
+export interface ICartItem{
     id?: number;
     quantity: number;
     name: string;

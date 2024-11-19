@@ -1,4 +1,4 @@
-import {CartItem} from "../../../interfaces/interfaces.ts";
+import {ICartItem} from "../../../interfaces/interfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 import './Order.scss';
@@ -9,7 +9,7 @@ interface IOrder{
 }
 
 export const Order = ({setTotalPrice}: IOrder) => {
-    const menuItems: CartItem[] = useSelector((state: RootState) => state.cart.menuItems);
+    const menuItems: ICartItem[] = useSelector((state: RootState) => state.cart.menuItems);
     const price: number = useSelector((state: RootState) => state.deliveryPrice.price)
     const serviceFee: number = 0.90;
     const totalCartPrice: number =
@@ -29,7 +29,7 @@ export const Order = ({setTotalPrice}: IOrder) => {
                         <p>Quantity</p>
                         <p>Price</p>
                     </div>
-                    {menuItems.map((item: CartItem, index: number) => (
+                    {menuItems.map((item: ICartItem, index: number) => (
                         <div key={index} className="order_item" data-testid="order-item">
                             <p className="order_item_name">{item.name}</p>
                             <p className="order_item_quantity">{item.quantity}х</p>
