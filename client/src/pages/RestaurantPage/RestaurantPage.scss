@@ -52,7 +52,84 @@
 
       span{
         font-size: 16px;
+      }
+    }
+  }
 
+  &_cart{
+    grid-area: cart;
+    display: block;
+    position: relative;
+
+    &_wrapper{
+      min-height: 400px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+      border-radius: 10px;
+      top: 110px;
+      position: sticky;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &_highlighted{
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1280px){
+  .restaurant{
+    &_container {
+      grid-template-areas: "details details" "categories menu";
+      grid-template-columns: 1fr 3fr;
+      gap: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .restaurant{
+
+    &_container{
+      gap: 25px;
+    }
+
+    &_card{
+      padding: 20px;
+      gap: 15px;
+      height: auto;
+    }
+
+    &_details{
+      .details_group{
+        gap: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .restaurant{
+    &_container {
+      grid-template-areas: "details" "categories" "menu";
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    &_name{
+      font-size: 28px;
+    }
+
+    &_text{
+      font-size: 14px;
+    }
+
+    &_details {
+      gap: 20px;
+
+      .details_group {
+        span{
+          font-size: 14px;
+        }
       }
     }
   }
