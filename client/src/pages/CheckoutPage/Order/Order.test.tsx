@@ -27,14 +27,19 @@ const store = mockStore({
 });
 
 describe('Order', () => {
+    const mockSetTotalPrice = jest.fn();
+
+    const renderOrder = () =>
+        render(
+            <Provider store={store}>
+                <Order setTotalPrice={mockSetTotalPrice} />
+            </Provider>
+        );
 
     it('renders correctly menu items', async() => {
+
         await act(async () => {
-            render(
-                <Provider store={store}>
-                    <Order/>
-                </Provider>
-            );
+            renderOrder();
         });
         const menuItems = screen.getAllByTestId('order-item');
         expect(menuItems).toHaveLength(2);
@@ -42,11 +47,7 @@ describe('Order', () => {
 
     it('calculates correct total price', async() => {
         await act(async () => {
-            render(
-                <Provider store={store}>
-                    <Order/>
-                </Provider>
-            );
+            renderOrder();
         });
         const totalPrice = screen.getByTestId('order-total');
         expect(totalPrice).toHaveTextContent("12.40")

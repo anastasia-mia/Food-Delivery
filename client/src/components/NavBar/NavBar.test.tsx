@@ -1,8 +1,9 @@
-import {act, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 import NavBar from "./NavBar.tsx";
 import configureMockStore from "redux-mock-store";
 import {ICartItem} from "../../interfaces/interfaces.ts";
+import {MemoryRouter} from "react-router-dom";
 
 interface NavBarStore {
     auth: {
@@ -11,35 +12,44 @@ interface NavBarStore {
     },
     cart: {
         menuItems: ICartItem[]
+    },
+    popUpDisplaying: {
+        isCartDisplayed: boolean
     }
 }
 
 const mockStore = configureMockStore<NavBarStore>();
 
 describe('NavBar', () => {
-    let store: ReturnType<typeof mockStore>
-
-    const renderComponent = () =>
-        render(
-            <Provider store={store}>
-                <NavBar />
-            </Provider>
-        );
-
-    it('renders correctly', async() => {
-        store = mockStore({
+    const createMockStore = (state: Partial<NavBarStore>) =>
+        mockStore({
             auth: {
                 user: null,
                 isLoggedIn: false,
+                ...state.auth,
             },
             cart: {
                 menuItems: [],
+                ...state.cart,
+            },
+            popUpDisplaying: {
+                isCartDisplayed: false,
+                ...state.popUpDisplaying,
             },
         });
 
-        await act(async () => {
-            renderComponent();
-        });
+    const renderNavBar = (store: ReturnType<typeof mockStore>) =>
+        render(
+            <MemoryRouter>
+                <Provider store={store}>
+                    <NavBar />
+                </Provider>
+            </MemoryRouter>
+        );
+
+    it('renders correctly', async() => {
+        const store = createMockStore({});
+        renderNavBar(store);
 
         const tabList = screen.getByRole('list');
         expect(tabList).toBeInTheDocument();
@@ -52,51 +62,28 @@ describe('NavBar', () => {
     });
 
     it("shows greeting when logged in", async() => {
-        store = mockStore({
+        const store = createMockStore({
             auth: {
                 user: "Maria",
                 isLoggedIn: true,
             },
-            cart: {
-                menuItems: [],
-            },
         });
-
-        await act(async () => {
-            renderComponent();
-        });
+        renderNavBar(store);
 
         const greeting = screen.getByText('Hello, Maria!');
         expect(greeting).toBeInTheDocument();
     })
 
     it("displays the number of items in the cart", async() => {
-        store = mockStore({
-            auth: {
-                user: null,
-                isLoggedIn: false,
-            },
+        const store = createMockStore({
             cart: {
                 menuItems: [
-                    {
-                        "id": 29,
-                        "quantity": 1,
-                        "name": "Gazpacho",
-                        "price": 6.00
-                    },
-                    {
-                        "id": 38,
-                        "quantity": 2,
-                        "name": "Sangria",
-                        "price": 2.00
-                    }
+                    { id: 1, name: "Item 1", price: 10, quantity: 1 },
+                    { id: 2, name: "Item 2", price: 15, quantity: 2 },
                 ],
             },
         });
-
-        await act(async () => {
-            renderComponent();
-        });
+        renderNavBar(store);
 
         const cartItemQuantity = screen.getByTestId('navbar-cart-quantity');
         expect(cartItemQuantity).toHaveTextContent('3');

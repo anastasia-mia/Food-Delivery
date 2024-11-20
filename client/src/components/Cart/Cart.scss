@@ -3,7 +3,7 @@
 .cart{
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  height: 100%;
   padding: 20px;
   gap: 25px;
 
@@ -18,6 +18,7 @@
     top: 0;
     right: 0;
     position: absolute;
+    padding-bottom: 30px;
   }
 
   &_header{
@@ -47,6 +48,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-height: 200px;
     flex: 1;
     overflow: auto;
   }
