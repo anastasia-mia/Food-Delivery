@@ -10,50 +10,11 @@
     gap: 30px;
   }
 
-  &_card{
-    grid-area: details;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    border-radius: 10px;
-    height: 250px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-  }
-
-  &_name{
-    font-weight: bold;
-    font-size: 32px;
-  }
-
-  &_text{
-    font-size: 16px;
-    color: $gray;
-  }
-
   &_loading{
     grid-area: menu;
     margin: 40px 0 0 15%;
     font-size: 20px;
     color: $dark-green;
-  }
-
-  &_details {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-
-    .details_group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-
-      span{
-        font-size: 16px;
-      }
-    }
   }
 
   &_cart{
@@ -88,21 +49,8 @@
 
 @media screen and (max-width: 768px){
   .restaurant{
-
     &_container{
       gap: 25px;
-    }
-
-    &_card{
-      padding: 20px;
-      gap: 15px;
-      height: auto;
-    }
-
-    &_details{
-      .details_group{
-        gap: 5px;
-      }
     }
   }
 }
@@ -113,24 +61,6 @@
       grid-template-areas: "details" "categories" "menu";
       grid-template-columns: 1fr;
       gap: 20px;
-    }
-
-    &_name{
-      font-size: 28px;
-    }
-
-    &_text{
-      font-size: 14px;
-    }
-
-    &_details {
-      gap: 20px;
-
-      .details_group {
-        span{
-          font-size: 14px;
-        }
-      }
     }
   }
 }
