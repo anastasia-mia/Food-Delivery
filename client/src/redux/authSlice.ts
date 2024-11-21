@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IUserLogin} from "../interfaces/userInterfaces.ts";
+import {IUserLogin, IUserRegister} from "../interfaces/userInterfaces.ts";
 import axios from "axios";
 
 interface AuthState {
@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk(
         try {
             const response = await axios.post('http://localhost:3001/api/login', {email, password},
                 {withCredentials: true});
-            return response.data.user;
+            return response.data;
         } catch (error) {
             if (axios.isAxiosError(error) && error.response) {
                 return thunkAPI.rejectWithValue({ message: error.response.data });
@@ -30,7 +30,23 @@ export const loginUser = createAsyncThunk(
                 return thunkAPI.rejectWithValue({ message: 'Unexpected error occurred' });
             }
         }
+    }
+)
 
+export const registerUser = createAsyncThunk(
+    "auth/register",
+    async({name, email, password, confirmPassword}: IUserRegister, thunkAPI) => {
+        try {
+            await axios.post('http://localhost:3001/api/register',
+                {name, email, password, confirmPassword},
+                {withCredentials: true});
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                return thunkAPI.rejectWithValue({ message: error.response.data });
+            } else {
+                return thunkAPI.rejectWithValue({ message: 'Unexpected error occurred' });
+            }
+        }
     }
 )
 
@@ -43,24 +59,36 @@ export const checkSession = createAsyncThunk(
     }
 )
 
+export const logoutUser = createAsyncThunk(
+    'auth/logout',
+    async() => {
+        const response = await axios.post('http://localhost:3001/api/logout', {},
+            {withCredentials: true});
+        return response.data;
+    }
+)
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logout: (state) => {
-            state.user = null;
-            state.isLoggedIn = false;
+        resetError: (state) => {
+            state.error = null;
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = action.payload.user.name;
-                state.isLoggedIn = true;
+                state.isLoggedIn = action.payload.isLoggedIn;
             })
             .addCase(checkSession.fulfilled, (state, action) => {
                 state.isLoggedIn = action.payload.isLoggedIn;
                 state.user = action.payload.user.name;
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.user = null;
+                state.isLoggedIn = false;
             })
             .addMatcher(
                 (action) => action.type.endsWith('/pending'),
@@ -81,5 +109,5 @@ const authSlice = createSlice({
     }
 })
 
-export const {logout} = authSlice.actions;
+export const {resetError} = authSlice.actions;
 export default authSlice.reducer;

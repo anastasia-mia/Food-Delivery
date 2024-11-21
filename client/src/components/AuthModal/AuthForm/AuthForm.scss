@@ -1,0 +1,42 @@
+@import '../../../styles/variables.scss';
+
+.auth-form-body{
+
+  &-label{
+    font-size: 16px;
+    color: $dark-brown;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 15px;
+    position: relative;
+  }
+
+  &-input{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid $gray;
+    padding: 5px;
+    font-size: 14px;
+
+    &::placeholder{
+      color: $gray;
+    }
+  }
+
+  &-error{
+    position: absolute;
+    font-size: 10px;
+    color: red;
+    bottom: 3px;
+    left: 0;
+  }
+}
+
+.auth-form-submit-error{
+  color: red;
+  font-size: 14px;
+  margin-bottom: -10px;
+}

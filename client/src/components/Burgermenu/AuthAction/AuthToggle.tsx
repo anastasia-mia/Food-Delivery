@@ -1,16 +1,16 @@
 import './AuthToggle.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store.ts";
-import {logout} from "../../../redux/authSlice.ts";
+import {AppDispatch, RootState} from "../../../redux/store.ts";
 import {setIsBurgerMenuDisplayed, setIsLoginPopDisplayed} from "../../../redux/popUpDisplayingSlice.ts";
+import {logoutUser} from "../../../redux/authSlice.ts";
 
 export const AuthToggle = () => {
     const {isLoggedIn} = useSelector((state: RootState) => state.auth);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     const toggleAuthState = () => {
         if(isLoggedIn){
-            dispatch(logout());
+            dispatch(logoutUser());
         }else{
             dispatch(setIsBurgerMenuDisplayed(false));
             dispatch(setIsLoginPopDisplayed(true));

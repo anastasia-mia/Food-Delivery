@@ -5,15 +5,16 @@ import {Footer} from "../Footer/Footer.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store.ts";
 import {LocationPopUp} from "../LocationPopUp/LocationPopUp.tsx";
-import {Login} from "../Login/Login.tsx";
+import {AuthModal} from "../AuthModal/AuthModal.tsx";
 import {BurgerMenu} from "../Burgermenu/BurgerMenu.tsx";
 import {Cart} from "../Cart/Cart.tsx";
 import {setIsCartDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 
 export const Layout = () => {
     const {
-        isLocationPopUpDisplayed
-        , isLoginPopUpDisplayed,
+        isLocationPopUpDisplayed,
+        isRegisterPopUpDisplayed,
+        isLoginPopUpDisplayed,
         isBurgerMenuDisplayed,
         isCartDisplayed
     } = useSelector((state: RootState) => state.popUpDisplaying);
@@ -29,7 +30,8 @@ export const Layout = () => {
             </div>
             <Footer/>
             {isLocationPopUpDisplayed && <LocationPopUp/>}
-            {isLoginPopUpDisplayed && <Login/>}
+            {isLoginPopUpDisplayed && <AuthModal type={'login'}/>}
+            {isRegisterPopUpDisplayed && <AuthModal type={'register'}/>}
             {isBurgerMenuDisplayed && <BurgerMenu/>}
             {isCartDisplayed &&
                 <div className="popUp-background">
