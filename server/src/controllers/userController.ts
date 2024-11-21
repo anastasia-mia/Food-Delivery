@@ -12,7 +12,11 @@ declare module 'express-session' {
 
 const createNewUser = async (req: Request, res: Response)  => {
     try{
-        const { name, email, password } = req.body;
+        const { name, email, password, confirmPassword } = req.body;
+
+        if (password !== confirmPassword) {
+            return res.status(400).send("Passwords do not match");
+        }
 
         const user = await getUserByEmail(email);
 
@@ -59,4 +63,19 @@ const checkSession = (req: Request, res: Response) => {
     }
 };
 
-export { createNewUser, loginUser, checkSession };
+const logoutUser = (req:Request, res:Response) => {
+    if(req.session.user){
+        req.session.destroy((err) => {
+            if(err){
+                res.status(500).json({message: "Error logging out"});
+            }else{
+                res.clearCookie("connect.sid");
+                res.status(200).json({message: "User logged out"});
+            }
+        })
+    }else{
+        res.status(400).json({message: "User is not logged in"});
+    }
+}
+
+export { createNewUser, loginUser, checkSession, logoutUser};
