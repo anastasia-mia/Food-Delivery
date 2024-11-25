@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {ICoords} from "../../interfaces/geoInterfaces.ts";
 import {CustomerInfo} from "./CustomerInfo/CustomerInfo.tsx";
 import {Delivery} from "./Delivery/Delivery.tsx";
-import {CartItem, ClientDetails} from "../../interfaces/interfaces.ts";
+import {ICartItem, ClientDetails} from "../../interfaces/interfaces.ts";
 import {RootState} from "../../redux/store.ts";
 import axios from "axios";
 import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
@@ -21,7 +21,7 @@ export const CheckoutPage = () => {
     const [coords, setCoords] = useState<ICoords>({lat: 0, lon: 0});
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [address, setAddress] = useState<string>('');
-    const {menuItems}: {menuItems: CartItem[]} = useSelector((state: RootState) => state.cart);
+    const {menuItems}: {menuItems: ICartItem[]} = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
