@@ -55,13 +55,19 @@
       }
     }
 
+    &_total_container{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding-top: 20px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
     &_total{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 20px;
-      font-size: 20px;
-      font-weight: 600;
     }
   }
 }
