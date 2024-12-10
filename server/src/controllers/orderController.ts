@@ -13,7 +13,7 @@ export const createNewOrder = async (req: Request, res: Response): Promise<void>
             return;
         }
 
-        const { customer, orderItems, total}: Order = req.body;
+        const { customer, orderItems, total, restaurantId}: Order = req.body;
 
         if (!customer) {
             res.status(400).json({ message: 'There are no customer details' });
@@ -25,7 +25,7 @@ export const createNewOrder = async (req: Request, res: Response): Promise<void>
 
         const formattedDate = new Date().toISOString().split('T')[0];
 
-        await insertOrder(userId, total, customer, formattedDate, orderItems);
+        await insertOrder(userId, total, customer, formattedDate, orderItems, restaurantId);
 
         res.status(200).json({message: 'The order is added'})
     }catch(err){

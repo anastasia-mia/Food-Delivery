@@ -19,5 +19,6 @@ export interface Order {
     status: string;
     order_date: string;
     customer: Customer;
+    restaurantId: number;
     orderItems: OrderItem[];
 }
