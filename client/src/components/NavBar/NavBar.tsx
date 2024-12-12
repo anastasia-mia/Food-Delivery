@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsLoginPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {AppDispatch, RootState} from "../../redux/store.ts";
 import {NavBarCart} from "./NavBarCart.tsx";
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -19,7 +20,9 @@ const NavBar = () => {
             {windowWidth > 768 &&
                 <div className="navbar_tabs">
                     <ul>
-                        <li>Orders</li>
+                        <Link to="/order-history">
+                            <li>Orders</li>
+                        </Link>
                     </ul>
                     {isLoggedIn && user ? (
                         <p className="navbar_greeting">Hello, {user}!</p>

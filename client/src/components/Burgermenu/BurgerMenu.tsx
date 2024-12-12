@@ -44,7 +44,7 @@ export const BurgerMenu = () => {
                     </div>
                     <div className="burgerMenu_tabs">
                         {isLoggedIn &&
-                            <Link to="/orders">
+                            <Link to="/order-history">
                                 <div onClick={closePopup}>
                                     Orders
                                 </div>

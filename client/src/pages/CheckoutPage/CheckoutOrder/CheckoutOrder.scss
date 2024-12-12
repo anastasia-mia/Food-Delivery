@@ -1,6 +1,6 @@
 @import '../../../styles/variables.scss';
 
-.order {
+.checkout-order {
   padding: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   border-radius: 10px;
@@ -73,7 +73,7 @@
 }
 
 @media screen and (max-width: 576px){
-  .order{
+  .checkout-order{
     &_title{
 
       p{

@@ -1,5 +1,5 @@
 import './CheckoutPage.scss';
-import {Order} from "./Order/Order.tsx";
+import {CheckoutOrder} from "./CheckoutOrder/CheckoutOrder.tsx";
 import Map from "../../components/Map/Map.tsx";
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useEffect, useState} from "react";
@@ -22,6 +22,7 @@ export const CheckoutPage = () => {
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [address, setAddress] = useState<string>('');
     const {menuItems}: {menuItems: ICartItem[]} = useSelector((state: RootState) => state.cart);
+    const {restaurant_id}: {restaurant_id: number} = useSelector((state: RootState) => state.chosenRestaurant);
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
@@ -53,7 +54,8 @@ export const CheckoutPage = () => {
         axios.post('http://localhost:3001/api/createOrder', {
             customer: {...data, address},
             orderItems: menuItems,
-            total: totalPrice
+            total: totalPrice,
+            restaurantId: restaurant_id
         }, {withCredentials: true})
             .then(() => {
                 dispatch(removeAllItems());
@@ -75,7 +77,7 @@ export const CheckoutPage = () => {
                     </div>
                 </div>
                 <div className="checkout_order">
-                    <Order setTotalPrice={setTotalPrice} />
+                    <CheckoutOrder setTotalPrice={setTotalPrice} />
                     <Delivery />
                 </div>
             </div>

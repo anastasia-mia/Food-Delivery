@@ -1,23 +1,24 @@
 import {ICartItem} from "../../../interfaces/interfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
-import './Order.scss';
+import './CheckoutOrder.scss';
 import {useEffect, useMemo, useState} from "react";
 import {ArrowDown} from "../../../components/Icon/ArrowDown.tsx";
 import useWindowWidth from "../../../hooks/useWindowWidth.ts";
-import {OrderItems} from "./OrderItems/OrderItems.tsx";
+import {OrderItems} from "../../../components/OrderItems/OrderItems.tsx";
 import {PromoCode} from "./PromoCode/PromoCode.tsx";
+import {useDropDownVisibility} from "../../../hooks/useDropDownVisibility.ts";
 
 interface IOrder {
     setTotalPrice: (totalPrice: number) => void;
 }
 
-export const Order = ({setTotalPrice}: IOrder) => {
+export const CheckoutOrder = ({setTotalPrice}: IOrder) => {
     const menuItems: ICartItem[] = useSelector((state: RootState) => state.cart.menuItems);
     const deliveryPrice: number = useSelector((state: RootState) => state.deliveryPrice.price);
     const {restaurantName} = useSelector((state: RootState) => state.chosenRestaurant);
     const windowWidth = useWindowWidth();
-    const [isOrderItemsVisible, setIsOrderItemsVisible] = useState<boolean>(windowWidth > 1024);
+    const {isDropDownOpen, toggleDropDownOpen} = useDropDownVisibility(windowWidth > 1024);
     const [totalWithPromoCode, setTotalWithPromoCode] = useState<number | null>(null)
     const serviceFee: number = 0.90;
 
@@ -30,45 +31,41 @@ export const Order = ({setTotalPrice}: IOrder) => {
         setTotalPrice(totalWithPromoCode ? totalWithPromoCode : Number(totalCartPrice.toFixed(2)));
     }, [totalCartPrice, totalWithPromoCode]);
 
-    const toggleOrderItemsVisibility = () => {
-        setIsOrderItemsVisible(!isOrderItemsVisible);
-    }
-
     return (
-        <div className="order">
-            <div className="order_container">
-                <div className="order_title">
+        <div className="checkout-order">
+            <div className="checkout-order_container">
+                <div className="checkout-order_title">
                     <p>Your order from <span>{restaurantName}</span></p>
                     {windowWidth <= 1024 &&
-                        <div className="order_dropdown_icon" onClick={toggleOrderItemsVisibility}>
-                            <span>{isOrderItemsVisible ? "hide order" : "see order"}</span>
-                            <ArrowDown isOptionsOpen={isOrderItemsVisible}/>
+                        <div className="checkout-order_dropdown_icon" onClick={toggleDropDownOpen}>
+                            <span>{isDropDownOpen ? "hide order" : "see order"}</span>
+                            <ArrowDown isOptionsOpen={isDropDownOpen}/>
                         </div>
                     }
                 </div>
-                {isOrderItemsVisible && (
+                {isDropDownOpen && (
                     <OrderItems menuItems={menuItems}/>
                 )}
-                <div className="order_payment">
-                    <div className="order_payment_fee">
+                <div className="checkout-order_payment">
+                    <div className="checkout-order_payment_fee">
                         <p>Sum:</p>
                         <p>{(totalCartPrice - serviceFee - deliveryPrice).toFixed(2)}€</p>
                     </div>
-                    <div className="order_payment_fee">
+                    <div className="checkout-order_payment_fee">
                         <p>Service fee:</p>
                         <p>{serviceFee}€</p>
                     </div>
-                    <div className="order_payment_fee">
+                    <div className="checkout-order_payment_fee">
                         <p>Delivery:</p>
                         <p>{deliveryPrice}€</p>
                     </div>
-                    <div className="order_payment_total_container">
+                    <div className="checkout-order_payment_total_container">
                         <PromoCode total={Number(totalCartPrice.toFixed(2))}
                                    setTotalWithPromoCode={setTotalWithPromoCode}
                         />
-                        <div className="order_payment_total">
+                        <div className="checkout-order_payment_total">
                             <p>Total:</p>
-                            <p data-testid="order-total">
+                            <p data-testid="checkout-order-total">
                                 {totalWithPromoCode ? totalWithPromoCode : totalCartPrice.toFixed(2)}€
                             </p>
                         </div>

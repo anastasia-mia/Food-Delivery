@@ -29,6 +29,7 @@ export interface ICartItem{
     name: string;
     price: number;
     restaurant_id?: number;
+    menuItemName?: string;
 }
 
 export interface IRestaurantObject{
@@ -42,4 +43,25 @@ export interface ClientDetails{
     email: string;
     phoneNumber: string;
     comment?: string;
+}
+
+export interface IOrderMenuItem{
+    menuItemId: number,
+    menuItemName: string,
+    quantity: number,
+    price: number
+}
+
+export interface IOrder{
+    orderId: number,
+    total: number,
+    orderDate: string,
+    status: {
+        statusId: number,
+        statusName: string
+    }
+    restaurantName: string,
+    comment: string,
+    customer: object,
+    orderItems: IOrderMenuItem[]
 }

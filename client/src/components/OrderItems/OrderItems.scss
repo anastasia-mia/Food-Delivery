@@ -1,11 +1,11 @@
-.order{
-  &_items {
+.checkout-order{
+  &-items {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
 
-  &_headers {
+  &-headers {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
     grid-row-gap: 10px;
@@ -24,7 +24,7 @@
     }
   }
 
-  &_item {
+  &-item {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
     grid-column-gap: 5px;
@@ -41,11 +41,15 @@
       }
     }
   }
+
+  &-arrow{
+    align-self: center;
+  }
 }
 
 @media screen and (max-width: 1280px){
-  .order{
-    &_headers{
+  .checkout-order{
+    &-headers{
 
       p{
         font-size: 18px;

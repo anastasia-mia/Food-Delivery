@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.order-history{
+  padding: 50px 0;
+
+  &-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 45px;
+  }
+
+  &-title{
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  &-total{
+    font-size: 24px;
+  }
+
+  &-body{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .order-history{
+    &-header{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}

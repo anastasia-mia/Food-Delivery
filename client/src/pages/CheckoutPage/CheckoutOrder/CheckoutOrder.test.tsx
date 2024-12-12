@@ -1,6 +1,6 @@
 import {act, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
-import {Order} from "./Order.tsx";
+import {CheckoutOrder} from "./CheckoutOrder.tsx";
 import configureMockStore from "redux-mock-store";
 
 const mockStore = configureMockStore();
@@ -32,7 +32,7 @@ describe('Order', () => {
     const renderOrder = () =>
         render(
             <Provider store={store}>
-                <Order setTotalPrice={mockSetTotalPrice} />
+                <CheckoutOrder setTotalPrice={mockSetTotalPrice} />
             </Provider>
         );
 

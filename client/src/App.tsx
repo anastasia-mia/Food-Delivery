@@ -7,6 +7,7 @@ import {Layout} from "./components/Layout/Layout.tsx";
 import {checkSession} from "./redux/authSlice.ts";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "./redux/store.ts";
+import {OrderHistory} from "./pages/OrderHistory/OrderHistory.tsx";
 
 function App() {
     const dispatch: AppDispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
                         <Route path="*" element={<NotFound/>}/>
                         <Route path="/restaurants/:restaurantName" element={<RestaurantPage/>}/>
                         <Route path="/checkout" element={<CheckoutPage/>}/>
+                        <Route path="/order-history" element={<OrderHistory />}/>
                     </Route>
                 </Routes>
             </Router>

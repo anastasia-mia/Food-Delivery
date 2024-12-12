@@ -1,0 +1,160 @@
+@import '../../../styles/variables.scss';
+
+.order{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 15px;
+  min-height: 200px;
+
+  padding: 25px;
+  transition: height 0.3s ease-in-out;
+
+  &-created{
+    background-color: rgba(109, 151, 115, 0.1);
+    border: 1px solid $light-green;
+  }
+
+  &-finished{
+    background-color: rgba(187, 138, 82, 0.1);
+    border: 1px solid $light-brown;
+  }
+
+  &-left{
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    gap: 25px;
+    position: relative;
+  }
+
+  &-logo{
+    position: absolute;
+    top: -45px;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+
+  &-text{
+    font-size: 18px;
+
+    span{
+      font-weight: 600;
+    }
+  }
+
+  &-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+
+  &-status{
+    color: $light-green;
+  }
+
+  &-dropdown{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $light-gray;
+    padding: 5px;
+  }
+
+  &-items{
+    padding: 5px;
+  }
+
+  &-right{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    justify-self: end;
+    align-self: flex-start;
+  }
+
+  &-date{
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 1280px){
+  .order{
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 20px;
+    grid-column-gap: 10px;
+
+    &-center{
+      width: 85%;
+      justify-self: center;
+    }
+
+    &-text {
+      font-size: 16px;
+    }
+
+    &-date{
+      font-size: 18px;
+    }
+
+    &-items{
+      .checkout-order-items{
+        gap: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .order{
+    &-date{
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .order{
+    grid-template-columns: 1fr;
+    grid-row-gap: 15px;
+    padding: 15px;
+
+    &-left{
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &-center{
+      width: 100%;
+      border-top: 1px solid $light-gray;
+      border-bottom: 1px solid $light-gray;
+      padding: 10px 0;
+      margin-bottom: 0;
+    }
+
+    &-right{
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      justify-self: auto;
+      align-self: auto;
+    }
+
+    &-text{
+      text-align: center;
+    }
+
+    &-logo{
+      width: 70px;
+      height: 70px;
+      top: -40px;
+    }
+  }
+}
