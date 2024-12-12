@@ -3,11 +3,11 @@ import connection from "../config/database";
 import {OkPacket, RowDataPacket} from 'mysql2';
 
 export const insertOrder = async (userId: number, total: number, customer: Customer, date: string, orderItems: OrderItem[], restaurantId: number) => {
-    const sql = `INSERT INTO orders (total, status, user_id, order_date, restaurant_id, comment)
+    const sql = `INSERT INTO orders (total, status_id, user_id, order_date, restaurant_id, comment)
                  VALUES (?, ?, ?, ?, ?, ?)`;
     const [orderCreated] = await connection.execute<OkPacket>(sql,
         [total,
-            "received",
+            1,
             userId,
             date,
             restaurantId,
@@ -44,7 +44,7 @@ export const insertOrderItems = async (orderId: number, orderItems: OrderItem[])
 export const getOrders = async (userId?: number) => {
     let sql = `SELECT o.id,
                       o.total,
-                      o.status,
+                      o.status_id,
                       o.order_date AS orderDate,
                       o.comment,
                       c.name,
@@ -56,12 +56,14 @@ export const getOrders = async (userId?: number) => {
                       oi.quantity,
                       oi.price,
                       r.name AS restaurantName,
-                      mi.name AS menuItemName
+                      mi.name AS menuItemName,
+                      s.name AS statusName
                FROM orders o
                         JOIN order_customer_details c ON o.id = c.order_id
                         JOIN order_items oi ON o.id = oi.order_id
                         JOIN restaurants r ON o.restaurant_id = r.id
-                        JOIN menu_items mi ON oi.menu_item_id = mi.id`;
+                        JOIN menu_items mi ON oi.menu_item_id = mi.id
+                        JOIN statuses s ON o.status_id = s.id`;
 
     const params: (number | undefined)[] = [];
 

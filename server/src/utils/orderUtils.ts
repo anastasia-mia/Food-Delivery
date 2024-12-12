@@ -8,7 +8,10 @@ export const formatOrders = (ordersData: RowDataPacket[]) => {
             order = {
                 orderId: row.id,
                 total: row.total,
-                status: row.status,
+                status: {
+                    statusId: row.status_id,
+                    statusName: row.statusName
+                },
                 orderDate: row.orderDate,
                 shippingAddress: row.shippingAddress,
                 comment: row.comment,
