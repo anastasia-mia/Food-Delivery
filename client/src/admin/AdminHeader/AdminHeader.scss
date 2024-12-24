@@ -1,0 +1,33 @@
+@import '../../styles/variables.scss';
+
+.admin-header{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 60px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  z-index: 10;
+
+  &-logo{
+    font-size: 32px;
+    color: $light-brown;
+    font-weight: 600;
+
+    span{
+      font-size: 18px;
+      color: $light-green;
+    }
+  }
+
+  &-title{
+    font-size: 26px;
+  }
+
+  &-user{
+    font-size: 26px;
+  }
+}

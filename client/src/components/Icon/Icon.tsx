@@ -9,13 +9,13 @@ interface IconProps {
     testId?: string;
 }
 
-export const Icon = ({id, width, height, stroke, testId}: IconProps) => {
+export const Icon = ({id, width, height, stroke, testId, fill}: IconProps) => {
 
     return (
         <svg width={width} height={height} data-testid={testId}>
             <use
                 href={`${sprite}#${id}`}
-                fill="none"
+                fill={fill ? fill : "none"}
                 stroke={stroke}
             ></use>
         </svg>
