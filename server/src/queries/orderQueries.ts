@@ -77,3 +77,15 @@ export const getOrders = async (userId?: number) => {
     const [rows] = await connection.execute<RowDataPacket[]>(sql, params);
     return rows;
 }
+
+export const changeStatus = async(orderId: number, statusId: number): Promise<OkPacket> => {
+    const sql = `UPDATE orders SET status_id = ? WHERE id = ?`;
+    const [result] = await connection.execute<OkPacket>(sql, [statusId, orderId]);
+    return result;
+}
+
+export const getStatuses = async() => {
+    const sql = `SELECT * FROM statuses`;
+    const [rows] = await connection.execute(sql);
+    return rows;
+}

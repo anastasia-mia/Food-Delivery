@@ -1,4 +1,4 @@
-import {getOrders, insertOrder} from "../queries/orderQueries";
+import {changeStatus, getOrders, getStatuses, insertOrder} from "../queries/orderQueries";
 import { Request, Response } from 'express';
 import {Order} from "../models/orderModel";
 import {formatOrders} from "../utils/orderUtils";
@@ -61,4 +61,31 @@ export const getAllOrders = async (req: Request, res: Response) => {
         res.status(400).json({ message: err.message });
     }
 
+}
+
+export const changeOrderStatus = async(req: Request, res: Response) => {
+    const {orderId} = req.params;
+    const {statusId} = req.body;
+
+    try{
+        const result = await changeStatus(Number(orderId), Number(statusId));
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Order not found!' });
+        }
+
+        res.status(200).json({ message: 'Order status updated!' });
+    }catch{
+        res.status(500).json('Internal Server Error')
+    }
+}
+
+export const getAllStatuses = async(req: Request, res: Response) => {
+    try{
+        const statuses = await getStatuses();
+
+        res.status(200).json(statuses);
+    }catch(err){
+        res.status(400).json({ message: err.message });
+    }
 }
