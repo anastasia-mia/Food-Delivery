@@ -1,7 +1,7 @@
 import './RestaurantType.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {IRestaurantType} from "../../../interfaces/interfaces.ts";
+import {IRestaurantType} from "../../../interfaces/restaurantInterfaces.ts";
 import {Link} from "react-router-dom";
 import {ArrowDown} from "../../Icon/ArrowDown.tsx";
 

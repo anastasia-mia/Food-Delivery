@@ -2,7 +2,7 @@ import './CartItem.scss';
 import {decreaseQuantity, increaseQuantity} from "../../../redux/cartSlice.ts";
 import {AppDispatch} from "../../../redux/store.ts";
 import {useDispatch} from "react-redux";
-import {ICartItem} from "../../../interfaces/interfaces.ts";
+import {ICartItem} from "../../../interfaces/cartInterfaces.ts";
 
 interface CartItemProps{
     item: ICartItem,

@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 import NavBar from "./NavBar.tsx";
 import configureMockStore from "redux-mock-store";
-import {ICartItem} from "../../interfaces/interfaces.ts";
+import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 import {MemoryRouter} from "react-router-dom";
 
 interface NavBarStore {

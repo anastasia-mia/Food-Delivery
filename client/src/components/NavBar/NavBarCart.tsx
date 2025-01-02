@@ -5,7 +5,7 @@ import useWindowWidth from "../../hooks/useWindowWidth.ts";
 import {useMemo} from "react";
 import {AppDispatch, RootState} from "../../redux/store.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {ICartItem} from "../../interfaces/interfaces.ts";
+import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 import useNoScroll from "../../hooks/useNoScroll.ts";
 import {Icon} from "../Icon/Icon.tsx";
 

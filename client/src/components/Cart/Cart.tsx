@@ -1,7 +1,7 @@
 import './Cart.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store.ts";
-import {ICartItem} from "../../interfaces/interfaces.ts";
+import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 import {useEffect, useMemo} from "react";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import {setRestaurant} from "../../redux/chosenRestaurantSlice.ts";

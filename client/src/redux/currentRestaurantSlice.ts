@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios";
-import {IRestaurant} from "../interfaces/interfaces.ts";
+import {IRestaurant} from "../interfaces/restaurantInterfaces.ts";
 import {RootState} from "./store.ts";
 
 export const fetchRestaurantId = createAsyncThunk<number, {name: string}>(
