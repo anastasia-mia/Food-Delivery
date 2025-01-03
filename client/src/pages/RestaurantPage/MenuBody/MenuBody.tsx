@@ -1,7 +1,7 @@
 import {FoodCard} from "../FoodCard/FoodCard.tsx";
 import './MenuBody.scss';
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axiosInstance from '../../../../axiosConfig.ts';
 import {IMenuItem} from "../../../interfaces/cartInterfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
@@ -17,7 +17,7 @@ export const MenuBody = ({category}: MenuBodyProps) => {
     useEffect(() => {
         if(id){
             const categoryProp: string = category === 'All' ? '' : category.toLowerCase();
-            axios.get(`http://localhost:3001/api/menu-items/${id}/${categoryProp}`)
+            axiosInstance.get(`/menu-items/${id}/${categoryProp}`)
                 .then((res) => setMenuItems(res.data));
         }
     }, [category, id]);

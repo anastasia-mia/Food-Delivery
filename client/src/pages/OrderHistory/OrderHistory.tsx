@@ -1,14 +1,13 @@
 import './OrderHistory.scss';
 import {Order} from "./Order/Order.tsx";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axiosInstance from "../../../axiosConfig.ts";
 
 export const OrderHistory = () => {
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:3001/api/getAllOrdersByUserId/4", {withCredentials: true})
-            .then((res) => setOrders(res.data))
+        axiosInstance.get("/getAllOrdersByUserId/4").then((res) => setOrders(res.data))
     }, []);
 
     return(

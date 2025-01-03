@@ -2,14 +2,13 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import axios from "axios";
 import {IRestaurant} from "../interfaces/restaurantInterfaces.ts";
 import {RootState} from "./store.ts";
+import axiosInstance from "../../axiosConfig.ts";
 
 export const fetchRestaurantId = createAsyncThunk<number, {name: string}>(
     "currentRestaurant/fetchRestaurantId",
     async ({name}, thunkAPI) => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/restaurants/name/${name}`,
-                {withCredentials: true}
-            );
+            const response = await axiosInstance.get(`/restaurants/name/${name}`);
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error) && error.response) {
@@ -28,9 +27,7 @@ export const fetchRestaurant = createAsyncThunk<IRestaurant, void, { state: Root
         try {
             const state = thunkAPI.getState();
             const id = state.currentRestaurant.id;
-            const response = await axios.get(`http://localhost:3001/api/restaurants/id/${id}`,
-                {withCredentials: true}
-            );
+            const response = await axiosInstance.get(`/restaurants/id/${id}`);
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error) && error.response) {

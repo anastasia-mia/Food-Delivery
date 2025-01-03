@@ -1,10 +1,10 @@
-import axios from "axios";
+import axiosInstance from "../../axiosConfig.ts";
 
 export const fetchAddress = async (lat: number, lon: number, setAddress: (address: string) => void) => {
     try {
         if(lat === 0 && lon === 0) return;
 
-        const response = await axios.get('http://localhost:3001/api/address', {
+        const response = await axiosInstance.get('/address', {
             params: { lat, lon }
         });
 
