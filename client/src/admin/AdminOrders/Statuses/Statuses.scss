@@ -1,0 +1,83 @@
+@import '../../../styles/variables.scss';
+
+@keyframes messageAppearance {
+  0%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.statuses{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+
+  &-current{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $light-gray;
+    padding: 5px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+  }
+
+  &-items{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    padding-top: 5px;
+    background-color: white;
+    z-index: 10;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid $light-gray;
+    overflow: hidden;
+
+    p{
+      padding: 5px;
+    }
+
+    p:hover{
+      background-color: $light-green;
+    }
+  }
+
+  &-message{
+    position: absolute;
+    padding-top: 2px;
+    font-size: 12px;
+    top: 100%;
+    left: 0;
+    color: $dark-green;
+    animation: messageAppearance 3s ease-in-out forwards;
+  }
+
+  &-1{
+    background-color: rgba(187, 138, 82, 0.5);
+  }
+
+  &-2{
+    background-color: #d5bc4f;
+  }
+
+  &-3{
+    background-color: #f5b041;
+  }
+
+  &-4{
+    background-color: $light-green;
+  }
+}
