@@ -1,4 +1,4 @@
-import {ICartItem} from "../../../interfaces/interfaces.ts";
+import {ICartItem} from "../../../interfaces/cartInterfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 import './CheckoutOrder.scss';

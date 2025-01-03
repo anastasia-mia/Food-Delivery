@@ -1,5 +1,5 @@
 import './Card.scss';
-import {IRestaurant} from "../../../interfaces/interfaces.ts";
+import {IRestaurant} from "../../../interfaces/restaurantInterfaces.ts";
 import {Icon} from "../../../components/Icon/Icon.tsx";
 
 export const Card = ({restaurant}: {restaurant: IRestaurant}) => {

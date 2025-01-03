@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.admin-orders{
+  display: flex;
+  flex-direction: column;
+
+  &-headers, &-item{
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr 0.5fr;
+    align-items: center;
+  }
+
+  &-headers{
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  &-item{
+    padding: 20px 10px;
+    font-size: 18px;
+    border-top: 1px solid $light-gray;
+  }
+
+  &:last-of-type{
+    border-bottom: 1px solid $light-gray;;
+  }
+}

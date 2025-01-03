@@ -1,6 +1,6 @@
 import './Restaurants.scss';
 import sprite from "/assets/icons/sprite.svg";
-import {IRestaurant} from "../../../interfaces/interfaces.ts";
+import {IRestaurant} from "../../../interfaces/restaurantInterfaces.ts";
 import {Link} from "react-router-dom";
 import {RestoCard} from "../../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";

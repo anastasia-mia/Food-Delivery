@@ -1,7 +1,7 @@
 import './CustomerInfo.scss';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {ClientDetails} from "../../../interfaces/interfaces.ts";
+import {ClientDetails} from "../../../interfaces/orderInterfaces.ts";
 import {customerInfoSchema} from "../../../validations/customerInfoSchema.ts";
 
 interface ICustomerInfoProps {

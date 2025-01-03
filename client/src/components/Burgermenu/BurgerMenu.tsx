@@ -2,7 +2,7 @@ import './BurgerMenu.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {RestaurantType} from "./RestaurantType/RestaurantType.tsx";
-import {IRestaurantType} from "../../interfaces/interfaces.ts";
+import {IRestaurantType} from "../../interfaces/restaurantInterfaces.ts";
 import {setIsBurgerMenuDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";

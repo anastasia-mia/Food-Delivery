@@ -2,7 +2,7 @@ import {FoodCard} from "../FoodCard/FoodCard.tsx";
 import './MenuBody.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {IMenuItem} from "../../../interfaces/interfaces.ts";
+import {IMenuItem} from "../../../interfaces/cartInterfaces.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 

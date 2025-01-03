@@ -4,7 +4,7 @@ import {OrderItems} from "../../../components/OrderItems/OrderItems.tsx";
 // import crepe from '/assets/icons/crepe.png';
 import {OrderProgress} from "../OrderProgress/OrderProgress.tsx";
 import {formatDate} from "../../../utils/formatDate.ts";
-import {IOrder} from "../../../interfaces/interfaces.ts";
+import {IOrder} from "../../../interfaces/orderInterfaces.ts";
 
 export const Order = ({order} : {order: IOrder}) => {
 
