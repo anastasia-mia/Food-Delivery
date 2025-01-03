@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IUserLogin, IUserRegister} from "../interfaces/userInterfaces.ts";
-import axios from "axios";
+import axiosInstance from "../../axiosConfig.ts";
+import axios from 'axios';
 
 interface AuthState {
     user: string | null,
@@ -20,8 +21,7 @@ export const loginUser = createAsyncThunk(
     "auth/login",
     async ({email, password}: IUserLogin, thunkAPI) => {
         try {
-            const response = await axios.post('http://localhost:3001/api/login', {email, password},
-                {withCredentials: true});
+            const response = await axiosInstance.post('/login', {email, password});
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error) && error.response) {
@@ -37,9 +37,8 @@ export const registerUser = createAsyncThunk(
     "auth/register",
     async({name, email, password, confirmPassword}: IUserRegister, thunkAPI) => {
         try {
-            await axios.post('http://localhost:3001/api/register',
-                {name, email, password, confirmPassword},
-                {withCredentials: true});
+            await axiosInstance.post('/register',
+                {name, email, password, confirmPassword});
         } catch (error) {
             if (axios.isAxiosError(error) && error.response) {
                 return thunkAPI.rejectWithValue({ message: error.response.data });
@@ -53,8 +52,7 @@ export const registerUser = createAsyncThunk(
 export const checkSession = createAsyncThunk(
     'auth/checkSession',
     async() => {
-        const response = await axios.get('http://localhost:3001/api/checkSession',
-            {withCredentials: true});
+        const response = await axiosInstance.get('/checkSession');
         return response.data;
     }
 )
@@ -62,8 +60,7 @@ export const checkSession = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
     'auth/logout',
     async() => {
-        const response = await axios.post('http://localhost:3001/api/logout', {},
-            {withCredentials: true});
+        const response = await axiosInstance.post('/logout', {});
         return response.data;
     }
 )

@@ -4,7 +4,7 @@ import {IRestaurant} from "../../../interfaces/restaurantInterfaces.ts";
 import {Link} from "react-router-dom";
 import {RestoCard} from "../../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axiosInstance from "../../../../axiosConfig.ts";
 
 export const Restaurants = () => {
     const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
@@ -18,7 +18,7 @@ export const Restaurants = () => {
 
     useEffect(() => {
         if (limit && offset === restaurants.length) {
-            axios.get("http://localhost:3001/api/sortedRestaurants", {params: {limit, offset}})
+            axiosInstance.get("/sortedRestaurants", {params: {limit, offset}})
                 .then((res) => {
                         setRestaurants((prevState) => [...prevState, ...res.data.restaurants]);
                         setRestaurantsAmount(res.data.restaurantsAmount)

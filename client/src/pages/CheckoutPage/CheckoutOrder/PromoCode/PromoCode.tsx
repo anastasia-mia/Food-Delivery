@@ -1,6 +1,6 @@
 import "./PromoCode.scss";
 import React, {useState} from "react";
-import axios from "axios";
+import axiosInstance from "../../../../../axiosConfig.ts";
 
 interface promoCodeProps {
     total: number,
@@ -19,7 +19,7 @@ export const PromoCode = ({total, setTotalWithPromoCode}: promoCodeProps) => {
     }
 
     const applyPromoCode = () => {
-        axios.get(`http://localhost:3001/api/getPromoCode/${promoCode}/${total}`, {withCredentials: true})
+        axiosInstance.get(`/getPromoCode/${promoCode}/${total}`)
             .then((res) => {
                 setTotalWithPromoCode(Number((res.data.newTotal).toFixed(2)));
                 setNewTotal(Number((res.data.newTotal).toFixed(2)));

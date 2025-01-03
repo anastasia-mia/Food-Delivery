@@ -1,9 +1,9 @@
 import {CityOption} from "../../../interfaces/geoInterfaces.ts";
-import axios from "axios";
+import axiosInstance from "../../../../axiosConfig.ts";
 
 export const getCities =
     (setterFunction: (suggestions: CityOption[]) => void, tapedValue?: string, countryCode?: string): void => {
-        axios.get<CityOption[]>('http://localhost:3001/api/cities',
+        axiosInstance.get<CityOption[]>('/cities',
             {params: {tapedValue, countryCode}}
         )
             .then(res => setterFunction(res.data))

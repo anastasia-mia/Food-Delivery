@@ -1,6 +1,6 @@
 import './Categories.scss';
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axiosInstance from "../../../../axiosConfig.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 
@@ -15,7 +15,7 @@ export const Categories = ({setCategory}: CategoriesProps) => {
 
     useEffect(() => {
         if(id){
-            axios.get(`http://localhost:3001/api/menu-items/categories`, {params: {restaurantId: id}})
+            axiosInstance.get(`/menu-items/categories`, {params: {restaurantId: id}})
                 .then((res) => setCategories(res.data));
         }
     }, [id]);

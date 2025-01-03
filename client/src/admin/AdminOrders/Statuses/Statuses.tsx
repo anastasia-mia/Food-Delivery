@@ -4,7 +4,7 @@ import {useDropDownVisibility} from "../../../hooks/useDropDownVisibility.ts";
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
-import axios from "axios";
+import axiosInstance from "../../../../axiosConfig.ts";
 import {IStatus} from "../../../interfaces/orderInterfaces.ts";
 
 interface statusesParams{
@@ -22,9 +22,7 @@ export const Statuses = ({status, orderId}: statusesParams) => {
     const [updatingMessage, setUpdatingMessage] = useState<string>('');
 
     const changeStatus = (status: IStatus) => {
-        axios.put(`http://localhost:3001/api/changeOrderStatus/${orderId}`,
-            {statusId: status.id},
-            {withCredentials: true})
+        axiosInstance.put(`/changeOrderStatus/${orderId}`, {statusId: status.id})
             .then((res) => {
                 setUpdatingMessage(res.data.message);
                 setCurrentStatus({id: status.id, name: status.name});

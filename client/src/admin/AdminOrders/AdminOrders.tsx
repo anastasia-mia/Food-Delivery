@@ -1,7 +1,7 @@
 import './AdminOrders.scss';
 import {useEffect, useState} from "react";
 import {Statuses} from "./Statuses/Statuses.tsx";
-import axios from "axios";
+import axiosInstance from "../../../axiosConfig.ts";
 import {formatDate} from "../../utils/formatDate.ts";
 import {IOrder} from "../../interfaces/orderInterfaces.ts";
 
@@ -9,8 +9,7 @@ export const AdminOrders = () => {
     const [orders, setOrders] = useState<IOrder[]>([])
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/getAllOrders', {withCredentials: true})
-            .then((res) => setOrders(res.data))
+        axiosInstance.get('/getAllOrders').then((res) => setOrders(res.data))
     }, []);
 
     return (

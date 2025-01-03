@@ -1,6 +1,6 @@
 import './BurgerMenu.scss';
 import {useEffect, useState} from "react";
-import axios from "axios";
+import axiosInstance from "../../../axiosConfig.ts";
 import {RestaurantType} from "./RestaurantType/RestaurantType.tsx";
 import {IRestaurantType} from "../../interfaces/restaurantInterfaces.ts";
 import {setIsBurgerMenuDisplayed} from "../../redux/popUpDisplayingSlice.ts";
@@ -17,8 +17,7 @@ export const BurgerMenu = () => {
     useNoScroll(true);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/categories')
-            .then((res) => setTypes(res.data))
+        axiosInstance.get('/categories').then((res) => setTypes(res.data))
     }, []);
 
     const closePopup = () => {

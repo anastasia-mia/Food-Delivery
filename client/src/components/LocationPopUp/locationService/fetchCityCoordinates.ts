@@ -1,8 +1,8 @@
-import axios from "axios";
+import axiosInstance from "../../../../axiosConfig.ts";
 
 export const fetchCityCoordinates = async (country: string, city: string) => {
     try {
-        const response = await axios.get('http://localhost:3001/api/coordinates', {
+        const response = await axiosInstance.get('/coordinates', {
             params: { country, city }
         });
 

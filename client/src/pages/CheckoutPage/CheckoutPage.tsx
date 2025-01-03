@@ -11,7 +11,7 @@ import {Delivery} from "./Delivery/Delivery.tsx";
 import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 import {ClientDetails} from "../../interfaces/orderInterfaces.ts";
 import {RootState} from "../../redux/store.ts";
-import axios from "axios";
+import axiosInstance from "../../../axiosConfig.ts";
 import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
 import {removeAllItems} from "../../redux/cartSlice.ts";
 import {resetRestaurant} from "../../redux/chosenRestaurantSlice.ts";
@@ -52,12 +52,12 @@ export const CheckoutPage = () => {
     }, [storedCoords]);
 
     const onSubmitOrder = (data: ClientDetails) => {
-        axios.post('http://localhost:3001/api/createOrder', {
+        axiosInstance.post('/createOrder', {
             customer: {...data, address},
             orderItems: menuItems,
             total: totalPrice,
             restaurantId: restaurant_id
-        }, {withCredentials: true})
+        })
             .then(() => {
                 dispatch(removeAllItems());
                 dispatch(resetRestaurant());
