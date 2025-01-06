@@ -1,10 +1,10 @@
 import './Restaurants.scss';
-import sprite from "/assets/icons/sprite.svg";
 import {IRestaurant} from "../../../interfaces/restaurantInterfaces.ts";
 import {Link} from "react-router-dom";
 import {RestoCard} from "../../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";
 import axiosInstance from "../../../../axiosConfig.ts";
+import {Icon} from "../../../components/Icon/Icon.tsx";
 
 export const Restaurants = () => {
     const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
@@ -35,13 +35,7 @@ export const Restaurants = () => {
     return (
         <section className="restaurants">
             <p className="restaurants_title">
-                <svg width="32" height="32">
-                    <use
-                        href={sprite + "#rocket"}
-                        fill="none"
-                        stroke="#006A4E"
-                    ></use>
-                </svg>
+                <Icon id={"rocket"} width={"32"} height={"32"} stroke={"#006A4E"} />
                 Restaurants that you may like
             </p>
             <div className="restaurants_group">

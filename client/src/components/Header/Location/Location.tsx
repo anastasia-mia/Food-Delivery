@@ -1,7 +1,7 @@
 import './Location.scss';
 import {setIsLocationPopUpDisplayed} from "../../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
-const sprite = "/assets/icons/sprite.svg";
+import {Icon} from "../../Icon/Icon.tsx";
 
 export const Location = ({address}: {address: string}) => {
     const dispatch = useDispatch();
@@ -13,13 +13,7 @@ export const Location = ({address}: {address: string}) => {
     return (
         <div className="location" onClick={handleClickLocationPopup}
              data-testid="location-icon">
-            <svg width="24" height="24">
-                <use
-                    href={sprite + "#map-pin"}
-                    fill="none"
-                    stroke="#473C33"
-                ></use>
-            </svg>
+            <Icon id={"map-pin"} width={"24"} height={"24"} stroke={"#473C33"} />
             <p data-testid="address-paragraph">{address ? address : 'Enter your location'}</p>
         </div>
     )

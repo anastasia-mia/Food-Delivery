@@ -7,12 +7,12 @@ import {filterCountryOptions} from "./locationService/filterCountryOptions.ts";
 import {getCities} from "./locationService/getCities.ts";
 import {fetchCityCoordinates} from "./locationService/fetchCityCoordinates.ts";
 import {fetchCurrentAddress} from "./locationService/fetchCurrentAddress.ts"
-const sprite = "/assets/icons/sprite.svg";
 import Map from '../Map/Map.tsx'
 import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import useNoScroll from "../../hooks/useNoScroll.ts";
+import {Icon} from "../Icon/Icon.tsx";
 
 type SelectedCountry = CountryOption | null;
 
@@ -67,13 +67,7 @@ export const LocationPopUp = () => {
                     <div className="locationPopUp_main">
                         <div className="locationPopUp_location">
                             <div className="locationPopUp_location_current" onClick={setCurrentLocation}>
-                                <svg width="24" height="24">
-                                    <use
-                                        href={sprite + "#map-pin"}
-                                        fill="none"
-                                        stroke="red"
-                                    ></use>
-                                </svg>
+                                <Icon id={"map-pin"} width={"24"} height={"24"} stroke={"red"} />
                                 <p>Find my position automatically</p>
                             </div>
                             <label>Or find your city and put a marker on map</label>

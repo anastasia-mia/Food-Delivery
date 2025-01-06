@@ -12,7 +12,7 @@ interface IconProps {
 export const Icon = ({id, width, height, stroke, testId, fill}: IconProps) => {
 
     return (
-        <svg width={width} height={height} data-testid={testId}>
+        <svg width={width} height={height} data-testid={testId} >
             <use
                 href={`${sprite}#${id}`}
                 fill={fill ? fill : "none"}

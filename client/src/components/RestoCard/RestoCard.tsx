@@ -1,6 +1,6 @@
 import './RestoCard.scss';
 import {IRestaurant} from "../../interfaces/restaurantInterfaces.ts";
-import sprite from "../../../public/assets/icons/sprite.svg";
+import {Icon} from "../Icon/Icon.tsx";
 
 interface RestoCardProps{
     restaurantData: IRestaurant
@@ -16,13 +16,7 @@ export const RestoCard = ({restaurantData}: RestoCardProps) => {
             <div className="card_info">
                 <p className="card_title">{restaurantData.name}</p>
                 <div className="card_rating">
-                    <svg width="24" height="24">
-                        <use
-                            href={sprite + "#emoji"}
-                            fill="none"
-                            stroke="#006A4E"
-                        ></use>
-                    </svg>
+                    <Icon id={"emoji"} width={"24"} height={"24"} stroke={"#006A4E"} />
                     <p>{restaurantData.ranking}%</p>
                 </div>
             </div>
