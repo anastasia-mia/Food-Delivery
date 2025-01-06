@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import axiosInstance from "../../../../axiosConfig.ts";
 import {IRestaurantType} from "../../../interfaces/restaurantInterfaces.ts";
 import {Link} from "react-router-dom";
-import {ArrowDown} from "../../Icon/ArrowDown.tsx";
+import {ArrowDown} from "../../Icons/ArrowDown.tsx";
 
 interface RestaurantTypeProps {
     type: IRestaurantType
@@ -26,12 +26,12 @@ export const RestaurantType = ({type}: RestaurantTypeProps) => {
 
     return (
         <>
-            <div className="restaurant_type" onClick={toggleRestaurants}>
-                <p className="restaurant_type_name">{type.name}</p>
+            <div className="restaurant-type" onClick={toggleRestaurants}>
+                <p className="restaurant-type-name">{type.name}</p>
                 <ArrowDown isOptionsOpen={isTypesOpen}/>
             </div>
             {isTypesOpen &&
-                <div className="restaurant_type_restaurant_names">
+                <div className="restaurant-type-restaurant-names">
                     {restaurantsNames.map((name, index) => (
                         <Link key={index}
                               to={`/restaurants/${name}`}

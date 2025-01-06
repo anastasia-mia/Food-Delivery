@@ -3,26 +3,26 @@
 .restaurant {
   padding: 50px 0;
 
-  &_container {
+  &-container {
     display: grid;
     grid-template-areas: "details details cart" "categories menu cart";
     grid-template-columns: 150px 1fr 320px;
     gap: 30px;
   }
 
-  &_loading{
+  &-loading{
     grid-area: menu;
     margin: 40px 0 0 15%;
     font-size: 20px;
     color: $dark-green;
   }
 
-  &_cart{
+  &-cart{
     grid-area: cart;
     display: block;
     position: relative;
 
-    &_wrapper{
+    &-wrapper{
       min-height: 400px;
       box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
       border-radius: 10px;
@@ -31,7 +31,7 @@
       transition: all 0.3s ease-in-out;
     }
 
-    &_highlighted{
+    &-highlighted{
       box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     }
   }
@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 1280px){
   .restaurant{
-    &_container {
+    &-container {
       grid-template-areas: "details details" "categories menu";
       grid-template-columns: 1fr 3fr;
       gap: 30px;
@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 768px){
   .restaurant{
-    &_container{
+    &-container{
       gap: 25px;
     }
   }
@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 576px){
   .restaurant{
-    &_container {
+    &-container {
       grid-template-areas: "details" "categories" "menu";
       grid-template-columns: 1fr;
       gap: 20px;

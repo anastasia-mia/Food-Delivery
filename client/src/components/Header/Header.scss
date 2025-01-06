@@ -7,13 +7,13 @@
   left: 0;
   z-index: 1300;
 
-  &_top{
+  &-top{
     background-color: $yellow;
     display: flex;
     min-height: 80px;
   }
 
-  &_container{
+  &-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -23,7 +23,7 @@
     align-self: center;
   }
 
-  &_burgermenu{
+  &-burgermenu{
     display: flex;
     align-items: center;
     width: 30px;
@@ -53,13 +53,13 @@
     }
   }
 
-  &_logo{
+  &-logo{
     color: $dark-brown;
     font-size: 35px;
     font-weight: bold;
   }
 
-  &_bottom{
+  &-bottom{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,7 +67,7 @@
     width: 100%;
     background-color: $light-gray;
 
-    .header_bottom_container{
+    .header-bottom-container{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -80,15 +80,15 @@
 @media screen and (max-width: 768px){
   .header{
 
-    &_top{
+    &-top{
       min-width: 70px;
     }
 
-    &_bottom{
+    &-bottom{
       min-width: 35px;
     }
 
-    &_logo{
+    &-logo{
       font-size: 30px;
     }
   }

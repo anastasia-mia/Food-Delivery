@@ -39,9 +39,9 @@ export const Banners = () => {
 
     return (
         <section className="banners">
-            <div className="banners_track" ref={trackRef}>
+            <div className="banners-track" ref={trackRef}>
                 {cloneBanners.map((banner, index) => (
-                    <div key={index} className="banner_container">
+                    <div key={index} className="banner-container">
                         {banner}
                     </div>
                 ))}

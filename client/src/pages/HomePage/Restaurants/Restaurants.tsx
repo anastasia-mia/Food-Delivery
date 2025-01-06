@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {RestoCard} from "../../../components/RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";
 import axiosInstance from "../../../../axiosConfig.ts";
-import {Icon} from "../../../components/Icon/Icon.tsx";
+import {Icon} from "../../../components/Icons/Icon.tsx";
 
 export const Restaurants = () => {
     const [restaurants, setRestaurants] = useState<IRestaurant[]>([]);
@@ -34,11 +34,11 @@ export const Restaurants = () => {
 
     return (
         <section className="restaurants">
-            <p className="restaurants_title">
+            <p className="restaurants-title">
                 <Icon id={"rocket"} width={"32"} height={"32"} stroke={"#006A4E"} />
                 Restaurants that you may like
             </p>
-            <div className="restaurants_group">
+            <div className="restaurants-group">
                 {restaurants.map((restaurant: IRestaurant) => (
                     <Link key={restaurant.id}
                           to={`/restaurants/${restaurant.name}`}

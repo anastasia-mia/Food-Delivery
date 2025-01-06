@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/store.ts";
 import './CheckoutOrder.scss';
 import {useEffect, useMemo, useState} from "react";
-import {ArrowDown} from "../../../components/Icon/ArrowDown.tsx";
+import {ArrowDown} from "../../../components/Icons/ArrowDown.tsx";
 import useWindowWidth from "../../../hooks/useWindowWidth.ts";
 import {OrderItems} from "../../../components/OrderItems/OrderItems.tsx";
 import {PromoCode} from "./PromoCode/PromoCode.tsx";
@@ -33,11 +33,11 @@ export const CheckoutOrder = ({setTotalPrice}: IOrder) => {
 
     return (
         <div className="checkout-order">
-            <div className="checkout-order_container">
-                <div className="checkout-order_title">
+            <div className="checkout-order-container">
+                <div className="checkout-order-title">
                     <p>Your order from <span>{restaurantName}</span></p>
                     {windowWidth <= 1024 &&
-                        <div className="checkout-order_dropdown_icon" onClick={toggleDropDownOpen}>
+                        <div className="checkout-order-dropdown-icon" onClick={toggleDropDownOpen}>
                             <span>{isDropDownOpen ? "hide order" : "see order"}</span>
                             <ArrowDown isOptionsOpen={isDropDownOpen}/>
                         </div>
@@ -46,24 +46,24 @@ export const CheckoutOrder = ({setTotalPrice}: IOrder) => {
                 {isDropDownOpen && (
                     <OrderItems menuItems={menuItems}/>
                 )}
-                <div className="checkout-order_payment">
-                    <div className="checkout-order_payment_fee">
+                <div className="checkout-order-payment">
+                    <div className="checkout-order-payment-fee">
                         <p>Sum:</p>
                         <p>{(totalCartPrice - serviceFee - deliveryPrice).toFixed(2)}€</p>
                     </div>
-                    <div className="checkout-order_payment_fee">
+                    <div className="checkout-order-payment-fee">
                         <p>Service fee:</p>
                         <p>{serviceFee}€</p>
                     </div>
-                    <div className="checkout-order_payment_fee">
+                    <div className="checkout-order-payment-fee">
                         <p>Delivery:</p>
                         <p>{deliveryPrice}€</p>
                     </div>
-                    <div className="checkout-order_payment_total_container">
+                    <div className="checkout-order-payment-total-container">
                         <PromoCode total={Number(totalCartPrice.toFixed(2))}
                                    setTotalWithPromoCode={setTotalWithPromoCode}
                         />
-                        <div className="checkout-order_payment_total">
+                        <div className="checkout-order-payment-total">
                             <p>Total:</p>
                             <p data-testid="checkout-order-total">
                                 {totalWithPromoCode ? totalWithPromoCode : totalCartPrice.toFixed(2)}€

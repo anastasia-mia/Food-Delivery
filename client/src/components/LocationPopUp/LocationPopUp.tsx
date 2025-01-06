@@ -12,7 +12,7 @@ import useStoredCoords from "../../hooks/useStoredCoords.ts";
 import {useDispatch} from "react-redux";
 import {setIsLocationPopUpDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import useNoScroll from "../../hooks/useNoScroll.ts";
-import {Icon} from "../Icon/Icon.tsx";
+import {Icon} from "../Icons/Icon.tsx";
 
 type SelectedCountry = CountryOption | null;
 
@@ -59,14 +59,14 @@ export const LocationPopUp = () => {
     return (
         <div className="popUp-background">
             <div className="locationPopUp">
-                <div className="locationPopUp_container">
-                    <div className="locationPopUp_header">
-                        <p className="locationPopUp_title">Your location</p>
+                <div className="locationPopUp-container">
+                    <div className="locationPopUp-header">
+                        <p className="locationPopUp-title">Your location</p>
                         <div className="cross" onClick={closePopUp}></div>
                     </div>
-                    <div className="locationPopUp_main">
-                        <div className="locationPopUp_location">
-                            <div className="locationPopUp_location_current" onClick={setCurrentLocation}>
+                    <div className="locationPopUp-main">
+                        <div className="locationPopUp-location">
+                            <div className="locationPopUp-location-current" onClick={setCurrentLocation}>
                                 <Icon id={"map-pin"} width={"24"} height={"24"} stroke={"red"} />
                                 <p>Find my position automatically</p>
                             </div>
@@ -96,7 +96,7 @@ export const LocationPopUp = () => {
                             </button>
                             {window.innerWidth > 768 &&
                                 <button
-                                    className={`locationPopUp_confirmBtn 
+                                    className={`locationPopUp-confirmBtn 
                                 ${!address ? `nonactive` : ''}`}
                                     onClick={confirmUserLocation}
                                 >
@@ -104,7 +104,7 @@ export const LocationPopUp = () => {
                                 </button>
                             }
                         </div>
-                        <div className="locationPopUp_map">
+                        <div className="locationPopUp-map">
                             <p data-testid="address"><span>Address:</span> {address}</p>
                             <div>
                                 <Map coords={coords} setAddress={setAddress} setCoords={setCoords}/>
@@ -112,7 +112,7 @@ export const LocationPopUp = () => {
                         </div>
                         {window.innerWidth <= 768 &&
                             <button
-                                className={`locationPopUp_confirmBtn 
+                                className={`locationPopUp-confirmBtn 
                                 ${!address ? `nonactive` : ''}`}
                                 onClick={confirmUserLocation}
                             >

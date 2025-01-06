@@ -27,21 +27,21 @@ export const BurgerMenu = () => {
     return (
         <div className="popUp-background">
             <div className="burgerMenu">
-                <div className="burgerMenu_header">
+                <div className="burgerMenu-header">
                     <div className="cross"
                          onClick={closePopup}>
                     </div>
                 </div>
-                <div className="burgerMenu_body">
-                    {isLoggedIn && user && <p className="burgerMenu_greeting">Hello, {user}!</p>}
-                    <div className="burgerMenu_types">
+                <div className="burgerMenu-body">
+                    {isLoggedIn && user && <p className="burgerMenu-greeting">Hello, {user}!</p>}
+                    <div className="burgerMenu-types">
                         {types.map((type, index) => (
                             <div key={index}>
                                 <RestaurantType type={type}/>
                             </div>
                         ))}
                     </div>
-                    <div className="burgerMenu_tabs">
+                    <div className="burgerMenu-tabs">
                         {isLoggedIn &&
                             <Link to="/order-history">
                                 <div onClick={closePopup}>

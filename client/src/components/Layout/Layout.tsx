@@ -23,7 +23,7 @@ export const Layout = () => {
     return (
         <>
             <Header/>
-            <div className="content_wrap">
+            <div className="content-wrap">
                 <Suspense fallback={<div>Loading...</div>}>
                     <Outlet/>
                 </Suspense>
@@ -35,8 +35,8 @@ export const Layout = () => {
             {isBurgerMenuDisplayed && <BurgerMenu/>}
             {isCartDisplayed &&
                 <div className="popUp-background">
-                    <div className="cart_wrapper">
-                        <div className="cart_header">
+                    <div className="cart-wrapper">
+                        <div className="cart-header">
                             <div className="cross"
                                  onClick={() => dispatch(setIsCartDisplayed(false))}>
                             </div>

@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .restaurant{
-  &_card{
+  &-card{
     grid-area: details;
     padding: 30px;
     display: flex;
@@ -12,22 +12,22 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   }
 
-  &_name{
+  &-name{
     font-weight: bold;
     font-size: 32px;
   }
 
-  &_text{
+  &-text{
     font-size: 16px;
     color: $gray;
   }
 
-  &_details {
+  &-details {
     display: flex;
     flex-direction: row;
     gap: 30px;
 
-    .details_group {
+    .details-group {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -43,7 +43,7 @@
 
 @media screen and (max-width: 768px){
   .restaurant{
-    &_card{
+    &-card{
       padding: 20px;
       gap: 15px;
       height: auto;
@@ -53,18 +53,18 @@
 
 @media screen and (max-width: 576px){
   .restaurant{
-    &_name{
+    &-name{
       font-size: 28px;
     }
 
-    &_text{
+    &-text{
       font-size: 14px;
     }
 
-    &_details {
+    &-details {
       gap: 20px;
 
-      .details_group {
+      .details-group {
         span{
           font-size: 14px;
         }

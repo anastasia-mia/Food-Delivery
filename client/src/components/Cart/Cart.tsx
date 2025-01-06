@@ -34,24 +34,24 @@ export const Cart = () => {
 
     return (
         <div className="cart">
-            <p className="cart_title">
+            <p className="cart-title">
                 Your order
                 {(isRestaurantPage || menuItems.length !== 0) && (
                     <> from <span>{chosenRestaurant?.restaurantName}</span></>
                 )}
             </p>
-            <div className="cart_body">
+            <div className="cart-body">
                 {menuItems.length > 0 ? (
                     menuItems.map((item: ICartItem, index: number) => (
                         <CartItem item={item} itemIndex={index}/>
                     ))
-                ) : <div className="cart_empty">The cart is empty</div>}
+                ) : <div className="cart-empty">The cart is empty</div>}
             </div>
-            <div className="cart_sum">
-                <p className="cart_sum_text">Total:</p>
-                <p className="cart_sum_total">{totalPrice.toFixed(2)}€</p>
+            <div className="cart-sum">
+                <p className="cart-sum-text">Total:</p>
+                <p className="cart-sum-total">{totalPrice.toFixed(2)}€</p>
             </div>
-            <button className="cart_button"
+            <button className="cart-button"
                     onClick={proceedToCheckout}
                     disabled={menuItems.length === 0}
             >

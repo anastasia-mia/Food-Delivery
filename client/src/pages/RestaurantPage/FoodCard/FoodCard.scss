@@ -1,12 +1,12 @@
 @import '../../../styles/variables.scss';
 
-.food_card {
+.food-card {
   height: 190px;
   border: 1px solid $light-gray;
   border-radius: 10px;
   padding: 15px;
 
-  &_container {
+  &-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,13 +14,13 @@
     gap: 15px;
   }
 
-  &_top {
+  &-top {
     display: flex;
     gap: 10px;
     height: 100px;
   }
 
-  &_image {
+  &-image {
     min-width: 100px;
     min-height: 100px;
     height: 100px;
@@ -29,36 +29,36 @@
     border-radius: 10px;
   }
 
-  &_details {
+  &-details {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  &_name {
+  &-name {
     font-size: 18px;
     font-weight: 500;
   }
 
-  &_description {
+  &-description {
     color: $gray;
     font-size: 16px;
     text-overflow: ellipsis;
   }
 
-  &_bottom {
+  &-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
   }
 
-  &_price {
+  &-price {
     font-size: 18px;
     font-weight: 600;
   }
 
-  &_buy,  &_buy_unavailable{
+  &-buy,  &-buy-unavailable{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@
     user-select: none;
   }
 
-  &_buy{
+  &-buy{
     color: $light-green;
     background-color: rgba(175, 216, 200, 0.7);
 
@@ -86,30 +86,30 @@
     }
   }
 
-  &_buy_unavailable{
+  &-buy-unavailable{
     background-color: $light-gray;
     color: $gray;
   }
 }
 
 @media screen and (max-width: 768px){
-  .food_card{
+  .food-card{
     height: 150px;
 
-    &_container{
+    &-container{
       flex-direction: row;
       gap: 35px;
     }
 
-    &_bottom{
+    &-bottom{
       flex-direction: column;
     }
 
-    &_price {
+    &-price {
       font-size: 20px;
     }
 
-    &_buy{
+    &-buy{
       &:hover:before{
         font-size: 10px;
         bottom: 40px;
@@ -121,19 +121,19 @@
 }
 
 @media screen and (max-width: 576px){
-  .food_card{
+  .food-card{
 
-    &_container{
+    &-container{
       gap: 20px;
     }
 
-    &_image{
+    &-image{
       min-width: 80px;
       min-height: 80px;
       height: 80px;
     }
 
-    &_description {
+    &-description {
       font-size: 14px;
     }
   }

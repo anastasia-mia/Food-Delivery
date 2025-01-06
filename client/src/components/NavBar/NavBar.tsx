@@ -18,16 +18,16 @@ const NavBar = () => {
     return (
         <div className="navbar">
             {windowWidth > 768 &&
-                <div className="navbar_tabs">
+                <div className="navbar-tabs">
                     <ul>
                         <Link to="/order-history">
                             <li>Orders</li>
                         </Link>
                     </ul>
                     {isLoggedIn && user ? (
-                        <p className="navbar_greeting">Hello, {user}!</p>
+                        <p className="navbar-greeting">Hello, {user}!</p>
                     ) : (
-                        <div className="navbar_account" onClick={openLoginPopUp}>
+                        <div className="navbar-account" onClick={openLoginPopUp}>
                             <span>Login</span>
                         </div>
                     )}

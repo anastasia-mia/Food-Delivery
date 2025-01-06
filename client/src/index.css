@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 80px;
 }
 
-.content_wrap {
+.content-wrap {
   flex: 1;
   padding-top: 80px;
 }
@@ -152,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen and (max-width: 1280px) {
-  .content_wrap {
+  .content-wrap {
     padding-top: 105px;
   }
 }

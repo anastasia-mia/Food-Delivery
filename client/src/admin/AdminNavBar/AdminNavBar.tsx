@@ -1,6 +1,6 @@
 import './AdminNavBar.scss';
 import {Link, useLocation} from "react-router-dom";
-import {Icon} from "../../components/Icon/Icon.tsx";
+import {Icon} from "../../components/Icons/Icon.tsx";
 
 export const AdminNavBar = () => {
     const locationPath = useLocation().pathname;

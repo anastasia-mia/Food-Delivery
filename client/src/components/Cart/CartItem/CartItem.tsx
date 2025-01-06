@@ -21,18 +21,18 @@ export const CartItem = ({item, itemIndex}: CartItemProps) => {
     }
 
     return (
-        <div className="cart_item" key={itemIndex}>
-            <div className="cart_item_top">
-                <p className="cart_item_quantity">{item.quantity}x</p>
-                <p className="cart_item_name">{item.name}</p>
-                <p className="cart_item_price">{item.price}€</p>
+        <div className="cart-item" key={itemIndex}>
+            <div className="cart-item-top">
+                <p className="cart-item-quantity">{item.quantity}x</p>
+                <p className="cart-item-name">{item.name}</p>
+                <p className="cart-item-price">{item.price}€</p>
             </div>
-            <div className="cart_item_bottom">
-                <div className="cart_item_btn"
+            <div className="cart-item-bottom">
+                <div className="cart-item-btn"
                      onClick={() => decreaseAmount(item.id as number)}>
                     <span>-</span>
                 </div>
-                <div className="cart_item_btn"
+                <div className="cart-item-btn"
                      onClick={() => increaseAmount(item.id as number)}>
                     <span>+</span>
                 </div>

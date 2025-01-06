@@ -13,20 +13,20 @@
     transform: scale(1.05);
   }
 
-  &_photo_body{
+  &-photo-body{
     width: 100%;
     height: 150px;
     position: relative;
   }
 
-  &_photo {
+  &-photo {
     height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
   }
 
-  &_category {
+  &-category {
     background-color: rgba(65, 56, 57, 0.7);
     color: white;
     display: inline-flex;
@@ -38,16 +38,16 @@
     left: 5px;
   }
 
-  &_info{
+  &-info{
     padding: 10px;
   }
 
-  &_title {
+  &-title {
     font-size: 18px;
     font-weight: 600;
   }
 
-  &_rating {
+  &-rating {
     display: flex;
     gap: 5px;
     align-items: center;

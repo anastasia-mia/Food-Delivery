@@ -11,21 +11,21 @@ export const HomePage = () => {
                     <Banners/>
                     <Restaurants />
                     <section className="achievements">
-                        <div className="achievements_item">
-                            <p className="item_number">17000+</p>
-                            <p className="item_name">Customers</p>
+                        <div className="achievements-item">
+                            <p className="item-number">17000+</p>
+                            <p className="item-name">Customers</p>
                         </div>
-                        <div className="achievements_item">
-                            <p className="item_number">40000+</p>
-                            <p className="item_name">Orders</p>
+                        <div className="achievements-item">
+                            <p className="item-number">40000+</p>
+                            <p className="item-name">Orders</p>
                         </div>
-                        <div className="achievements_item">
-                            <p className="item_number">100+</p>
-                            <p className="item_name">Restaurants</p>
+                        <div className="achievements-item">
+                            <p className="item-number">100+</p>
+                            <p className="item-name">Restaurants</p>
                         </div>
-                        <div className="achievements_item">
-                            <p className="item_number">1890+</p>
-                            <p className="item_name">Food items</p>
+                        <div className="achievements-item">
+                            <p className="item-number">1890+</p>
+                            <p className="item-name">Food items</p>
                         </div>
                     </section>
                 </div>

@@ -1,7 +1,7 @@
 import './Location.scss';
 import {setIsLocationPopUpDisplayed} from "../../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
-import {Icon} from "../../Icon/Icon.tsx";
+import {Icon} from "../../Icons/Icon.tsx";
 
 export const Location = ({address}: {address: string}) => {
     const dispatch = useDispatch();

@@ -30,10 +30,10 @@ export const RestaurantPage = () => {
 
     return(
         <section className="restaurant">
-            <div className="container restaurant_container">
+            <div className="container restaurant-container">
                 <Card restaurant={restaurant}/>
                 {loading ? (
-                    <p className="restaurant_loading">Loading restaurant items ...</p>
+                    <p className="restaurant-loading">Loading restaurant items ...</p>
                 ) : (
                     <>
                         <Categories setCategory={setCategory}/>
@@ -41,8 +41,8 @@ export const RestaurantPage = () => {
                     </>
                 )}
                 {windowWidth > 1280 && (
-                    <div className="restaurant_cart">
-                        <div className={`restaurant_cart_wrapper ${highlightedCart ? 'restaurant_cart_highlighted' : ''}`}>
+                    <div className="restaurant-cart">
+                        <div className={`restaurant-cart-wrapper ${highlightedCart ? 'restaurant-cart-highlighted' : ''}`}>
                             <Cart />
                         </div>
                     </div>

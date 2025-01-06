@@ -6,14 +6,14 @@
   justify-content: center;
   gap: 30px;
 
-  &_tabs{
+  &-tabs{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
   }
 
-  &_greeting{
+  &-greeting{
     font-size: 20px;
     font-weight: 600;
   }
@@ -34,7 +34,7 @@
     }
   }
 
-  &_account {
+  &-account {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@
     }
   }
 
-  &_cart {
+  &-cart {
     cursor: pointer;
     position: relative;
 

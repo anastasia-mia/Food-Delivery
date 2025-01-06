@@ -21,15 +21,15 @@ export const Header = () => {
 
     return (
         <div className="header">
-            <div className="header_top">
-                <div className="header_container container">
+            <div className="header-top">
+                <div className="header-container container">
                     {windowWidth <= 768 &&
-                        <div className="header_burgermenu" onClick={toggleOpenBurgermenu}>
+                        <div className="header-burgermenu" onClick={toggleOpenBurgermenu}>
                             <span></span>
                         </div>
                     }
                     <Link to="/">
-                        <div className="header_logo">DELIVERY</div>
+                        <div className="header-logo">DELIVERY</div>
                     </Link>
                     {windowWidth >= 1280 &&
                         <Location address={address}/>
@@ -38,8 +38,8 @@ export const Header = () => {
                 </div>
             </div>
             {windowWidth < 1280 &&
-                <div className="header_bottom">
-                    <div className="header_bottom_container container">
+                <div className="header-bottom">
+                    <div className="header-bottom-container container">
                         <Location address={address}/>
                     </div>
                 </div>

@@ -37,23 +37,23 @@ export const PromoCode = ({total, setTotalWithPromoCode}: promoCodeProps) => {
     return (
         <div className="promocode">
             {isInputVisible ?
-                <div className="promocode_input_container">
+                <div className="promocode-input-container">
                     <input type="text"
-                           className="promocode_input"
+                           className="promocode-input"
                            placeholder="Promocode"
                            onChange={handlePromoCodeChange}
                     />
                     <button onClick={applyPromoCode}>
                         Apply
                     </button>
-                    <p className="promocode_input_error">{error}</p>
+                    <p className="promocode-input-error">{error}</p>
                 </div> :
                     discount > 0 ?
-                        <div className="promocode_discount_container">
-                        <p className="promocode_text">Promo code -{discount}%</p>
-                        <p className="promocode_text">-{(total - newTotal).toFixed(2)}</p>
+                        <div className="promocode-discount-container">
+                        <p className="promocode-text">Promo code -{discount}%</p>
+                        <p className="promocode-text">-{(total - newTotal).toFixed(2)}</p>
                     </div> :
-                    <p className="promocode_text"
+                    <p className="promocode-text"
                        onClick={toggleInputVisibility}
                     >
                         Add promo code

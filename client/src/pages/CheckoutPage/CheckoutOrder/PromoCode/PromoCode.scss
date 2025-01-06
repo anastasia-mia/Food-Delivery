@@ -2,7 +2,7 @@
 
 .promocode{
 
-  &_input_container{
+  &-input-container{
     display: flex;
     gap: 15px;
     position: relative;
@@ -16,13 +16,13 @@
     }
   }
 
-  &_input{
+  &-input{
     height: 24px;
     border:  1px solid $light-brown;
     border-radius: 5px;
     padding-left: 5px;
 
-    &_error{
+    &-error{
       position: absolute;
       left: 0;
       bottom: -12px;
@@ -31,7 +31,7 @@
     }
   }
 
-  &_text{
+  &-text{
     font-size: 16px;
     color: $light-brown;
     font-weight: 500;
@@ -42,7 +42,7 @@
     }
   }
 
-  &_discount_container{
+  &-discount-container{
     display: flex;
     align-items: center;
     justify-content: space-between;

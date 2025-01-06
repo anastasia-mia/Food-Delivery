@@ -1,5 +1,5 @@
 import './Statuses.scss';
-import {ArrowDown} from "../../../components/Icon/ArrowDown.tsx";
+import {ArrowDown} from "../../../components/Icons/ArrowDown.tsx";
 import {useDropDownVisibility} from "../../../hooks/useDropDownVisibility.ts";
 import {useState} from "react";
 import {useSelector} from "react-redux";

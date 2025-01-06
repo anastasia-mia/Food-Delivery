@@ -67,17 +67,17 @@ export const CheckoutPage = () => {
 
     return(
         <section className="checkout">
-            <div className="checkout_container container">
-                <div className="checkout_info">
-                    <div className="checkout_map">
+            <div className="checkout-container container">
+                <div className="checkout-info">
+                    <div className="checkout-map">
                         <Map coords={coords}/>
                     </div>
-                    <div className="checkout_personal_info">
-                        <p className="checkout_personal_info_title">Customer data</p>
+                    <div className="checkout-personal-info">
+                        <p className="checkout-personal-info-title">Customer data</p>
                         <CustomerInfo onSubmitOrder={onSubmitOrder}/>
                     </div>
                 </div>
-                <div className="checkout_order">
+                <div className="checkout-order-receipt">
                     <CheckoutOrder setTotalPrice={setTotalPrice} />
                     <Delivery />
                 </div>

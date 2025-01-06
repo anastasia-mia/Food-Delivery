@@ -10,7 +10,7 @@
   background-color: white;
   overflow-y: auto;
 
-  &_header{
+  &-header{
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -18,19 +18,19 @@
     padding: 0 13px;
   }
 
-  &_body{
+  &-body{
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
   }
 
-  &_greeting{
+  &-greeting{
     padding: 10px 15px 25px 15px;
     color: $light-brown;
     font-size: 28px;
   }
 
-  &_tabs{
+  &-tabs{
     display: flex;
     flex-direction: column;
     background-color: rgba(187, 138, 82, 0.4);
@@ -47,7 +47,7 @@
     }
   }
 
-  &_types{
+  &-types{
 
     &:last-child{
       border-bottom: 1px solid $light-gray;
@@ -58,7 +58,7 @@
 @media screen and (max-width: 576px){
   .burgerMenu{
 
-    &_tabs{
+    &-tabs{
       div{
         padding: 15px 10px;
         font-size: 20px;

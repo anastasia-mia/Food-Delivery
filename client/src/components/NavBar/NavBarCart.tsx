@@ -7,7 +7,7 @@ import {AppDispatch, RootState} from "../../redux/store.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 import useNoScroll from "../../hooks/useNoScroll.ts";
-import {Icon} from "../Icon/Icon.tsx";
+import {Icon} from "../Icons/Icon.tsx";
 
 export const NavBarCart = () => {
     const menuItems: ICartItem[] = useSelector((state: RootState) => state.cart.menuItems);
@@ -34,7 +34,7 @@ export const NavBarCart = () => {
     );
 
     return (
-        <div className="navbar_cart" onClick={openCart}>
+        <div className="navbar-cart" onClick={openCart}>
             <Icon id={"cart"}
                   width={"26"}
                   height={"26"}

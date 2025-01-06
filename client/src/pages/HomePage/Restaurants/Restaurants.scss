@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .restaurants {
-  &_title {
+  &-title {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
@@ -17,7 +17,7 @@
     }
   }
 
-  &_group {
+  &-group {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-column-gap: 15px;
@@ -52,7 +52,7 @@
 
 @media screen and (max-width: 768px){
   .restaurants{
-    &_group{
+    &-group{
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
@@ -60,12 +60,12 @@
 
 @media screen and (max-width: 576px){
   .restaurants{
-    &_title{
+    &-title{
       font-size: 18px;
       padding-bottom: 20px;
     }
 
-    &_group{
+    &-group{
       grid-template-columns: 1fr 1fr;
     }
   }

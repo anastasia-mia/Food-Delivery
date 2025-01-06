@@ -3,24 +3,21 @@
 .checkout {
   padding: 50px 0;
 
-  &_container {
+  &-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 40px;
   }
 
-  &_info {
+  &-info {
     display: flex;
     flex-direction: column;
     gap: 30px;
   }
 
-  &_map {
-  }
+  &-personal-info {
 
-  &_personal_info {
-
-    &_title{
+    &-title{
       font-size: 30px;
       font-weight: 600;
       padding-bottom: 20px;
@@ -28,7 +25,7 @@
     }
   }
 
-  &_order {
+  &-order-receipt {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -37,13 +34,13 @@
 
 @media screen and (max-width: 1024px){
   .checkout{
-    &_container {
+    &-container {
       display: flex;
       flex-direction: column-reverse;
       gap: 30px;
     }
 
-    &_info {
+    &-info {
       flex-direction: column-reverse;
     }
   }

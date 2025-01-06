@@ -1,4 +1,4 @@
-.auth_button{
+.auth-button{
   display: flex;
   align-items: center;
   gap: 10px;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 576px){
-  .auth_button{
+  .auth-button{
     p{
       font-size: 20px;
       padding: 15px 0;

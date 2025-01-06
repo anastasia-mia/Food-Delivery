@@ -23,7 +23,7 @@ export const MenuBody = ({category}: MenuBodyProps) => {
     }, [category, id]);
 
     return (
-        <div className="menu_body">
+        <div className="menu-body">
             {menuItems.map((item: IMenuItem) => (
                 <FoodCard menuItem={item} key={item.id}/>
             ))}

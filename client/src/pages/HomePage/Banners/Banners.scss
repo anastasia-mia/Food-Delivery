@@ -6,7 +6,7 @@
   overflow: hidden;
   margin-bottom: 50px;
 
-  &_track{
+  &-track{
     display: flex;
     height: 100%;
   }
@@ -21,20 +21,20 @@
   height: 400px;
   padding: 30px 50px;
 
-  &_container{
+  &-container{
     min-width: 100%;
     height: 400px;
   }
 
-  &_green{
+  &-green{
     background-color: rgba(109, 151, 115, 0.3);
   }
 
-  &_brown{
+  &-brown{
     background-color: rgb(187, 138, 82, 0.3);
   }
 
-  &_text{
+  &-text{
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -60,7 +60,7 @@
     }
   }
 
-  &_photo{
+  &-photo{
     width: 50%;
     height: calc(100% - 60px);
 
@@ -83,7 +83,7 @@
     height: 320px;
     padding: 30px 50px;
 
-    &_text{
+    &-text{
       gap: 15px;
 
       h2{
@@ -99,7 +99,7 @@
       }
     }
 
-    &_photo{
+    &-photo{
       height: calc(100% - 40px);
     }
   }
@@ -115,7 +115,7 @@
     height: 230px;
     padding: 20px 30px;
 
-    &_text{
+    &-text{
       gap: 10px;
 
       h2{
@@ -123,7 +123,7 @@
       }
     }
 
-    &_photo{
+    &-photo{
       display: none;
     }
   }

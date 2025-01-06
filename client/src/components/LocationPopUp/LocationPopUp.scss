@@ -9,37 +9,37 @@
   padding: 20px;
   border-radius: 10px;
 
-  &_container{
+  &-container{
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  &_header{
+  &-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  &_title{
+  &-title{
     font-size: 25px;
     color: $dark-green;
     font-weight: bold;
   }
 
-  &_main{
+  &-main{
     display: flex;
     gap: 4.16%;
   }
 
-  &_location{
+  &-location{
     width: 40%;
     display: flex;
     flex-direction: column;
     gap: 25px;
     position: relative;
 
-    &_current{
+    &-current{
       display: flex;
       gap: 2px;
       align-items: center;
@@ -72,7 +72,7 @@
     }
   }
 
-  &_input{
+  &-input{
     width: 100%;
     height: 40px;
     border: 1px solid $gray;
@@ -81,11 +81,11 @@
     font-size: 16px;
   }
 
-  &_input:disabled{
+  &-input:disabled{
     background-color: $light-gray;
   }
 
-  &_options{
+  &-options{
     width: 100%;
     height: 100px;
     overflow: auto;
@@ -126,14 +126,14 @@
     }
   }
 
-  &_confirmBtn{
+  &-confirmBtn{
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
   }
 
-  &_map{
+  &-map{
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -170,18 +170,18 @@
   .locationPopUp{
     height: auto;
 
-    &_title{
+    &-title{
       font-size: 24px;
     }
 
-    &_main{
+    &-main{
       flex-direction: column;
       gap: 30px;
       position: relative;
       padding-bottom: 70px;
     }
 
-    &_location{
+    &-location{
       width: 100%;
 
       form{
@@ -195,7 +195,7 @@
       }
     }
 
-    &_map{
+    &-map{
       width: 100%;
 
       #map{

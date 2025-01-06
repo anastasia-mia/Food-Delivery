@@ -1,7 +1,7 @@
 import './OrderItems.scss';
 import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 import {IOrderMenuItem} from "../../interfaces/orderInterfaces.ts";
-import {ArrowDown} from "../Icon/ArrowDown.tsx";
+import {ArrowDown} from "../Icons/ArrowDown.tsx";
 import {useLocation} from "react-router-dom";
 import {useDropDownVisibility} from "../../hooks/useDropDownVisibility.ts";
 import {useMemo, useState} from "react";

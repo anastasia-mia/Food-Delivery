@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .cart{
-  &_item{
+  &-item{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -12,24 +12,24 @@
       border-bottom: 1px solid #e4e4e4;
     }
 
-    &_top{
+    &-top{
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 16px;
     }
 
-    &_quantity{
+    &-quantity{
       font-weight: bold;
     }
 
-    &_bottom{
+    &-bottom{
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    &_btn{
+    &-btn{
       display: flex;
       justify-content: center;
       align-items: center;

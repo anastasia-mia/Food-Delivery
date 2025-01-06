@@ -26,19 +26,19 @@ export const Categories = ({setCategory}: CategoriesProps) => {
     }
 
     return (
-        <div className="category_wrapper">
-            <div className="menu_category category">
+        <div className="category-wrapper">
+            <div className="menu-category category">
                 <p>Categories</p>
-                <div className="category_body">
-                    <ul className="category_list">
-                        <li className={`category_list_item ${selectedCategory === 'All' ? 'chosen_category' : ''}`}
+                <div className="category-body">
+                    <ul className="category-list">
+                        <li className={`category-list-item ${selectedCategory === 'All' ? 'chosen-category' : ''}`}
                             onClick={() => chooseCategory('All')}
                         >
                             <span>All</span>
                         </li>
                         {categories.map((item: string, index: number) => (
                             <li key={index}
-                                className={`category_list_item ${selectedCategory === item ? 'chosen_category' : ''}`}
+                                className={`category-list-item ${selectedCategory === item ? 'chosen-category' : ''}`}
                                 onClick={() => chooseCategory(item)}>
                                 <span>{item}</span>
                             </li>
