@@ -1,9 +1,5 @@
-@import '../../../styles/variables.scss';
-
 .restaurant-type{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-align(center, space-between);
   padding: 25px 15px;
   border-bottom: 1px solid $light-gray;
   cursor: pointer;
@@ -15,8 +11,7 @@
   }
 
   &-restaurant-names{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
 
     a{
       font-size: 20px;

@@ -1,15 +1,9 @@
-@import '../../styles/variables.scss';
-
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-align(center, center);
   gap: 30px;
 
   &-tabs{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-align(center, center);
     gap: 30px;
   }
 
@@ -35,10 +29,8 @@
   }
 
   &-account {
+    @include flex-align(center, center);
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     span {
       color: white;
@@ -64,9 +56,7 @@
     }
 
     span{
-      position: absolute;
-      top: -6px;
-      right: -6px;
+      @include absolute-position(top -6px, right -6px);
       font-size: 12px;
       font-weight: 600;
       background-color: $beige;

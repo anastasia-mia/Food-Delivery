@@ -1,6 +1,5 @@
 .card {
-  display: flex;
-  flex-direction: column;
+  @include column-direction;
   width: 100%;
   cursor: pointer;
   transition: 0.2s ease-in-out;
@@ -27,15 +26,13 @@
   }
 
   &-category {
+    @include absolute-position(bottom 5px, left 5px);
     background-color: rgba(65, 56, 57, 0.7);
     color: white;
     display: inline-flex;
     padding: 5px;
     font-size: 16px;
     font-weight: 500;
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
   }
 
   &-info{
@@ -48,9 +45,8 @@
   }
 
   &-rating {
-    display: flex;
+    @include flex-align(center);
     gap: 5px;
-    align-items: center;
     font-size: 16px;
     font-weight: 500;
   }

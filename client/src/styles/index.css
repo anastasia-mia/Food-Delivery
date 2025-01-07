@@ -126,6 +126,8 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1400;
   display: flex;
   align-items: center;
+  justify-content: normal;
+  flex-direction: row;
 }
 
 .cross {
@@ -136,10 +138,10 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 .cross::before, .cross::after {
-  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
+  content: "";
   width: 20px;
   height: 1px;
   background-color: black;

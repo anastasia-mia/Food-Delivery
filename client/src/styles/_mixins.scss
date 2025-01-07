@@ -1,0 +1,19 @@
+@mixin column-direction{
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-align($align: normal, $justify: normal, $direction: row){
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin absolute-position($props...){
+  position: absolute;
+
+  @each $key, $value in $props{
+    #{$key}: $value;
+  }
+}

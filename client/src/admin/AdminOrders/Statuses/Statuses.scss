@@ -1,5 +1,3 @@
-@import '../../../styles/variables.scss';
-
 @keyframes messageAppearance {
   0%{
     opacity: 1;
@@ -13,16 +11,13 @@
 }
 
 .statuses{
-  display: flex;
-  flex-direction: column;
+  @include column-direction;
   cursor: pointer;
   position: relative;
   user-select: none;
 
   &-current{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-align(center, space-between);
     border: 1px solid $light-gray;
     padding: 5px;
     font-weight: 600;
@@ -32,12 +27,9 @@
   }
 
   &-items{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
+    @include absolute-position(top 100%, left 0);
     width: 100%;
-    top: 100%;
-    left: 0;
     padding-top: 5px;
     background-color: white;
     z-index: 10;
@@ -56,11 +48,9 @@
   }
 
   &-message{
-    position: absolute;
+    @include absolute-position(top 100%, left 0);
     padding-top: 2px;
     font-size: 12px;
-    top: 100%;
-    left: 0;
     color: $dark-green;
     animation: messageAppearance 3s ease-in-out forwards;
   }

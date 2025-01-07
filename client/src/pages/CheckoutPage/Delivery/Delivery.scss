@@ -1,8 +1,5 @@
-@import '../../../styles/variables.scss';
-
 .delivery {
-  display: flex;
-  flex-direction: column;
+  @include column-direction;
   padding: 20px 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   border-radius: 10px;

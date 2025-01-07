@@ -1,8 +1,5 @@
-@import '../../styles/variables.scss';
-
 .admin-navbar {
-  display: flex;
-  flex-direction: column;
+  @include column-direction;
   position: fixed;
   top: 0;
   left: 0;
@@ -18,8 +15,7 @@
   }
 
   &-tab a{
-    display: flex;
-    align-items: center;
+    @include flex-align(center);
     gap: 10px;
     font-size: 24px;
     padding: 20px;

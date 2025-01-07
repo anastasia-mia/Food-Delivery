@@ -1,5 +1,3 @@
-@import '../../../styles/variables';
-
 .banners{
   width: 100%;
   height: 400px;
@@ -13,9 +11,7 @@
 }
 
 .banner{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-align(center, space-between);
   gap: 30px;
   min-width: 100%;
   height: 400px;
@@ -35,8 +31,7 @@
   }
 
   &-text{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 25px;
 
     h2{

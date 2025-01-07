@@ -1,12 +1,8 @@
-@import '../../styles/variables.scss';
-
 .order-history{
   padding: 50px 0;
 
   &-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-align(center, space-between);
     gap: 15px;
     margin-bottom: 45px;
   }
@@ -21,8 +17,7 @@
   }
 
   &-body{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 30px;
   }
 }

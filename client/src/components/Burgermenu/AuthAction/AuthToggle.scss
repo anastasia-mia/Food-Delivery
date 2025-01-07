@@ -1,6 +1,5 @@
 .auth-button{
-  display: flex;
-  align-items: center;
+  @include flex-align(center);
   gap: 10px;
   cursor: pointer;
   padding-left: 15px;

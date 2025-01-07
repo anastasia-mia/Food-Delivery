@@ -1,11 +1,8 @@
-@import "../../../styles/variables.scss";
-
 .restaurant{
   &-card{
+    @include column-direction;
     grid-area: details;
     padding: 30px;
-    display: flex;
-    flex-direction: column;
     gap: 30px;
     border-radius: 10px;
     height: 250px;
@@ -24,15 +21,11 @@
 
   &-details {
     display: flex;
-    flex-direction: row;
     gap: 30px;
 
     .details-group {
-      display: flex;
-      flex-direction: column;
+      @include flex-align(center, center, column);
       gap: 10px;
-      align-items: center;
-      justify-content: center;
 
       span{
         font-size: 16px;

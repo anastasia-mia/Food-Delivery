@@ -1,5 +1,3 @@
-@import '../../../styles/variables.scss';
-
 .order{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -20,17 +18,14 @@
   }
 
   &-left{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     padding-top: 60px;
     gap: 25px;
     position: relative;
   }
 
   &-logo{
-    position: absolute;
-    top: -45px;
-    left: 0;
+    @include absolute-position(top -45px, left 0);
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -45,9 +40,7 @@
   }
 
   &-center{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex-align(center, normal, column);
     gap: 15px;
     margin-bottom: 10px;
   }
@@ -57,9 +50,7 @@
   }
 
   &-dropdown{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-align(center, space-between);
     border: 1px solid $light-gray;
     padding: 5px;
   }
@@ -69,11 +60,8 @@
   }
 
   &-right{
-    display: flex;
-    flex-direction: column;
+    @include flex-align(flex-end, space-between, column);
     height: 100%;
-    justify-content: space-between;
-    align-items: flex-end;
     justify-self: end;
     align-self: flex-start;
   }
@@ -126,9 +114,7 @@
     padding: 15px;
 
     &-left{
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+      @include flex-align(flex-start, space-between, row);
     }
 
     &-center{
@@ -140,9 +126,7 @@
     }
 
     &-right{
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-align(center, space-between, row);
       justify-self: auto;
       align-self: auto;
     }

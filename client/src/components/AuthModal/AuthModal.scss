@@ -1,5 +1,3 @@
-@import '../../styles/variables.scss';
-
 .auth-modal {
   max-width: 400px;
   width: 90%;
@@ -10,9 +8,7 @@
   border-radius: 10px;
 
   &-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-align(center, space-between);
     gap: 15px;
 
     &-title {
@@ -23,9 +19,7 @@
   }
 
   &-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex-align(normal, space-between, column);
     padding-top: 30px;
     width: 100%;
     height: calc(100% - 40px);
@@ -48,9 +42,7 @@
   }
 
   &-bottom{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex-align(center, normal, column);
     gap: 10px;
 
     p{

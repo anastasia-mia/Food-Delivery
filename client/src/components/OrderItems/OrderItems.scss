@@ -1,7 +1,6 @@
 .checkout-order{
   &-items {
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 20px;
   }
 

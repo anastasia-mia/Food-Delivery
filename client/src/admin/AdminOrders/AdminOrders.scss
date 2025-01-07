@@ -1,8 +1,5 @@
-@import '../../styles/variables.scss';
-
 .admin-orders{
-  display: flex;
-  flex-direction: column;
+  @include column-direction;
 
   &-headers, &-item{
     display: grid;

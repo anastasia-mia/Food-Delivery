@@ -1,20 +1,15 @@
-@import '../../../styles/variables.scss';
-
 .checkout-order {
   padding: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   border-radius: 10px;
 
   &-container {
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 40px;
   }
 
   &-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-align(center, space-between);
     gap: 20px;
 
     p{
@@ -28,8 +23,7 @@
   }
 
   &-dropdown-icon{
-    display: flex;
-    align-items: center;
+    @include flex-align(center);
     gap: 5px;
 
     span{
@@ -40,14 +34,11 @@
   }
 
   &-payment{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 10px;
 
     &-fee{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-align(center, space-between);
 
       p{
         color: $gray;
@@ -56,8 +47,7 @@
     }
 
     &-total-container{
-      display: flex;
-      flex-direction: column;
+      @include column-direction;
       gap: 15px;
       padding-top: 20px;
       font-size: 20px;
@@ -65,9 +55,7 @@
     }
 
     &-total{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex-align(center, space-between);
     }
   }
 }

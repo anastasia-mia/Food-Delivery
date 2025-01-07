@@ -1,11 +1,6 @@
-@import '../../../styles/variables.scss';
-
 .location{
-  display: flex;
-  flex-direction: row;
+  @include flex-align(flex-end, center);
   gap: 2.1%;
-  align-items: flex-end;
-  justify-content: center;
   width: 47.1%;
   cursor: pointer;
 

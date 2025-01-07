@@ -1,5 +1,3 @@
-@import '../../styles/variables.scss';
-
 .locationPopUp{
   max-width: 1000px;
   width: 90%;
@@ -10,15 +8,12 @@
   border-radius: 10px;
 
   &-container{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 10px;
   }
 
   &-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-align(center, space-between);
   }
 
   &-title{
@@ -33,16 +28,14 @@
   }
 
   &-location{
+    @include column-direction;
     width: 40%;
-    display: flex;
-    flex-direction: column;
     gap: 25px;
     position: relative;
 
     &-current{
-      display: flex;
+      @include flex-align(center);
       gap: 2px;
-      align-items: center;
       cursor: pointer;
       margin-top: 5px;
 
@@ -62,8 +55,7 @@
     }
 
     form{
-      display: flex;
-      flex-direction: column;
+      @include column-direction;
       gap: 15px;
 
       label{
@@ -86,21 +78,18 @@
   }
 
   &-options{
+    @include column-direction;
     width: 100%;
     height: 100px;
     overflow: auto;
     border: 1px solid $gray;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
 
     li{
+      @include flex-align(center, space-between);
       font-size: 16px;
       cursor: pointer;
       padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
 
       span:last-child{
         color: $gray;
@@ -127,15 +116,12 @@
   }
 
   &-confirmBtn{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    @include absolute-position(bottom 0, left 0);
     width: 100%;
   }
 
   &-map{
-    display: flex;
-    flex-direction: column;
+    @include column-direction;
     gap: 7px;
     height: 100%;
     width: 60%;
@@ -175,7 +161,7 @@
     }
 
     &-main{
-      flex-direction: column;
+      @include column-direction;
       gap: 30px;
       position: relative;
       padding-bottom: 70px;
