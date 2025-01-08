@@ -2,13 +2,20 @@ import './OrderHistory.scss';
 import {Order} from "./Order/Order.tsx";
 import {useEffect, useState} from "react";
 import axiosInstance from "../../../axiosConfig.ts";
+import {IOrder} from "../../interfaces/orderInterfaces.ts";
+import {Pagination} from "../../components/Pagination/Pagination.tsx";
 
 export const OrderHistory = () => {
-    const [orders, setOrders] = useState([])
+    const [orders, setOrders] = useState<IOrder[]>([]);
+    const [page, setPage] = useState<number>(1);
+    const [hasNextPage, setHasNextPage] = useState<boolean>(false);
 
     useEffect(() => {
-        axiosInstance.get("/getAllOrdersByUserId/4").then((res) => setOrders(res.data))
-    }, []);
+        axiosInstance.get("/getAllOrdersByUserId/4", {params: {page}}).then((res) => {
+            setOrders(res.data.orders)
+            setHasNextPage(res.data.hasNextPage);
+        })
+    }, [page]);
 
     return(
         <section className="order-history">
@@ -26,6 +33,7 @@ export const OrderHistory = () => {
                     ))}
                 </div>
             </div>
+            <Pagination page={page} hasNextPage={hasNextPage} setNewPage={setPage}/>
         </section>
     )
 }

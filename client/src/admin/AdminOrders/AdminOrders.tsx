@@ -4,7 +4,7 @@ import {Statuses} from "./Statuses/Statuses.tsx";
 import axiosInstance from "../../../axiosConfig.ts";
 import {formatDate} from "../../utils/formatDate.ts";
 import {IOrder} from "../../interfaces/orderInterfaces.ts";
-import {Pagination} from "../Pagination/Pagination.tsx";
+import {Pagination} from "../../components/Pagination/Pagination.tsx";
 
 export const AdminOrders = () => {
     const [orders, setOrders] = useState<IOrder[]>([]);
