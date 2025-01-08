@@ -1,5 +1,8 @@
 .admin-orders{
   @include column-direction;
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 30px;
 
   &-headers, &-item{
     display: grid;
@@ -14,13 +17,15 @@
     padding: 0 10px;
   }
 
+  &-items{
+    @include column-direction;
+    border-bottom: 1px solid $light-gray;
+    margin-bottom: 20px;
+  }
+
   &-item{
     padding: 20px 10px;
     font-size: 18px;
     border-top: 1px solid $light-gray;
-  }
-
-  &:last-of-type{
-    border-bottom: 1px solid $light-gray;;
   }
 }

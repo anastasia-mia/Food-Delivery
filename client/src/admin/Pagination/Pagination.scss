@@ -1,0 +1,26 @@
+.pagination{
+  @include flex-align(center, center);
+  @include absolute-position(bottom 0, left 50%);
+  transform: translateX(-50%);
+  gap: 10px;
+
+  &-button{
+    padding: 5px 10px;
+    background-color: rgba(109, 151, 115, 0.4);
+    border: 1px solid $light-green;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &-disabled{
+      background-color: $light-gray;
+      border: 1px solid $gray;
+      cursor: not-allowed;
+    }
+  }
+
+  &-page{
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
