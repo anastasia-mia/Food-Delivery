@@ -35,6 +35,7 @@ export const createNewOrder = async (req: Request, res: Response): Promise<void>
 
 export const getUserOrders = async(req: Request, res: Response) => {
     const userId: number = parseInt(req.params.id, 10);
+    const page: number = parseInt(req.query.page as string, 10) || 1;
 
     if (isNaN(userId)) {
         res.status(400).json({ message: 'Invalid user ID' });
@@ -42,10 +43,10 @@ export const getUserOrders = async(req: Request, res: Response) => {
     }
 
     try{
-        const ordersData = await getOrders(userId);
-        const orders = formatOrders(ordersData);
+        const ordersData = await getOrders(page, userId);
+        const orders = formatOrders(ordersData.orders);
 
-        res.status(200).json(orders);
+        res.status(200).json({orders, hasNextPage: ordersData.hasNextPage});
     }catch(err){
         res.status(400).json({ message: err.message });
     }
@@ -53,10 +54,12 @@ export const getUserOrders = async(req: Request, res: Response) => {
 
 export const getAllOrders = async (req: Request, res: Response) => {
     try{
-        const ordersData = await getOrders();
-        const orders = formatOrders(ordersData);
+        const page: number = parseInt(req.query.page as string, 10) || 1;
 
-        res.status(200).json(orders);
+        const ordersData = await getOrders(page);
+        const orders = formatOrders(ordersData.orders);
+
+        res.status(200).json({orders, hasNextPage: ordersData.hasNextPage});
     }catch(err){
         res.status(400).json({ message: err.message });
     }

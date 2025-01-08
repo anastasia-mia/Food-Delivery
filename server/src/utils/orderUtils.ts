@@ -23,17 +23,10 @@ export const formatOrders = (ordersData: RowDataPacket[]) => {
                     phoneNumber: row.phoneNumber,
                     address: row.address,
                 },
-                orderItems: []
+                orderItems: row.orderItems
             };
             acc.push(order);
         }
-
-        order.orderItems.push({
-            menuItemId: row.menuItemId,
-            menuItemName: row.menuItemName,
-            quantity: row.quantity,
-            price: row.price
-        });
 
         return acc;
     }, []);
