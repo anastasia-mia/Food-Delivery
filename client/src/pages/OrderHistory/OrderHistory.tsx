@@ -4,20 +4,24 @@ import {useEffect, useState} from "react";
 import axiosInstance from "../../../axiosConfig.ts";
 import {IOrder} from "../../interfaces/orderInterfaces.ts";
 import {Pagination} from "../../components/Pagination/Pagination.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store.ts";
 
 export const OrderHistory = () => {
     const [orders, setOrders] = useState<IOrder[]>([]);
     const [page, setPage] = useState<number>(1);
     const [hasNextPage, setHasNextPage] = useState<boolean>(false);
+    const {userId} = useSelector((state: RootState) => state.auth);
 
     useEffect(() => {
-        axiosInstance.get("/getAllOrdersByUserId/4", {params: {page}}).then((res) => {
-            setOrders(res.data.orders)
-            setHasNextPage(res.data.hasNextPage);
-        })
+        axiosInstance.get(`/getAllOrdersByUserId/${userId ? userId : 4}`, {params: {page}})
+            .then((res) => {
+                setOrders(res.data.orders)
+                setHasNextPage(res.data.hasNextPage);
+            })
     }, [page]);
 
-    return(
+    return (
         <section className="order-history">
             <div className="container">
                 <div className="order-history-header">

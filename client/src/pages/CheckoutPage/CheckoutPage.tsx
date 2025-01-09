@@ -15,6 +15,7 @@ import axiosInstance from "../../../axiosConfig.ts";
 import useGetAddressWithCoords from "../../hooks/useGetAddressWithCoords.ts";
 import {removeAllItems} from "../../redux/cartSlice.ts";
 import {resetRestaurant} from "../../redux/chosenRestaurantSlice.ts";
+import {setIsDisplayedModal, setModalInformation} from "../../redux/modalSlice.ts";
 import {useNavigate} from "react-router-dom";
 
 export const CheckoutPage = () => {
@@ -25,7 +26,7 @@ export const CheckoutPage = () => {
     const {menuItems}: {menuItems: ICartItem[]} = useSelector((state: RootState) => state.cart);
     const {restaurant_id}: {restaurant_id: number} = useSelector((state: RootState) => state.chosenRestaurant);
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useGetAddressWithCoords(setAddress)
 
@@ -62,6 +63,13 @@ export const CheckoutPage = () => {
                 dispatch(removeAllItems());
                 dispatch(resetRestaurant());
                 navigate('/');
+                dispatch(setIsDisplayedModal(true));
+                dispatch(setModalInformation(
+                    {
+                        text: "You have successfully made an order!",
+                        buttonText: "See my orders",
+                        link: "/order-history"
+                    }));
             })
     }
 

@@ -9,6 +9,7 @@ import {AuthModal} from "../AuthModal/AuthModal.tsx";
 import {BurgerMenu} from "../Burgermenu/BurgerMenu.tsx";
 import {Cart} from "../Cart/Cart.tsx";
 import {setIsCartDisplayed} from "../../redux/popUpDisplayingSlice.ts";
+import {Modal} from "../Modal/Modal.tsx";
 
 export const Layout = () => {
     const {
@@ -18,6 +19,7 @@ export const Layout = () => {
         isBurgerMenuDisplayed,
         isCartDisplayed
     } = useSelector((state: RootState) => state.popUpDisplaying);
+    const {isDisplayedModal} = useSelector((state: RootState) => state.modal);
     const dispatch: AppDispatch = useDispatch();
 
     return (
@@ -45,6 +47,7 @@ export const Layout = () => {
                     </div>
                 </div>
             }
+            {isDisplayedModal && <Modal />}
         </>
     )
 }

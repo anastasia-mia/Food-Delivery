@@ -7,8 +7,9 @@ import {loginSchema} from "../../../validations/loginSchema.ts";
 import {IUserLogin, IUserRegister} from "../../../interfaces/userInterfaces.ts";
 import {checkSession, loginUser, registerUser} from "../../../redux/authSlice.ts";
 import {registrationSchema} from "../../../validations/registrationSchema.ts";
+import {setIsDisplayedModal, setModalInformation} from "../../../redux/modalSlice.ts";
 
-interface AuthFormProps{
+interface AuthFormProps {
     closePopup: () => void;
     isLogin: boolean;
 }
@@ -22,14 +23,21 @@ export const AuthForm = ({closePopup, isLogin}: AuthFormProps) => {
     });
 
     const handleSubmitForm = (data: IUserLogin | IUserRegister) => {
-        if(isLogin){
+        if (isLogin) {
             dispatch(loginUser(data as IUserLogin)).unwrap().then(() => {
                 closePopup()
                 dispatch(checkSession());
             })
-        }else{
+        } else {
             dispatch(registerUser(data as IUserRegister)).unwrap().then(() => {
                 closePopup()
+                dispatch(setIsDisplayedModal(true));
+                dispatch(setModalInformation(
+                    {
+                        text: "You have successfully registered!",
+                        buttonText: "Log in",
+                        link: "/",
+                    }));
             })
         }
     }

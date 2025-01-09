@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IUserLogin, IUserRegister} from "../interfaces/userInterfaces.ts";
 import axiosInstance from "../../axiosConfig.ts";
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 
 interface AuthState {
     user: string | null,
+    userId: number | null,
     isLoggedIn: boolean,
     loading: boolean,
     error: string | null,
@@ -12,6 +13,7 @@ interface AuthState {
 
 const initialState: AuthState = {
     user: null,
+    userId: null,
     isLoggedIn: false,
     loading: false,
     error: null,
@@ -51,9 +53,17 @@ export const registerUser = createAsyncThunk(
 
 export const checkSession = createAsyncThunk(
     'auth/checkSession',
-    async() => {
-        const response = await axiosInstance.get('/checkSession');
-        return response.data;
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance.get('/checkSession');
+            return response.data;
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                return rejectWithValue(
+                    error.response?.data || "Error occurred"
+                );
+            }
+        }
     }
 )
 
@@ -77,11 +87,13 @@ const authSlice = createSlice({
         builder
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = action.payload.user.name;
+                state.userId = action.payload.user.userId;
                 state.isLoggedIn = action.payload.isLoggedIn;
             })
             .addCase(checkSession.fulfilled, (state, action) => {
                 state.isLoggedIn = action.payload.isLoggedIn;
                 state.user = action.payload.user.name;
+                state.userId = action.payload.user.userId;
             })
             .addCase(logoutUser.fulfilled, (state) => {
                 state.user = null;

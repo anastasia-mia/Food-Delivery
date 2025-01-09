@@ -8,6 +8,7 @@ import authReducer from './authSlice.ts';
 import chosenRestaurantReducer from './chosenRestaurantSlice.ts';
 import currentRestaurantReducer from "./currentRestaurantSlice.ts";
 import statusesReducer from "./statusesSlice.ts";
+import modalReducer from "./modalSlice.ts";
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/lib/constants";
 
 const cartPersistConfig = {
@@ -31,7 +32,8 @@ const store = configureStore({
         auth: authReducer,
         chosenRestaurant: persistedChosenRestaurantReducer,
         currentRestaurant: currentRestaurantReducer,
-        statuses: statusesReducer
+        statuses: statusesReducer,
+        modal: modalReducer
     },
     middleware: (getDefaultMiddleware) => {
         const middleware = getDefaultMiddleware({

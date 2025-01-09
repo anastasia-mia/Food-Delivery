@@ -1,0 +1,57 @@
+.modal{
+  width: 600px;
+  height: 400px;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+
+  &-header{
+    @include flex-align(center, flex-end);
+  }
+
+  &-body{
+    @include flex-align(center, center, column);
+    gap: 100px;
+    margin-top: 100px;
+  }
+
+  &-text{
+    font-size: 24px;
+    text-align: center;
+  }
+
+  &-button{
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid $light-green;
+    background-color: transparent;
+    color: $light-green;
+    cursor: pointer;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .modal{
+    width: 80%;
+    height: 350px;
+
+    &-body{
+      margin-top: 70px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .modal{
+    width: 90%;
+    height: 300px;
+
+    &-body{
+      margin-top: 50px;
+      gap: 50px;
+    }
+  }
+}
