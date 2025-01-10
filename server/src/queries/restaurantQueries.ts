@@ -2,9 +2,10 @@ import connection from "../config/database";
 import {IRestaurant, IRestaurantType} from "../models/RestaurantModel";
 
 const restaurantSelectFields = `
-    r.id, r.name, r.ranking, rt.name as type, 
-    dt.delivery_time_from, dt.delivery_time_to, 
-    dp.delivery_price_from, dp.delivery_price_to
+    r.id, r.name, r.ranking, r.img_path AS imagePath, r.logo_path AS logoPath,
+     rt.name as type, 
+    dt.delivery_time_from AS deliveryTimeFrom, dt.delivery_time_to AS deliveryTimeTo, 
+    dp.delivery_price_from AS deliveryPriceFrom, dp.delivery_price_to AS deliveryPriceTo
 `;
 
 const getAll = async(): Promise<IRestaurant[] | null> => {

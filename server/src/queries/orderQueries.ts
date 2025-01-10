@@ -66,6 +66,7 @@ export const getOrders = async (page: number, userId?: number) => {
                           WHERE oi.order_id = o.id
                       ) AS orderItems,
                       r.name AS restaurantName,
+                      r.logo_path AS logoPath,
                       s.name AS statusName
                FROM orders o
                         JOIN order_customer_details c ON o.id = c.order_id

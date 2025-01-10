@@ -16,7 +16,8 @@ export interface IOrder{
     restaurantName: string,
     comment: string,
     customer: {name: string, email: string},
-    orderItems: IOrderMenuItem[]
+    orderItems: IOrderMenuItem[],
+    logoPath: string
 }
 
 export interface IStatus{

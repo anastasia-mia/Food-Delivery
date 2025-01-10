@@ -14,11 +14,11 @@ export const Card = ({restaurant}: {restaurant: IRestaurant}) => {
             <div className="restaurant-details">
                 <div className="details-group">
                     <Icon id="clock" width="32" height="32" />
-                    <span>{restaurant?.delivery_time_from}-{restaurant?.delivery_time_to}′</span>
+                    <span>{restaurant?.deliveryTimeFrom}-{restaurant?.deliveryTimeTo}′</span>
                 </div>
                 <div className="details-group">
                     <Icon id="truck" width="32" height="32" stroke="#006A4E" />
-                    <span>{restaurant?.delivery_price_from}-{restaurant?.delivery_price_to}€</span>
+                    <span>{restaurant?.deliveryPriceFrom}-{restaurant?.deliveryPriceTo}€</span>
                 </div>
                 <div className="details-group">
                     <Icon id="emoji" width="32" height="32" />

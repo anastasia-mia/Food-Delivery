@@ -1,7 +1,5 @@
 import './Order.scss';
 import {OrderItems} from "../../../components/OrderItems/OrderItems.tsx";
-// import kfc from "/assets/icons/kfc-logo.webp"
-// import crepe from '/assets/icons/crepe.png';
 import {OrderProgress} from "../OrderProgress/OrderProgress.tsx";
 import {formatDate} from "../../../utils/formatDate.ts";
 import {IOrder} from "../../../interfaces/orderInterfaces.ts";
@@ -11,8 +9,11 @@ export const Order = ({order} : {order: IOrder}) => {
     return (
         <div className={`order ${order.status.statusId === 4 ? 'order-finished' : 'order-created'}`}>
             <div className="order-left">
-                {/*<img src={} alt="restaurantLogo"*/}
-                {/*     className="order-logo"/>*/}
+                <div className="order-logo">
+                    <img src={`http://localhost:3001/media/restaurants/${order.logoPath}`}
+                         alt="restaurantLogo"
+                    />
+                </div>
                 <p className="order-text">Order № <span>{order.orderId}</span></p>
 
                 <p className="order-text">Restaurant <span>{order.restaurantName}</span></p>

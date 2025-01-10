@@ -1,12 +1,14 @@
 export interface IRestaurant{
     id?: number;
     name: string;
-    delivery_price_from: number,
-    delivery_price_to: number,
-    delivery_time_from: number,
-    delivery_time_to: number,
+    deliveryPriceFrom: number,
+    deliveryPriceTo: number,
+    deliveryTimeFrom: number,
+    deliveryTimeTo: number,
     ranking: number,
-    type: string
+    type: string,
+    imagePath: string,
+    logoPath: string
 }
 
 export interface IRestaurantType {

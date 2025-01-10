@@ -9,6 +9,8 @@ import dashboardRoutes from "./routes/dashboardRoutes";
 import {sessionStore} from "./config/database";
 import geoRoutes from "./routes/geoRoutes";
 import promoCodeRoutes from "./routes/promoCodeRoutes";
+import path from "path";
+
 const app = express();
 app.use(cors({ credentials: true, origin: 'http://localhost:5173'}))
 
@@ -31,8 +33,8 @@ app.use('/api', restaurantRoutes);
 app.use('/api/menu-items', menuRoutes);
 app.use('/api', orderRoutes);
 app.use('/api', geoRoutes);
-app.use('/api', promoCodeRoutes)
-
+app.use('/api', promoCodeRoutes);
+app.use('/media', express.static(path.join(__dirname, 'media')));
 
 app.listen(3001, () => {
     console.log('Listening on port 3001');

@@ -16,6 +16,7 @@ export const formatOrders = (ordersData: RowDataPacket[]) => {
                 shippingAddress: row.shippingAddress,
                 comment: row.comment,
                 restaurantName: row.restaurantName,
+                logoPath: row.logoPath,
                 customer: {
                     name: row.name,
                     lastName: row.lastName,
