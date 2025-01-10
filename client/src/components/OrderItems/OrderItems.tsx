@@ -29,8 +29,8 @@ export const OrderItems = ({menuItems}: {menuItems: IOrderItem[]}) => {
                 <p>Quantity</p>
                 <p>Price</p>
             </div>
-            {displayedItems.map((item: IOrderItem, index: number) => (
-                <div key={index} className="checkout-order-item" data-testid="order-item">
+            {displayedItems.map((item: IOrderItem) => (
+                <div key={item.id} className="checkout-order-item" data-testid="order-item">
                     <p>{'name' in item ? item.name : item.menuItemName}</p>
                     <p>{item.quantity}х</p>
                     <p>{item.price}€</p>

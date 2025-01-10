@@ -1,7 +1,7 @@
 import './Restaurants.scss';
 import {IRestaurant} from "../../../interfaces/restaurantInterfaces.ts";
 import {Link} from "react-router-dom";
-import {RestoCard} from "../../../components/RestoCard/RestoCard.tsx";
+import {RestoCard} from "../RestoCard/RestoCard.tsx";
 import {useEffect, useState} from "react";
 import axiosInstance from "../../../../axiosConfig.ts";
 import {Icon} from "../../../components/Icons/Icon.tsx";

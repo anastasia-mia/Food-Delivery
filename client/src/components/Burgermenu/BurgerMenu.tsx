@@ -35,8 +35,8 @@ export const BurgerMenu = () => {
                 <div className="burgerMenu-body">
                     {isLoggedIn && user && <p className="burgerMenu-greeting">Hello, {user}!</p>}
                     <div className="burgerMenu-types">
-                        {types.map((type, index) => (
-                            <div key={index}>
+                        {types.map((type) => (
+                            <div key={type.id}>
                                 <RestaurantType type={type}/>
                             </div>
                         ))}

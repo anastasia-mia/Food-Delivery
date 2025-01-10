@@ -17,6 +17,7 @@ import {removeAllItems} from "../../redux/cartSlice.ts";
 import {resetRestaurant} from "../../redux/chosenRestaurantSlice.ts";
 import {setIsDisplayedModal, setModalInformation} from "../../redux/modalSlice.ts";
 import {useNavigate} from "react-router-dom";
+import useScrollToTop from "../../hooks/useScrollToTop.ts";
 
 export const CheckoutPage = () => {
     const storedCoords = useStoredCoords();
@@ -27,6 +28,7 @@ export const CheckoutPage = () => {
     const {restaurant_id}: {restaurant_id: number} = useSelector((state: RootState) => state.chosenRestaurant);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    useScrollToTop();
 
     useGetAddressWithCoords(setAddress)
 

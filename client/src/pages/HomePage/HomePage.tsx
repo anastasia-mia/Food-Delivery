@@ -1,8 +1,10 @@
 import "./HomePage.scss"
 import {Banners} from "./Banners/Banners.tsx";
 import {Restaurants} from "./Restaurants/Restaurants.tsx";
+import useScrollToTop from "../../hooks/useScrollToTop.ts";
 
 export const HomePage = () => {
+    useScrollToTop();
 
     return (
         <div>

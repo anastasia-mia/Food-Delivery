@@ -10,14 +10,19 @@ import {fetchRestaurant, fetchRestaurantId} from "../../redux/currentRestaurantS
 import {setIsBurgerMenuDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import useWindowWidth from "../../hooks/useWindowWidth.ts";
 import {Card} from "./Card/Card.tsx";
+import useScrollToTop from "../../hooks/useScrollToTop.ts";
+import {setRestaurant} from "../../redux/chosenRestaurantSlice.ts";
+import {ICartItem} from "../../interfaces/cartInterfaces.ts";
 
 export const RestaurantPage = () => {
     const {restaurantName} = useParams();
     const [category, setCategory] = useState<string>('');
     const dispatch: AppDispatch = useDispatch();
+    const menuItems: ICartItem[] = useSelector((state: RootState) => state.cart.menuItems);
     const {id, loading, restaurant} = useSelector((state: RootState) => state.currentRestaurant);
     const {highlightedCart} = useSelector((state: RootState) => state.cart);
     const windowWidth = useWindowWidth();
+    useScrollToTop();
 
     useEffect(() => {
         dispatch(fetchRestaurantId({name: restaurantName as string}))
@@ -27,6 +32,12 @@ export const RestaurantPage = () => {
     useEffect(() => {
         dispatch(fetchRestaurant())
     }, [id]);
+
+    useEffect(() => {
+        if (restaurant && restaurant.name && menuItems.length === 0) {
+            dispatch(setRestaurant({restaurant_id: id as number, restaurantName: restaurant.name}))
+        }
+    }, [menuItems, restaurant]);
 
     return(
         <section className="restaurant">

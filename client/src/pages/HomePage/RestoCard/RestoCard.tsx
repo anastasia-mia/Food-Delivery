@@ -1,6 +1,6 @@
 import './RestoCard.scss';
-import {IRestaurant} from "../../interfaces/restaurantInterfaces.ts";
-import {Icon} from "../Icons/Icon.tsx";
+import {IRestaurant} from "../../../interfaces/restaurantInterfaces.ts";
+import {Icon} from "../../../components/Icons/Icon.tsx";
 
 interface RestoCardProps{
     restaurantData: IRestaurant

@@ -4,12 +4,7 @@ import {AppDispatch} from "../../../redux/store.ts";
 import {useDispatch} from "react-redux";
 import {ICartItem} from "../../../interfaces/cartInterfaces.ts";
 
-interface CartItemProps{
-    item: ICartItem,
-    itemIndex: number
-}
-
-export const CartItem = ({item, itemIndex}: CartItemProps) => {
+export const CartItem = ({item}: {item: ICartItem}) => {
     const dispatch: AppDispatch = useDispatch();
 
     const decreaseAmount = (itemId: number): void => {
@@ -21,7 +16,7 @@ export const CartItem = ({item, itemIndex}: CartItemProps) => {
     }
 
     return (
-        <div className="cart-item" key={itemIndex}>
+        <>
             <div className="cart-item-top">
                 <p className="cart-item-quantity">{item.quantity}x</p>
                 <p className="cart-item-name">{item.name}</p>
@@ -37,6 +32,6 @@ export const CartItem = ({item, itemIndex}: CartItemProps) => {
                     <span>+</span>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

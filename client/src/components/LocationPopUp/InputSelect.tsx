@@ -55,8 +55,8 @@ export const InputSelect = <T extends BaseOption>(
                    disabled={isDisabled}
             />
             {typedValue && !selectedOption && <ul className="locationPopUp-options">
-                {optionsToDisplay.map((option: T, index: number) => (
-                    <li key={index} onClick={() => {
+                {optionsToDisplay.map((option: T) => (
+                    <li key={option.code} onClick={() => {
                         setSelectedOption(option);
                         setTypedValue(option.name);
                     }}>
