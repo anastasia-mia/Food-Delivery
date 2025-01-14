@@ -54,12 +54,14 @@ const initialState: IInitialState = {
     restaurant: {
         id: 0,
         name: '',
-        delivery_price_from: 0,
-        delivery_price_to: 0,
-        delivery_time_from: 0,
-        delivery_time_to: 0,
+        deliveryPriceFrom: 0,
+        deliveryPriceTo: 0,
+        deliveryTimeFrom: 0,
+        deliveryTimeTo: 0,
         ranking: 0,
-        type: ''
+        type: '',
+        imagePath: '',
+        logoPath: ''
     }
 }
 

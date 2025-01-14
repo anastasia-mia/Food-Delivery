@@ -1,0 +1,87 @@
+.chat{
+  @include column-direction;
+  position: fixed;
+  bottom: 70px;
+  right: 70px;
+  width: 300px;
+  height: 500px;
+  border: 2px solid $dark-green;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 15px;
+  padding: 15px;
+  gap: 15px;
+
+  &-header{
+    @include flex-align(center, space-between);
+    width: 100%;
+    align-self: flex-start;
+
+    p{
+      color: $dark-green;
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+
+  &-body{
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    margin-bottom: 10px;
+  }
+
+  &-messages{
+    @include column-direction;
+    gap: 10px;
+  }
+
+  &-message-receiver, &-message-sender{
+    @include column-direction;
+    max-width: 80%;
+    padding: 8px;
+    border-radius: 10px;
+    color: black;
+    font-size: 16px;
+  }
+
+  &-message-receiver{
+    align-self: flex-start;
+    background-color: $light-brown;
+  }
+
+  &-message-sender{
+    align-self: flex-end;
+    background-color: $light-green;
+    color: white;
+  }
+
+  &-input{
+    @include flex-align(center, space-between);
+    width: 100%;
+    align-self: flex-end;
+    gap: 10px;
+
+    textarea{
+      border: 1px solid $light-gray;
+      padding: 5px;
+      flex-grow: 1;
+      resize: none;
+      border-radius: 10px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &-send{
+    @include flex-align(center, center);
+    background-color: $light-green;
+    color: white;
+    height: 30px;
+    width: 30px;
+    font-weight: 700;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
