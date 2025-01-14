@@ -10,6 +10,8 @@ import {BurgerMenu} from "../Burgermenu/BurgerMenu.tsx";
 import {Cart} from "../Cart/Cart.tsx";
 import {setIsCartDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {Modal} from "../Modal/Modal.tsx";
+import {ChatIcon} from "../Chat/ChatIcon/ChatIcon.tsx";
+import {Chat} from "../Chat/Chat.tsx";
 
 export const Layout = () => {
     const {
@@ -17,7 +19,8 @@ export const Layout = () => {
         isRegisterPopUpDisplayed,
         isLoginPopUpDisplayed,
         isBurgerMenuDisplayed,
-        isCartDisplayed
+        isCartDisplayed,
+        isChatDisplayed
     } = useSelector((state: RootState) => state.popUpDisplaying);
     const {isDisplayedModal} = useSelector((state: RootState) => state.modal);
     const dispatch: AppDispatch = useDispatch();
@@ -48,6 +51,8 @@ export const Layout = () => {
                 </div>
             }
             {isDisplayedModal && <Modal />}
+            <ChatIcon />
+            {isChatDisplayed && <Chat />}
         </>
     )
 }

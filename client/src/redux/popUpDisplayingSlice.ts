@@ -7,7 +7,8 @@ const popUpsDisplayingSlice = createSlice({
         isRegisterPopUpDisplayed: false,
         isLocationPopUpDisplayed: false,
         isBurgerMenuDisplayed: false,
-        isCartDisplayed: false
+        isCartDisplayed: false,
+        isChatDisplayed: false
     },
     reducers: {
         setIsLoginPopDisplayed: (state, action) => {
@@ -24,6 +25,9 @@ const popUpsDisplayingSlice = createSlice({
         },
         setIsCartDisplayed: (state, action) => {
             state.isCartDisplayed = action.payload;
+        },
+        setIsChatDisplayed: (state, action) => {
+            state.isChatDisplayed = action.payload;
         }
     },
 })
@@ -33,6 +37,7 @@ export const {
     setIsRegisterPopDisplayed,
     setIsLocationPopUpDisplayed,
     setIsBurgerMenuDisplayed,
-    setIsCartDisplayed
+    setIsCartDisplayed,
+    setIsChatDisplayed
 } = popUpsDisplayingSlice.actions;
 export default popUpsDisplayingSlice.reducer;
