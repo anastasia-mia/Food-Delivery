@@ -1,0 +1,77 @@
+.admin-chat{
+  @include flex-align(center, center, column);
+  height: 100%;
+  gap: 15px;
+
+  &-back{
+    align-self: flex-start;
+
+    span{
+      font-size: 18px;
+      color: gray;
+    }
+
+    &:hover{
+      font-weight: 700;
+    }
+  }
+
+  &-name{
+    font-size: 24px;
+    color: $dark-brown;
+  }
+
+  &-body{
+    width: 80%;
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  &-content{
+    @include column-direction;
+    gap: 15px;
+  }
+
+  &-message-client, &-message-admin{
+    max-width: 80%;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 15px;
+  }
+
+  &-message-client{
+    align-self: flex-start;
+    background-color: $light-brown;
+  }
+
+  &-message-admin{
+    align-self: flex-end;
+    background-color: $light-green;
+    color: white;
+  }
+
+  &-input{
+    @include flex-align(flex-end, space-between);
+    width: 80%;
+    gap: 20px;
+
+    textarea{
+      border: 1px solid $light-gray;
+      padding: 15px;
+      font-size: 18px;
+      resize: none;
+      flex-grow: 1;
+      border-radius: 15px;
+    }
+  }
+
+  &-send{
+    padding: 15px 20px;
+    background-color: $light-green;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 15px;
+  }
+}

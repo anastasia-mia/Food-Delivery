@@ -10,7 +10,8 @@ import {AppDispatch} from "./redux/store.ts";
 import {OrderHistory} from "./pages/OrderHistory/OrderHistory.tsx";
 import {AdminLayout} from "./admin/AdminLayout/AdminLayout.tsx";
 import {AdminOrders} from "./admin/AdminOrders/AdminOrders.tsx";
-// import {AdminMessages} from "./admin/AdminMessages/AdminMessages.tsx";
+import {AdminMessages} from "./admin/AdminMessages/AdminMessages.tsx";
+import {AdminChat} from "./admin/AdminMessages/AdminChat/AdminChat.tsx";
 
 function App() {
     const dispatch: AppDispatch = useDispatch();
@@ -30,7 +31,8 @@ function App() {
                     <Route path="/admin" element={<AdminLayout />}>
                         <Route index element={<Navigate to="/admin/orders" replace />} />
                         <Route path="/admin/orders" element={<AdminOrders />}/>
-                        {/*<Route path="/admin/messages" element={<AdminMessages />}/>*/}
+                        <Route path="/admin/messages" element={<AdminMessages />}/>
+                        <Route path="/admin/messages/:id" element={<AdminChat />}/>
                     </Route>
                 </Routes>
             </Router>
