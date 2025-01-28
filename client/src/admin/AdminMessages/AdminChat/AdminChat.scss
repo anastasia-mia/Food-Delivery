@@ -34,10 +34,19 @@
   }
 
   &-message-client, &-message-admin{
+    @include column-direction;
+    gap: 5px;
     max-width: 80%;
     padding: 15px;
-    font-size: 18px;
     border-radius: 15px;
+
+    p{
+      font-size: 18px;
+    }
+
+    span{
+      align-self: flex-end;
+    }
   }
 
   &-message-client{

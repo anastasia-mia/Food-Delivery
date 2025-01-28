@@ -82,10 +82,8 @@ img {
   vertical-align: top;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Oswald";
-  font-size: inherit;
-  font-weight: 400;
+p {
+  line-height: 1.5;
 }
 
 #root {
