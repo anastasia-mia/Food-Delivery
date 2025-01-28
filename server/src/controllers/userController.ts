@@ -7,6 +7,7 @@ import 'express-session';
 declare module 'express-session' {
     interface Session {
         user: { userId: number; name: string };
+        guestId?: string
     }
 }
 
