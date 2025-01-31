@@ -7,27 +7,35 @@ const socket = io("http://localhost:3001");
 
 export const useChat = (chatId?: string) => {
     const [messages, setMessages] = useState<IMessage[]>([]);
+    const [requestedChatId, setRequestedChatId] = useState<string | undefined>(chatId);
+    const [clientId, setClientId] = useState<string>("");
 
     useEffect(() => {
-        axiosInstance.get(`/messages/${chatId}`).then((res) => {
+        axiosInstance.get(`/messages/${requestedChatId}`).then((res) => {
             setMessages(res.data.messages);
+            if(!chatId){
+                setRequestedChatId(res.data.chatId);
+                setClientId(res.data.senderId);
+            }
         })
 
+        if (requestedChatId) {
+            socket.emit("joinChat", requestedChatId);
+        }
+
         socket.on("newMessage", (message) => {
-            if(message.chat_id === chatId){
+            if(String(message.chat_id) === String(requestedChatId)){
                 setMessages((prev) => [...prev, message]);
             }
         })
 
-        socket.emit("joinChat", chatId);
-
         return () => {
             socket.off("newMessage");
         }
-    }, [chatId]);
+    }, [requestedChatId]);
 
-    const sendMessage = (message: string, senderId: string) => {
-        const messageData = {message, senderId, chatId};
+    const sendMessage = (message: string, senderId?: string) => {
+        const messageData = {message,  chatId: requestedChatId, senderId: senderId || clientId};
         socket.emit("sendMessage", messageData);
     }
 

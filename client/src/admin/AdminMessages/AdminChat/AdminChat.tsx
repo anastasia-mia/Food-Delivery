@@ -7,10 +7,10 @@ import {useChat} from "../../../hooks/useChat.ts";
 
 export const AdminChat = () => {
     const {id} = useParams();
-    const chatBodyRef = useScrollContentToBottom<HTMLDivElement>();
+    const {messages, sendMessage} = useChat(id);
+    const chatBodyRef = useScrollContentToBottom<HTMLDivElement>(messages);
     const [message, setMessage] = useState<string>('');
     const location = useLocation();
-    const {messages, sendMessage} = useChat(id);
 
     const handleMessageSend = () => {
         sendMessage(message.trim(), 'admin');
@@ -41,7 +41,7 @@ export const AdminChat = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
-                <div className="admin-chat-send" onClick={handleMessageSend}>Send</div>
+                <button className="admin-chat-send" onClick={handleMessageSend}>Send</button>
             </div>
         </div>
     )

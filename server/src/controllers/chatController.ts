@@ -7,24 +7,6 @@ import {
     getMessagesByChatId
 } from "../queries/chatQueries";
 
-export const getChat = async(req: Request, res: Response) => {
-    try{
-        const userId = req.session.user.userId || null;
-        const guestId = req.session.guestId;
-
-        const chatId =  await getChatId(userId, guestId);
-
-        if(chatId){
-            return res.status(200).json({chatId})
-        }else{
-            let newChatId = await createNewChat(userId, guestId);
-            return res.status(201).json({ chatId: newChatId });
-        }
-    }catch(error){
-        res.status(500).send("Failed to get chat")
-    }
-}
-
 export const getAllChats = async(req: Request, res: Response) => {
     try{
         const page: number = parseInt(req.query.page as string, 10) || 1;
@@ -38,10 +20,22 @@ export const getAllChats = async(req: Request, res: Response) => {
 
 export const getMessages = async(req: Request, res: Response) => {
     try{
-        const chatId: number = parseInt(req.params.chatId);
+        const userId = req.session.user?.userId || null;
+        const guestId = req.session.guestId;
+        let chatId: number;
+
+        if(req.params.chatId !== undefined && req.params.chatId !== "undefined"){
+            chatId = parseInt(req.params.chatId);
+        }else{
+            chatId =  await getChatId(userId, guestId);
+            if(!chatId){
+                chatId = await createNewChat(userId, guestId);
+            }
+        }
+
         const messages = await getMessagesByChatId(chatId);
 
-        res.status(200).json({messages})
+        res.status(200).json({chatId, messages, senderId: userId || guestId});
     }catch(error){
         res.status(500).send("Failed to get messages");
     }

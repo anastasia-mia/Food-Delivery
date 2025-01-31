@@ -5,11 +5,15 @@ import {OkPacket} from "mysql2";
 export const getChatId = async(userId: number, guestId: string) => {
     const sql = 'SELECT id FROM chats WHERE user_id = ? OR guest_id = ?';
     const [rows] = await connection.execute(sql, [userId, guestId]);
-    return rows[0].id;
+    if(rows[0]){
+        return rows[0].id
+    }else{
+        return null
+    }
 }
 
-export const createNewChat = async(userId: number, guestId: string) => {
-    const sql = 'INSERT INTO chats (userId, guestId) VALUES (?, ?)';
+export const createNewChat = async(userId: number | null, guestId: string) => {
+    const sql = 'INSERT INTO chats (user_id, guest_id) VALUES (?, ?)';
     const [result] = await connection.execute<OkPacket>(sql, [userId, guestId]);
     return result.insertId;
 }

@@ -5,27 +5,39 @@ import {useState} from "react";
 import useNoScroll from "../../hooks/useNoScroll.ts";
 import {AppDispatch} from "../../redux/store.ts";
 import {useScrollContentToBottom} from "../../hooks/useScrollContentToBottom.ts";
+import {useChat} from "../../hooks/useChat.ts";
+import {IMessage} from "../../interfaces/chatInterfaces.ts";
 
 export const Chat = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const chatBodyRef = useScrollContentToBottom<HTMLDivElement>();
+    const {messages, sendMessage} = useChat();
+    const chatBodyRef = useScrollContentToBottom<HTMLDivElement>(messages);
     const [message, setMessage] = useState<string>("");
     useNoScroll(true);
 
-    return(
+    const handleMessageSend = () => {
+        sendMessage(message.trim());
+        setMessage('');
+    }
+
+    return (
         <div className="chat">
             <div className="chat-header">
                 <p>Chat</p>
                 <div className="cross" onClick={() => dispatch(setIsChatDisplayed(false))}></div>
             </div>
             <div className="chat-body" ref={chatBodyRef}>
-                <div className="chat-messages">
-                    <div className="chat-message-sender">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                    <div className="chat-message-receiver">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-
+                {messages.length > 0 ?
+                    <div className="chat-messages">
+                        {messages.map((message: IMessage) => (
+                            <div className={`chat-message-${message.sender_id === "admin" ? 'receiver' : 'sender'}`}
+                                 key={message.id}>
+                                <p>{message.message}</p>
+                            </div>
+                        ))}
                     </div>
-                    <div className="chat-message-sender">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                </div>
+                    : <p className="chat-text">You don't have any messages</p>
+                }
             </div>
             <div className="chat-input">
                 <textarea
@@ -33,7 +45,7 @@ export const Chat = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
-                <div className="chat-send">
+                <div className="chat-send" onClick={handleMessageSend}>
                     {">"}
                 </div>
             </div>

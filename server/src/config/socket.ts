@@ -1,6 +1,16 @@
 import {Server} from "socket.io";
 import {addNewMessage} from "../queries/chatQueries";
-import http from "http";
+import http, {IncomingMessage} from "http";
+import { SessionData } from "express-session";
+
+interface CustomSession extends SessionData {
+    user?: { userId: number };
+    guestId?: number;
+}
+
+interface CustomRequest extends IncomingMessage {
+    session: CustomSession;
+}
 
 export const setupSocket = (server:  http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>) => {
     const io = new Server(server, {
