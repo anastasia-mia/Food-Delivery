@@ -2,7 +2,7 @@
   @include flex-align(center, center);
   position: fixed;
   bottom: 70px;
-  right: 70px;
+  right: 80px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -11,5 +11,27 @@
 
   &:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chat-icon{
+    right: 30px;
+    bottom: 40px;
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .chat-icon{
+    right: 16px;
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+
+    svg{
+      transform: scale(0.8);
+    }
   }
 }
