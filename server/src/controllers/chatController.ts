@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {
-    changeReadStatus,
     createNewChat,
+    deleteChats,
     getChatId,
     getChats,
     getMessagesByChatId
@@ -41,16 +41,11 @@ export const getMessages = async(req: Request, res: Response) => {
     }
 }
 
-export const markMessagesAsRead = async(req: Request, res: Response) => {
+export const deleteEmptyChats = async(req: Request, res: Response) => {
     try{
-        const {chatId, senderId} = req.body;
-        const userId = req.session.user.userId || null;
-        const guestId = req.session.guestId;
-
-        await changeReadStatus(chatId, senderId ? senderId : userId ? userId : guestId);
-
-        res.status(200).send("Messages as read");
+        await deleteChats();
+        res.status(200).send("Empty chats deleted");
     }catch(error){
-        res.status(500).send("Error to read the message");
+        res.status(500).send("Failed to delete empty chats");
     }
 }

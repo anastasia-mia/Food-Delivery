@@ -1,5 +1,5 @@
 import {Server} from "socket.io";
-import {addNewMessage} from "../queries/chatQueries";
+import {addNewMessage, changeReadStatus} from "../queries/chatQueries";
 import http, {IncomingMessage} from "http";
 import { SessionData } from "express-session";
 
@@ -26,6 +26,11 @@ export const setupSocket = (server:  http.Server<typeof http.IncomingMessage, ty
         socket.on("sendMessage", async (messageData) => {
             const newMessage = await addNewMessage(messageData.chatId, messageData.message, messageData.senderId);
             io.to(`chat_${messageData.chatId.toString()}`).emit("newMessage", newMessage);
+        })
+
+        socket.on("markMessagesAsRead", async({chatId, senderId}) => {
+            await changeReadStatus(chatId, String(senderId));
+            io.to(`chat_${chatId.toString()}`).emit("messagesRead");
         })
 
         socket.on("joinChat", (chatId) => {

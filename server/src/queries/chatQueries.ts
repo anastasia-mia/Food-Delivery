@@ -31,20 +31,20 @@ export const getChats = async(page: number) => {
             (SELECT COUNT(*) 
              FROM messages 
              WHERE messages.chat_id = c.id 
-             AND messages.is_read = 0) AS unreadCount
+             AND messages.is_read = 0 AND messages.sender_id != ?) AS unreadCount
         FROM chats c
             LEFT JOIN users u ON u.id = c.user_id
         ORDER BY c.updated_at DESC
-            LIMIT 8 OFFSET ?
+            LIMIT 9 OFFSET ?
     `;
 
-    const offset = (page - 1) * 8;
-    const [rows] = await connection.query(sql, [offset]);
+    const offset = (page - 1) * 9;
+    const [rows] = await connection.query(sql, ['admin', offset]);
 
     const countSql = `SELECT COUNT(DISTINCT c.id) AS total FROM chats c`;
     const [countRows] = await connection.execute(countSql);
 
-    return {chats: rows, hasNextPage: countRows[0].total > offset + 8};
+    return {chats: rows, hasNextPage: countRows[0].total > offset + 9};
 }
 
 export const getMessagesByChatId = async(chatId: number) => {
@@ -54,19 +54,28 @@ export const getMessagesByChatId = async(chatId: number) => {
 }
 
 export const addNewMessage = async(chatId: number, message: string, userId: string) => {
-    const sql = 'INSERT INTO messages (chat_id, message, is_read, sender_id) VALUES (?, ?, ?, ?)';
-    const [result] = await connection.execute<OkPacket>(sql, [chatId, message, false, userId]);
+    const sqlInsertMessage = 'INSERT INTO messages (chat_id, message, is_read, sender_id) VALUES (?, ?, ?, ?)';
+    const [result] = await connection.execute<OkPacket>(sqlInsertMessage, [chatId, message, false, userId]);
+
+    const sqlUpdateChat = 'UPDATE chats SET updated_at = NOW() WHERE id = ?';
+    await connection.execute(sqlUpdateChat, [chatId]);
+
     return {
         id: result.insertId,
         chat_id: chatId,
         sender_id: userId,
         message,
-        is_read: false,
+        is_read: 0,
         created_at: new Date().toISOString()
     };
 }
 
 export const changeReadStatus = async(chatId: number, senderId: string) => {
-    const sql = 'UPDATE messages SET is_read = true WHERE chat_id = ? AND sender_id = ?';
+    const sql = 'UPDATE messages SET is_read = true WHERE chat_id = ? AND sender_id != ?';
     await connection.execute(sql, [chatId, senderId]);
+}
+
+export const deleteChats = async() => {
+    const sql = 'DELETE c FROM chats c LEFT JOIN messages m ON c.id = m.chat_id WHERE m.id IS NULL';
+    await connection.execute(sql);
 }

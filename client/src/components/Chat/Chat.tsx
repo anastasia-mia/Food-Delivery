@@ -1,7 +1,7 @@
 import './Chat.scss';
 import {setIsChatDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useDispatch} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import useNoScroll from "../../hooks/useNoScroll.ts";
 import {AppDispatch} from "../../redux/store.ts";
 import {useScrollContentToBottom} from "../../hooks/useScrollContentToBottom.ts";
@@ -10,10 +10,14 @@ import {IMessage} from "../../interfaces/chatInterfaces.ts";
 
 export const Chat = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const {messages, sendMessage} = useChat();
+    const {messages, sendMessage, requestedChatId, clientId, readMessages} = useChat();
     const chatBodyRef = useScrollContentToBottom<HTMLDivElement>(messages);
     const [message, setMessage] = useState<string>("");
     useNoScroll(true);
+
+    useEffect(() => {
+        readMessages()
+    }, [requestedChatId, clientId]);
 
     const handleMessageSend = () => {
         sendMessage(message.trim());

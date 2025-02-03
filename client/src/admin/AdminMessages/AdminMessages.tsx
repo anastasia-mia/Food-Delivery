@@ -13,6 +13,10 @@ export const AdminMessages = () => {
     const [chats, setChats] = useState<IChat[]>([]);
 
     useEffect(() => {
+        axiosInstance.delete("/delete/chats");
+    }, []);
+
+    useEffect(() => {
         axiosInstance.get("/chats", {params: {page}})
             .then((res) => {
                 setChats(res.data.chats);

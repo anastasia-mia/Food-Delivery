@@ -51,8 +51,7 @@ export const Layout = () => {
                 </div>
             }
             {isDisplayedModal && <Modal />}
-            <ChatIcon />
-            {isChatDisplayed && <Chat />}
+            {isChatDisplayed ? <Chat /> : <ChatIcon />}
         </>
     )
 }

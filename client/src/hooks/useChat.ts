@@ -3,11 +3,11 @@ import { io } from "socket.io-client";
 import {IMessage} from "../interfaces/chatInterfaces.ts";
 import axiosInstance from "../../axiosConfig.ts";
 
-const socket = io("http://localhost:3001");
+export const socket = io("http://localhost:3001");
 
-export const useChat = (chatId?: string) => {
+export const useChat = (chatId?: number) => {
     const [messages, setMessages] = useState<IMessage[]>([]);
-    const [requestedChatId, setRequestedChatId] = useState<string | undefined>(chatId);
+    const [requestedChatId, setRequestedChatId] = useState<number | undefined>(chatId);
     const [clientId, setClientId] = useState<string>("");
 
     useEffect(() => {
@@ -24,13 +24,22 @@ export const useChat = (chatId?: string) => {
         }
 
         socket.on("newMessage", (message) => {
-            if(String(message.chat_id) === String(requestedChatId)){
+            if(message.chat_id === requestedChatId){
                 setMessages((prev) => [...prev, message]);
             }
         })
 
+        socket.on("messagesRead", () => {
+            setMessages((prev) =>
+                prev.map((msg) => msg.is_read === 0 && msg.sender_id !== String(clientId)
+                    ? {...msg, is_read: 1}
+                    : msg)
+            )
+        })
+
         return () => {
             socket.off("newMessage");
+            socket.off("messagesRead");
         }
     }, [requestedChatId]);
 
@@ -39,5 +48,11 @@ export const useChat = (chatId?: string) => {
         socket.emit("sendMessage", messageData);
     }
 
-    return {messages, sendMessage}
+    const readMessages = (senderId?: string) => {
+        if(requestedChatId && clientId || senderId){
+            socket.emit("markMessagesAsRead", { chatId: requestedChatId, senderId: senderId || clientId });
+        }
+    }
+
+    return {messages, sendMessage, requestedChatId, clientId, readMessages}
 }

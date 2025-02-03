@@ -1,16 +1,20 @@
 import './AdminChat.scss';
 import {Link, useLocation, useParams} from "react-router-dom";
 import {useScrollContentToBottom} from "../../../hooks/useScrollContentToBottom.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {formatDate} from "../../../utils/formatDate.ts";
 import {useChat} from "../../../hooks/useChat.ts";
 
 export const AdminChat = () => {
     const {id} = useParams();
-    const {messages, sendMessage} = useChat(id);
+    const {messages, sendMessage, readMessages, requestedChatId} = useChat(Number(id));
     const chatBodyRef = useScrollContentToBottom<HTMLDivElement>(messages);
     const [message, setMessage] = useState<string>('');
     const location = useLocation();
+
+    useEffect(() => {
+        readMessages('admin')
+    }, [requestedChatId]);
 
     const handleMessageSend = () => {
         sendMessage(message.trim(), 'admin');

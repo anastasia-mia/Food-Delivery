@@ -12,6 +12,16 @@
   &:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+
+  &-notification{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top: 30%;
+    left: 60%;
+  }
 }
 
 @media screen and (max-width: 768px) {
