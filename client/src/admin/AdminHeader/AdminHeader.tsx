@@ -12,7 +12,7 @@ export const AdminHeader = () => {
                 <div className="admin-header-logo">DELIVERY <span>Admin</span></div>
             </Link>
             <p className="admin-header-title">Admin Page</p>
-            <p className="admin-header-user">{user && `Welcome, {user}!`}</p>
+            <p className="admin-header-user">{user && `Welcome, ${user}!`}</p>
         </header>
     )
 }

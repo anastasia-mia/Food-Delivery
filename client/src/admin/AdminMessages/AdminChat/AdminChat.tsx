@@ -4,6 +4,7 @@ import {useScrollContentToBottom} from "../../../hooks/useScrollContentToBottom.
 import {useEffect, useState} from "react";
 import {formatDate} from "../../../utils/formatDate.ts";
 import {useChat} from "../../../hooks/useChat.ts";
+import {handleEnterPress} from "../../../utils/handleEnterPress.ts";
 
 export const AdminChat = () => {
     const {id} = useParams();
@@ -17,6 +18,7 @@ export const AdminChat = () => {
     }, [requestedChatId]);
 
     const handleMessageSend = () => {
+        if (message.trim() === "") return;
         sendMessage(message.trim(), 'admin');
         setMessage('');
     }
@@ -44,6 +46,7 @@ export const AdminChat = () => {
                     placeholder="Write the message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(event) => handleEnterPress(event, handleMessageSend)}
                 />
                 <button className="admin-chat-send" onClick={handleMessageSend}>Send</button>
             </div>

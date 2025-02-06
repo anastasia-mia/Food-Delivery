@@ -31,6 +31,11 @@ const NavBar = () => {
                             <span>Login</span>
                         </div>
                     )}
+                    {isLoggedIn && (
+                        <div className="navbar-account" onClick={openLoginPopUp}>
+                            <span>Logout</span>
+                        </div>
+                    )}
                 </div>
             }
             <NavBarCart />

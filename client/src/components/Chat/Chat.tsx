@@ -7,6 +7,7 @@ import {AppDispatch} from "../../redux/store.ts";
 import {useScrollContentToBottom} from "../../hooks/useScrollContentToBottom.ts";
 import {useChat} from "../../hooks/useChat.ts";
 import {IMessage} from "../../interfaces/chatInterfaces.ts";
+import {handleEnterPress} from "../../utils/handleEnterPress.ts";
 
 export const Chat = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -20,6 +21,7 @@ export const Chat = () => {
     }, [requestedChatId, clientId]);
 
     const handleMessageSend = () => {
+        if (message.trim() === "") return;
         sendMessage(message.trim());
         setMessage('');
     }
@@ -48,6 +50,7 @@ export const Chat = () => {
                     placeholder="Write your message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={(event) => handleEnterPress(event, handleMessageSend)}
                 />
                 <div className="chat-send" onClick={handleMessageSend}>
                     {">"}

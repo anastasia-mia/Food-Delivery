@@ -1,10 +1,10 @@
 .navbar {
   @include flex-align(center, center);
-  gap: 30px;
+  gap: 20px;
 
   &-tabs{
     @include flex-align(center, center);
-    gap: 30px;
+    gap: 20px;
   }
 
   &-greeting{

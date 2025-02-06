@@ -99,6 +99,11 @@ const authSlice = createSlice({
                 state.user = null;
                 state.isLoggedIn = false;
             })
+            .addCase(checkSession.rejected, (state) => {
+                state.loading = false;
+                state.user = null;
+                state.isLoggedIn = false;
+            })
             .addMatcher(
                 (action) => action.type.endsWith('/pending'),
                 (state) => {
@@ -107,7 +112,7 @@ const authSlice = createSlice({
                 }
             )
             .addMatcher(
-                (action) => action.type.endsWith('/rejected'),
+                (action) => action.type.endsWith('/rejected') && action.type !== checkSession.rejected.type,
                 (state, action: PayloadAction<{message: string | null}>) => {
                     state.loading = false;
                     state.error = action.payload.message;
