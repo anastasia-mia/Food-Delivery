@@ -2,7 +2,7 @@ import {CountryOption} from "../../../interfaces/geoInterfaces.ts";
 import axiosInstance from "../../../../axiosConfig.ts";
 
 export const getCountries = (setterFunction: (suggestions: CountryOption[]) => void): void => {
-    axiosInstance.get<CountryOption[]>('/countries')
+    axiosInstance.get<CountryOption[]>('/countries', {withCredentials: false})
         .then((res) => setterFunction(res.data))
         .catch((err) => console.error('Error fetching countries:', err))
 }
