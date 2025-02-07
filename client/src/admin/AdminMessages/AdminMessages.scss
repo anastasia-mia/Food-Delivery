@@ -30,6 +30,12 @@
       text-overflow: ellipsis;
     }
 
+    &-name{
+      span{
+        color: $gray;
+      }
+    }
+
     &-date{
       justify-self: flex-end;
     }

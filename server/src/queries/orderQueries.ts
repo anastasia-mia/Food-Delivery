@@ -2,7 +2,7 @@ import {Customer, OrderItem} from "../models/orderModel";
 import connection from "../config/database";
 import {OkPacket, RowDataPacket} from 'mysql2';
 
-export const insertOrder = async (userId: number, total: number, customer: Customer, date: string, orderItems: OrderItem[], restaurantId: number) => {
+export const insertOrder = async (userId: number | string, total: number, customer: Customer, date: string, orderItems: OrderItem[], restaurantId: number) => {
     const sql = `INSERT INTO orders (total, status_id, user_id, order_date, restaurant_id, comment)
                  VALUES (?, ?, ?, ?, ?, ?)`;
     const [orderCreated] = await connection.execute<OkPacket>(sql,
@@ -41,7 +41,7 @@ export const insertOrderItems = async (orderId: number, orderItems: OrderItem[])
     await connection.query(sql, [orderItemsData]);
 }
 
-export const getOrders = async (page: number, userId?: number) => {
+export const getOrders = async (page: number, userId?: number | string) => {
     let sql = `SELECT o.id,
                       o.total,
                       o.status_id,
@@ -73,7 +73,7 @@ export const getOrders = async (page: number, userId?: number) => {
                         JOIN restaurants r ON o.restaurant_id = r.id
                         JOIN statuses s ON o.status_id = s.id`;
 
-    const params: (number | undefined)[] = [];
+    const params: (number | string | undefined)[] = [];
 
     if (userId) {
         sql += ` WHERE o.user_id = ?`;
@@ -87,7 +87,7 @@ export const getOrders = async (page: number, userId?: number) => {
     const [rows] = await connection.query<RowDataPacket[]>(sql, params);
 
     let countSql = `SELECT COUNT(*) AS total FROM orders o`;
-    const countParams: (number | undefined)[] = [];
+    const countParams: (number | string | undefined)[] = [];
 
     if (userId) {
         countSql += ` WHERE o.user_id = ?`;

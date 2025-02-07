@@ -16,7 +16,7 @@ export const OrderHistory = () => {
     useScrollToTop();
 
     useEffect(() => {
-        axiosInstance.get(`/getAllOrdersByUserId/${userId ? userId : 4}`, {params: {page}})
+        axiosInstance.get(`/getAllOrdersByUserId/${userId}`, {params: {page}})
             .then((res) => {
                 setOrders(res.data.orders)
                 setHasNextPage(res.data.hasNextPage);
@@ -30,14 +30,16 @@ export const OrderHistory = () => {
                     <p className="order-history-title">Order History</p>
                     <p className="order-history-total">Total orders: {orders.length}</p>
                 </div>
-                <div className="order-history-body">
-                    {orders.map((order: IOrder) => (
-                        <div key={order.orderId}>
-                            <Order order={order}/>
-                        </div>
+                {orders.length > 0 ? (
+                    <div className="order-history-body">
+                        {orders.map((order: IOrder) => (
+                            <div key={order.orderId}>
+                                <Order order={order}/>
+                            </div>
 
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                ) : <p className="order-history-text">You have no orders</p>}
             </div>
             <Pagination page={page} hasNextPage={hasNextPage} setNewPage={setPage}/>
         </section>

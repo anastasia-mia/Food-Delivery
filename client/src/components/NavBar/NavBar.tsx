@@ -5,6 +5,7 @@ import {setIsLoginPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {AppDispatch, RootState} from "../../redux/store.ts";
 import {NavBarCart} from "./NavBarCart.tsx";
 import {Link} from "react-router-dom";
+import {logoutUser} from "../../redux/authSlice.ts";
 
 const NavBar = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -32,7 +33,7 @@ const NavBar = () => {
                         </div>
                     )}
                     {isLoggedIn && (
-                        <div className="navbar-account" onClick={openLoginPopUp}>
+                        <div className="navbar-account" onClick={() => dispatch(logoutUser())}>
                             <span>Logout</span>
                         </div>
                     )}

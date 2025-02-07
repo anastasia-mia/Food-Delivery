@@ -34,7 +34,7 @@ export const AdminMessages = () => {
 
                         >
                             <p className="admin-messages-message-id">{chat.id}</p>
-                            <p className="admin-messages-message-name">{chat.name}</p>
+                            <p className="admin-messages-message-name">{chat.name || <span>Guest</span>}</p>
                             <p className="admin-messages-message-text">{chat.lastMessage}</p>
                             <p className="admin-messages-message-date">{formatDate(chat.updatedAt)}</p>
                             {chat.unreadCount > 0 &&

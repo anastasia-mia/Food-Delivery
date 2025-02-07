@@ -6,12 +6,8 @@ import 'express-session';
 
 export const createNewOrder = async (req: Request, res: Response): Promise<void> => {
     try{
-        const userId = req.session.user.userId;
-
-        if (!userId) {
-            res.status(401).json({ message: 'User is not authenticated' });
-            return;
-        }
+        const userId = req.session.user?.userId;
+        const guestId = req.session.guestId;
 
         const { customer, orderItems, total, restaurantId}: Order = req.body;
 
@@ -25,7 +21,7 @@ export const createNewOrder = async (req: Request, res: Response): Promise<void>
 
         const formattedDate = new Date().toISOString().split('T')[0];
 
-        await insertOrder(userId, total, customer, formattedDate, orderItems, restaurantId);
+        await insertOrder(userId ? userId : guestId, total, customer, formattedDate, orderItems, restaurantId);
 
         res.status(200).json({message: 'The order is added'})
     }catch(err){
@@ -35,15 +31,16 @@ export const createNewOrder = async (req: Request, res: Response): Promise<void>
 
 export const getUserOrders = async(req: Request, res: Response) => {
     const userId: number = parseInt(req.params.id, 10);
+    const guestId = req.session.guestId;
     const page: number = parseInt(req.query.page as string, 10) || 1;
 
-    if (isNaN(userId)) {
-        res.status(400).json({ message: 'Invalid user ID' });
+    if (!userId && !guestId) {
+        res.status(400).json({ message: 'Invalid client ID' });
         return;
     }
 
     try{
-        const ordersData = await getOrders(page, userId);
+        const ordersData = await getOrders(page, userId || guestId);
         const orders = formatOrders(ordersData.orders);
 
         res.status(200).json({orders, hasNextPage: ordersData.hasNextPage});
