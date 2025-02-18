@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["jest","testing-library/jest-dom"],
+    "types": ["jest"],
     "jsx": "react-jsx",
 
     /* Linting */
