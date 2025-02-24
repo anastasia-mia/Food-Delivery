@@ -16,7 +16,7 @@ import {ensureGuestId} from "./middleware/guestMiddleware";
 import {setupSocket} from "./config/socket";
 
 const app = express();
-app.use(cors({ credentials: true, origin: 'http://localhost:5173'}))
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL}))
 
 app.use(session({
     secret: process.env.SECRET_SESSION,
