@@ -1,0 +1,38 @@
+.achievement{
+  &-number, &-name{
+    color: white;
+  }
+
+  &-number{
+    font-size: 36px;
+    transition: all 0.3s ease;
+  }
+
+  &-name{
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .achievement{
+    &-number{
+      font-size: 28px;
+    }
+
+    &-name{
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .achievement{
+    &-number{
+      font-size: 36px;
+    }
+
+    &-name{
+      font-size: 18px;
+    }
+  }
+}

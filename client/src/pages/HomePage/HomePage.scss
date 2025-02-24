@@ -16,34 +16,6 @@
       border-right: 1px solid $beige;
     }
   }
-
-  .item {
-    &-number, &-name{
-      color: white;
-    }
-
-    &-number{
-      font-size: 32px;
-    }
-
-    &-name{
-      font-size: 20px;
-    }
-  }
-}
-
-@media screen and (max-width: 768px){
-  .achievements{
-    .item{
-      &-number{
-        font-size: 24px;
-      }
-
-      &-name{
-        font-size: 16px;
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 576px){
@@ -52,16 +24,6 @@
       min-width: 50%;
       border-right: 0 !important;
       margin: 15px 0;
-    }
-
-    .item{
-      &-number{
-        font-size: 28px;
-      }
-
-      &-name{
-        font-size: 18px;
-      }
     }
   }
 }

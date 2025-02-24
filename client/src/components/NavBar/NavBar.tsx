@@ -6,6 +6,8 @@ import {AppDispatch, RootState} from "../../redux/store.ts";
 import {NavBarCart} from "./NavBarCart.tsx";
 import {Link} from "react-router-dom";
 import {logoutUser} from "../../redux/authSlice.ts";
+import {removeAllItems} from "../../redux/cartSlice.ts";
+import {resetRestaurant} from "../../redux/chosenRestaurantSlice.ts";
 
 const NavBar = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -14,6 +16,12 @@ const NavBar = () => {
 
     const openLoginPopUp = () => {
         dispatch(setIsLoginPopDisplayed(true))
+    }
+
+    const logout = () => {
+        dispatch(logoutUser());
+        dispatch(removeAllItems());
+        dispatch(resetRestaurant());
     }
 
     return (
@@ -33,7 +41,7 @@ const NavBar = () => {
                         </div>
                     )}
                     {isLoggedIn && (
-                        <div className="navbar-account" onClick={() => dispatch(logoutUser())}>
+                        <div className="navbar-account" onClick={logout}>
                             <span>Logout</span>
                         </div>
                     )}
