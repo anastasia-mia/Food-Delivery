@@ -30,7 +30,7 @@ export const OrderItems = ({menuItems}: {menuItems: IOrderItem[]}) => {
                 <p>Price</p>
             </div>
             {displayedItems.map((item: IOrderItem) => (
-                <div key={item.id} className="checkout-order-item" data-testid="order-item">
+                <div key={'menuItemId' in item ? item.menuItemId : item.id} className="checkout-order-item" data-testid="order-item">
                     <p>{'name' in item ? item.name : item.menuItemName}</p>
                     <p>{item.quantity}х</p>
                     <p>{item.price}€</p>

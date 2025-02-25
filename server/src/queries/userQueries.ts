@@ -16,4 +16,14 @@ const getUserByEmail = async (email: string): Promise<IUser | null> => {
     return null;
 }
 
+export const getUserInfo = async (id: number): Promise<IUser | null> => {
+    const sql = `SELECT * FROM users WHERE id = ?`;
+    const [rows] = await connection.execute<RowDataPacket[]>(sql, [id]);
+    if (rows.length > 0) {
+        return rows[0] as IUser;
+    }
+    return null;
+}
+
+
 export {addUser, getUserByEmail};

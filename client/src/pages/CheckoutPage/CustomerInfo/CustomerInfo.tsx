@@ -3,14 +3,24 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {ClientDetails} from "../../../interfaces/orderInterfaces.ts";
 import {customerInfoSchema} from "../../../validations/customerInfoSchema.ts";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../redux/store.ts";
 
 interface ICustomerInfoProps {
     onSubmitOrder: (data: ClientDetails) => void;
 }
 
 export const CustomerInfo = ({onSubmitOrder}: ICustomerInfoProps) => {
+    const {user, email} = useSelector((state: RootState) => state.auth);
     const {register, handleSubmit, formState: {errors}} = useForm({
-        resolver: yupResolver(customerInfoSchema)
+        resolver: yupResolver(customerInfoSchema),
+        defaultValues: {
+            name: user || "",
+            surName: "",
+            phoneNumber: "",
+            email: email || "",
+            comment: "",
+        }
     });
 
     return (

@@ -6,6 +6,7 @@ import axios, {AxiosError} from 'axios';
 interface AuthState {
     user: string | null,
     userId: number | null,
+    email: string | null,
     isLoggedIn: boolean,
     loading: boolean,
     error: string | null,
@@ -14,6 +15,7 @@ interface AuthState {
 const initialState: AuthState = {
     user: null,
     userId: null,
+    email: null,
     isLoggedIn: false,
     loading: false,
     error: null,
@@ -89,11 +91,13 @@ const authSlice = createSlice({
                 state.user = action.payload.user.name;
                 state.userId = action.payload.user.userId;
                 state.isLoggedIn = action.payload.isLoggedIn;
+                state.email = action.payload.user.email;
             })
             .addCase(checkSession.fulfilled, (state, action) => {
                 state.isLoggedIn = action.payload.isLoggedIn;
                 state.user = action.payload.user.name;
                 state.userId = action.payload.user.userId;
+                state.email = action.payload.user.email;
             })
             .addCase(logoutUser.fulfilled, (state) => {
                 state.user = null;

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {addUser, getUserByEmail} from "../queries/userQueries";
+import {addUser, getUserByEmail, getUserInfo} from "../queries/userQueries";
 import {IUser} from "../models/UserModel";
 import bcrypt from "bcrypt";
 import 'express-session';
@@ -50,15 +50,20 @@ const loginUser = async (req: Request, res: Response) => {
 
     req.session.user = { userId: user.id, name: user.name };
 
+    const userInfo = await getUserInfo(user.id);
+
     res.json({
         message: 'Login successful',
-        user: { userId: user.id, name: user.name }
+        user: { userId: user.id, name: user.name, email: userInfo.email}
     });
 }
 
-const checkSession = (req: Request, res: Response) => {
+const checkSession = async(req: Request, res: Response) => {
     if (req.session.user) {
-        return res.status(200).json({ isLoggedIn: true, user: req.session.user });
+        const { userId, name } = req.session.user;
+        const { email } = await getUserInfo(userId);
+
+        return res.status(200).json({ isLoggedIn: true, user: { userId, name, email } });
     } else {
         res.status(401).send({message: 'Unauthorised'});
     }
