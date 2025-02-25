@@ -1,3 +1,17 @@
+@keyframes numberGrow {
+  0%{
+    transform: scale(1);
+  }
+
+  85%{
+    transform: scale(1.2);
+  }
+
+  100%{
+    transform: scale(1);
+  }
+}
+
 .achievement{
   &-number, &-name{
     color: white;
@@ -6,6 +20,7 @@
   &-number{
     font-size: 36px;
     transition: all 0.3s ease;
+    animation: 2s ease-in-out numberGrow;
   }
 
   &-name{

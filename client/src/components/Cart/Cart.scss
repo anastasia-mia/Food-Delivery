@@ -16,7 +16,7 @@
   }
 
   &-header{
-    @include flex-align(center, flex-end);
+    @include flex-align(center, space-between);
     padding: 0 20px;
     font-size: 28px;
     color: $dark-green;
@@ -98,7 +98,9 @@
 
 @media screen and (max-width: 576px){
   .cart{
-    padding-bottom: 60px;
+    &-wrapper{
+      padding-bottom: 90px;
+    }
 
     &-wrapper{
       max-width: none;

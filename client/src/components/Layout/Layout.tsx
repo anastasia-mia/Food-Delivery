@@ -42,6 +42,7 @@ export const Layout = () => {
                 <div className="popUp-background">
                     <div className="cart-wrapper">
                         <div className="cart-header">
+                            <p>Cart</p>
                             <div className="cross"
                                  onClick={() => dispatch(setIsCartDisplayed(false))}>
                             </div>

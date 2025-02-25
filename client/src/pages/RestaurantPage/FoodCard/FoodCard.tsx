@@ -10,13 +10,13 @@ interface FoodCardProps {
 }
 
 export const FoodCard= ({menuItem}: FoodCardProps) => {
-    const {id} = useSelector((state: RootState) => state.currentRestaurant);
+    const {id, restaurant} = useSelector((state: RootState) => state.currentRestaurant);
     const dispatch: AppDispatch = useDispatch();
-    const restaurant = useSelector((state: RootState) => state.chosenRestaurant);
+    const chosenRestaurant = useSelector((state: RootState) => state.chosenRestaurant);
 
     const isRestaurantAvailable: boolean = useMemo(() => {
-        return Number(id) === restaurant.restaurant_id;
-    }, [id, restaurant.restaurant_id]);
+        return Number(id) === chosenRestaurant.restaurant_id;
+    }, [id, chosenRestaurant.restaurant_id]);
 
     const addToCart = () => {
         if(isRestaurantAvailable){
@@ -33,7 +33,12 @@ export const FoodCard= ({menuItem}: FoodCardProps) => {
         <div className="food-card">
             <div className="food-card-container">
                 <div className="food-card-top">
-                    <div className="food-card-image"></div>
+                    <div className="food-card-image">
+                        <img src={`${import.meta.env.VITE_API_URL}/media/restaurants/${restaurant.logoPath}`}
+                             alt="Restaurant logo"
+                        />
+                        <p>{restaurant.name}</p>
+                    </div>
                     <div className="food-card-details">
                         <p className="food-card-name">{menuItem.name}</p>
                         <p className="food-card-description">{menuItem.description}</p>

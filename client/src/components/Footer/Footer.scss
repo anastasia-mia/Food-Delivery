@@ -5,4 +5,34 @@
   background-color: $yellow;
   padding: 30px 0;
   height: 80px;
+
+  &-container{
+    @include flex-align(center, space-between);
+    gap: 10px;
+  }
+
+  &-admin, &-name, &-rights{
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &-admin{
+    color: $dark-brown;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .footer{
+    height: auto;
+
+    &-container{
+      @include flex-align(center, center, column);
+    }
+  }
 }

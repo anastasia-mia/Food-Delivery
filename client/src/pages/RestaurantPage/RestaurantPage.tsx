@@ -48,7 +48,7 @@ export const RestaurantPage = () => {
                 ) : (
                     <>
                         <Categories setCategory={setCategory}/>
-                        <MenuBody category={category}/>
+                        <MenuBody category={category} />
                     </>
                 )}
                 {windowWidth > 1280 && (

@@ -2,19 +2,16 @@
   @include flex-align(center, center);
   @include absolute-position(bottom 0, left 50%);
   transform: translateX(-50%);
-  gap: 10px;
+  gap: 20px;
 
   &-button{
-    padding: 5px 10px;
-    background-color: rgba(109, 151, 115, 0.4);
-    border: 1px solid $light-green;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 700;
     cursor: pointer;
+    color: $dark-green;
 
     &-disabled{
-      background-color: $light-gray;
-      border: 1px solid $gray;
+      color: $light-gray;
       cursor: not-allowed;
     }
   }

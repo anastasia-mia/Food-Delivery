@@ -27,9 +27,8 @@ export const Cart = () => {
     return (
         <div className="cart">
             <p className="cart-title">
-                Your order
                 {(isRestaurantPage || menuItems.length !== 0) && (
-                    <> from <span>{chosenRestaurant?.restaurantName}</span></>
+                    <>Your order from <span>{chosenRestaurant?.restaurantName}</span></>
                 )}
             </p>
             <div className="cart-body">

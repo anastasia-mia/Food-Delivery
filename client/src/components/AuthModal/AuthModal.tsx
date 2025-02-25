@@ -1,10 +1,11 @@
 import './AuthModal.scss';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setIsLoginPopDisplayed, setIsRegisterPopDisplayed} from "../../redux/popUpDisplayingSlice.ts";
-import {AppDispatch} from "../../redux/store.ts";
+import {AppDispatch, RootState} from "../../redux/store.ts";
 import {AuthForm} from "./AuthForm/AuthForm.tsx";
 import {useMemo} from "react";
 import {resetError} from "../../redux/authSlice.ts";
+import useNoScroll from "../../hooks/useNoScroll.ts";
 
 interface AuthModalProps{
     type: 'login' | 'register'
@@ -12,6 +13,8 @@ interface AuthModalProps{
 
 export const AuthModal = ({type}: AuthModalProps) => {
     const dispatch: AppDispatch = useDispatch();
+    const {isLoginPopUpDisplayed, isRegisterPopUpDisplayed} = useSelector((state: RootState) => state.popUpDisplaying);
+    useNoScroll(isLoginPopUpDisplayed || isRegisterPopUpDisplayed);
 
     const isLogin: boolean = useMemo(() => {
         return type === "login";

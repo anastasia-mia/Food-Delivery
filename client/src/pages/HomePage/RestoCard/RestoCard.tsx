@@ -10,7 +10,7 @@ export const RestoCard = ({restaurantData}: RestoCardProps) => {
     return(
         <div className="card">
             <div className="card-photo-body">
-                <img src={`http://localhost:3001/media/restaurants/${restaurantData.imagePath}`}
+                <img src={`${import.meta.env.VITE_API_URL}/media/restaurants/${restaurantData.imagePath}`}
                      className="card-photo"
                      alt="Restaurant Food"
                 />

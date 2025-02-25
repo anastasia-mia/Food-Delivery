@@ -21,7 +21,7 @@ export const OrderHistory = () => {
                 setOrders(res.data.orders)
                 setHasNextPage(res.data.hasNextPage);
             })
-    }, [page]);
+    }, [page, userId]);
 
     return (
         <section className="order-history">
@@ -41,7 +41,7 @@ export const OrderHistory = () => {
                     </div>
                 ) : <p className="order-history-text">You have no orders</p>}
             </div>
-            <Pagination page={page} hasNextPage={hasNextPage} setNewPage={setPage}/>
+            {orders.length > 0 && <Pagination page={page} hasNextPage={hasNextPage} setNewPage={setPage} />}
         </section>
     )
 }

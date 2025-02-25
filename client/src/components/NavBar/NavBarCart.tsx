@@ -1,3 +1,4 @@
+import './NavBar.scss';
 import {toggleHighlightCart} from "../../redux/cartSlice.ts";
 import {setIsCartDisplayed} from "../../redux/popUpDisplayingSlice.ts";
 import {useIsRestaurantPage} from "../../hooks/useIsRestaurantPage.ts";

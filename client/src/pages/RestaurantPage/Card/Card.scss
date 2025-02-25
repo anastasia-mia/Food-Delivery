@@ -2,8 +2,8 @@
   &-card{
     @include column-direction;
     grid-area: details;
-    padding: 30px;
-    gap: 30px;
+    padding: 20px;
+    gap: 20px;
     border-radius: 10px;
     height: 250px;
     box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
@@ -25,7 +25,7 @@
 
     .details-group {
       @include flex-align(center, center, column);
-      gap: 10px;
+      gap: 5px;
 
       span{
         font-size: 16px;
@@ -46,6 +46,11 @@
 
 @media screen and (max-width: 576px){
   .restaurant{
+    &-card{
+      gap: 10px;
+      padding: 15px;
+    }
+
     &-name{
       font-size: 28px;
     }
@@ -58,6 +63,12 @@
       gap: 20px;
 
       .details-group {
+        gap: 0;
+
+        svg{
+          transform: scale(0.8);
+        }
+
         span{
           font-size: 14px;
         }
