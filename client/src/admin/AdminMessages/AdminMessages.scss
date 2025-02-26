@@ -4,16 +4,19 @@
   position: relative;
 
   &-content{
-
+    margin: -25px -25px 0 -25px;
+    padding-bottom: 45px;
+    position: relative;
   }
 
   &-message{
     display: grid;
     grid-template-columns: 0.3fr 0.5fr 1fr 0.5fr 0.5fr;
+    grid-column-gap: 10px;
     align-items: center;
     font-size: 18px;
-    padding: 25px 10px;
-    border-top: 1px solid $light-gray;
+    padding: 25px 35px;
+    border-bottom: 1px solid $light-gray;
     cursor: pointer;
 
     &-unread{
@@ -46,6 +49,59 @@
       padding: 5px 10px;
       border-radius: 50%;
       justify-self: flex-end;
+    }
+  }
+}
+
+@media screen and (max-width: 1280px){
+  .admin-messages{
+    &-content{
+      margin: -20px -20px 0 -20px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+
+    &-message{
+      grid-template-columns: 0.3fr 1fr 1fr 0.5fr 0.3fr;
+      padding: 20px 15px;
+      font-size: 16px;
+
+      &-quantity{
+        padding: 4px 8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .admin-messages{
+    &-content{
+      margin: -15px -15px 0 -15px;
+    }
+
+    &-message{
+      grid-template-columns: 0.3fr 1fr 1fr 0.5fr 0.3fr;
+      padding: 20px 15px;
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .admin-messages{
+    &-content{
+      margin: -10px -10px 0 -10px;
+    }
+
+    &-message{
+      grid-template-columns: 0.3fr 1fr 1fr 0.3fr;
+      padding: 25px 10px;
+      font-size: 14px;
+
+      &-quantity{
+        font-size: 12px;
+        padding: 4px 8px;
+      }
     }
   }
 }

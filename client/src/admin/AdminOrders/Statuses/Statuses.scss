@@ -71,3 +71,22 @@
     background-color: $light-green;
   }
 }
+
+@media screen and (max-width: 1280px){
+  .statuses{
+    &-current{
+      font-size: 14px;
+      width: 100%;
+      padding: 3px 5px;
+    }
+
+    &-items{
+      padding-top: 0;
+    }
+
+    &-items p{
+      font-size: 14px;
+      padding: 3px;
+    }
+  }
+}

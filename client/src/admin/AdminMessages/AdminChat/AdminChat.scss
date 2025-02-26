@@ -26,6 +26,7 @@
     flex-grow: 1;
     overflow-y: auto;
     scrollbar-width: none;
+    height: calc(100vh - 415px)
   }
 
   &-content{
@@ -84,5 +85,68 @@
     font-weight: 600;
     border-radius: 15px;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1280px){
+  .admin-chat{
+    &-body{
+      height: calc(100vh - 403px)
+    }
+
+    &-message-client, &-message-admin{
+      padding: 10px 15px;
+
+      span{
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .admin-chat{
+    gap: 10px;
+
+    &-body{
+      height: calc(100vh - 370px);
+      width: 90%;
+    }
+
+    &-message-client, &-message-admin{
+      p{
+        font-size: 16px;
+      }
+    }
+
+    &-back{
+      span{
+        font-size: 16px;
+      }
+    }
+
+    &-name{
+      font-size: 18px;
+    }
+
+    &-input{
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .admin-chat{
+    &-message-client, &-message-admin{
+      p{
+        font-size: 14px;
+      }
+    }
+
+    &-back{
+      span{
+        font-size: 14px;
+      }
+    }
   }
 }

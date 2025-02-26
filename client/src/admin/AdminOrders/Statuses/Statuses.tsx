@@ -38,7 +38,7 @@ export const Statuses = ({status, orderId}: statusesParams) => {
             </div>
             {isDropDownOpen &&
                 <div className="statuses-items">
-                    {statuses.filter(el => el.id !== status.statusId).map((el) => (
+                    {statuses.filter(el => el.id !== currentStatus.id).map((el) => (
                         <p onClick={() => changeStatus(el)}
                            key={el.id}>
                             {el.name}

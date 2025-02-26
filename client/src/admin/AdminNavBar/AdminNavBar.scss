@@ -31,3 +31,37 @@
     }
   }
 }
+
+@media screen and (max-width: 1280px){
+  .admin-navbar{
+    width: 260px;
+
+    &-tabs, &-tab a{
+      padding: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .admin-navbar{
+    margin-top: 0;
+    z-index: 11;
+    height: 100%;
+    border-radius: 0;
+
+    &-header{
+      @include flex-align(center, end);
+      padding: 15px 15px 0 15px;
+    }
+
+    &-tab a{
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px){
+  .admin-navbar{
+    width: 100%;
+  }
+}

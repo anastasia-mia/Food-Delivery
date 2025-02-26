@@ -5,12 +5,14 @@ import {useEffect, useState} from "react";
 import axiosInstance from "../../../axiosConfig.ts";
 import {IChat} from "../../interfaces/chatInterfaces.ts";
 import {formatDate} from "../../utils/formatDate.ts";
+import useWindowWidth from "../../hooks/useWindowWidth.ts";
 
 
 export const AdminMessages = () => {
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState<boolean>(false);
     const [chats, setChats] = useState<IChat[]>([]);
+    const windowWidth = useWindowWidth();
 
     useEffect(() => {
         axiosInstance.delete("/delete/chats");
@@ -36,7 +38,7 @@ export const AdminMessages = () => {
                             <p className="admin-messages-message-id">{chat.id}</p>
                             <p className="admin-messages-message-name">{chat.name || <span>Guest</span>}</p>
                             <p className="admin-messages-message-text">{chat.lastMessage}</p>
-                            <p className="admin-messages-message-date">{formatDate(chat.updatedAt)}</p>
+                            {windowWidth > 576 && <p className="admin-messages-message-date">{formatDate(chat.updatedAt)}</p>}
                             {chat.unreadCount > 0 &&
                                 <span className="admin-messages-message-quantity">{chat.unreadCount}</span>
                             }

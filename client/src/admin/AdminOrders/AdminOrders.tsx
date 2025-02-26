@@ -5,11 +5,13 @@ import axiosInstance from "../../../axiosConfig.ts";
 import {formatDate} from "../../utils/formatDate.ts";
 import {IOrder} from "../../interfaces/orderInterfaces.ts";
 import {Pagination} from "../../components/Pagination/Pagination.tsx";
+import useWindowWidth from "../../hooks/useWindowWidth.ts";
 
 export const AdminOrders = () => {
     const [orders, setOrders] = useState<IOrder[]>([]);
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState<boolean>(false);
+    const windowWidth = useWindowWidth();
 
     useEffect(() => {
         axiosInstance.get('/getAllOrders', {params: {page}}).then((res) => {
@@ -23,7 +25,7 @@ export const AdminOrders = () => {
             <div className="admin-orders-headers">
                 <p>ID</p>
                 <p>Restaurant name</p>
-                <p>Date</p>
+                {windowWidth > 576 && <p>Date</p>}
                 <p>Status</p>
             </div>
             <div className="admin-orders-items">
@@ -31,7 +33,7 @@ export const AdminOrders = () => {
                     <div className="admin-orders-item" key={element.orderId}>
                         <p>{element.orderId}</p>
                         <p>{element.restaurantName}</p>
-                        <p>{formatDate(element.orderDate)}</p>
+                        {windowWidth > 576 && <p>{formatDate(element.orderDate)}</p>}
                         <Statuses status={element.status} orderId={element.orderId} />
                     </div>
                 ))}
