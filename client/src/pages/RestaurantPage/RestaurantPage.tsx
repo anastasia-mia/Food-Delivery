@@ -25,13 +25,11 @@ export const RestaurantPage = () => {
     useScrollToTop();
 
     useEffect(() => {
-        dispatch(fetchRestaurantId({name: restaurantName as string}))
+        dispatch(fetchRestaurantId({ name: restaurantName as string }))
+            .unwrap()
+            .then(() => dispatch(fetchRestaurant()));
         dispatch(setIsBurgerMenuDisplayed(false));
     }, [restaurantName]);
-
-    useEffect(() => {
-        dispatch(fetchRestaurant())
-    }, [id]);
 
     useEffect(() => {
         if (restaurant && restaurant.name && menuItems.length === 0) {

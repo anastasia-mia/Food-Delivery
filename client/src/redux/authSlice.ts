@@ -8,7 +8,7 @@ interface AuthState {
     userId: number | null,
     email: string | null,
     isLoggedIn: boolean,
-    loading: boolean,
+    authLoading: boolean,
     error: string | null,
 }
 
@@ -17,7 +17,7 @@ const initialState: AuthState = {
     userId: null,
     email: null,
     isLoggedIn: false,
-    loading: false,
+    authLoading: false,
     error: null,
 }
 
@@ -92,38 +92,45 @@ const authSlice = createSlice({
                 state.userId = action.payload.user.userId;
                 state.isLoggedIn = action.payload.isLoggedIn;
                 state.email = action.payload.user.email;
+                state.authLoading = false;
             })
             .addCase(checkSession.fulfilled, (state, action) => {
                 state.isLoggedIn = action.payload.isLoggedIn;
                 state.user = action.payload.user.name;
                 state.userId = action.payload.user.userId;
                 state.email = action.payload.user.email;
+                state.authLoading = false;
             })
             .addCase(logoutUser.fulfilled, (state) => {
                 state.user = null;
                 state.isLoggedIn = false;
+                state.authLoading = false;
+                state.userId = null;
+                state.email = null;
             })
             .addCase(checkSession.rejected, (state) => {
-                state.loading = false;
+                state.authLoading = false;
                 state.user = null;
                 state.isLoggedIn = false;
             })
             .addMatcher(
-                (action) => action.type.endsWith('/pending'),
+                (action) =>
+                    [loginUser.pending.type, registerUser.pending.type, checkSession.pending.type, logoutUser.pending.type].includes(action.type),
                 (state) => {
-                    state.loading = true;
+                    state.authLoading = true;
                     state.error = null;
                 }
             )
             .addMatcher(
-                (action) => action.type.endsWith('/rejected') && action.type !== checkSession.rejected.type,
+                (action) =>
+                    [loginUser.rejected.type, registerUser.rejected.type, logoutUser.rejected.type].includes(action.type),
                 (state, action: PayloadAction<{message: string | null}>) => {
-                    state.loading = false;
+                    state.authLoading = false;
                     state.error = action.payload.message;
                     state.user = null;
                     state.isLoggedIn = false;
                 }
-            );
+            )
     }
 })
 

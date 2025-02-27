@@ -5,12 +5,13 @@ import {formatDate} from "../../../utils/formatDate.ts";
 import {IOrder} from "../../../interfaces/orderInterfaces.ts";
 
 export const Order = ({order} : {order: IOrder}) => {
+    const parsedOrderItems = typeof order.orderItems === "string" ? JSON.parse(order.orderItems) : order.orderItems;
 
     return (
         <div className={`order ${order.status.statusId === 4 ? 'order-finished' : 'order-created'}`}>
             <div className="order-left">
                 <div className="order-logo">
-                    <img src={`http://localhost:3001/media/restaurants/${order.logoPath}`}
+                    <img src={`${import.meta.env.VITE_API_URL}/media/restaurants/${order.logoPath}`}
                          alt="restaurantLogo"
                     />
                 </div>
@@ -23,7 +24,7 @@ export const Order = ({order} : {order: IOrder}) => {
                 {order.status.statusId === 4
                     ?
                     <div className="order-items">
-                        <OrderItems menuItems={order.orderItems}/>
+                        <OrderItems menuItems={parsedOrderItems}/>
                     </div>
                     : <OrderProgress statusId={order.status.statusId} statusName={order.status.statusName} />}
             </div>

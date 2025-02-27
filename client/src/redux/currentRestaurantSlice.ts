@@ -82,19 +82,21 @@ const currentRestaurantSlice = createSlice({
                 state.restaurant = action.payload;
             })
             .addMatcher(
-                (action) => action.type.endsWith('/pending'),
+                (action) => [fetchRestaurantId.pending.type, fetchRestaurant.pending.type].includes(action.type),
                 (state) => {
                     state.loading = true;
                     state.error = null;
                 }
             )
-            .addMatcher((action) => action.type.endsWith('/rejected'),
+            .addMatcher(
+                (action) => [fetchRestaurantId.rejected.type, fetchRestaurant.rejected.type].includes(action.type),
                 (state, action: PayloadAction<{message: string}>) => {
                     state.loading = false;
                     state.id = null;
                     state.restaurant = initialState.restaurant;
                     state.error = action.payload.message;
-                })
+                }
+            )
     }
 });
 
