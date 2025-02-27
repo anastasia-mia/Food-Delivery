@@ -12,6 +12,9 @@ const useGetAddressWithCoords = (setAddress: (address: string) => void) => {
                 if (coords.lat && coords.lon) {
                     fetchAddress(coords.lat, coords.lon, setAddress);
                 }
+            }else {
+                setAddress("");
+                console.log('AAA')
             }
         };
 

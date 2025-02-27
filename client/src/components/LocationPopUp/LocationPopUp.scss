@@ -133,6 +133,7 @@
     p{
       text-align: center;
       font-size: 16px;
+      line-height: 0.9;
     }
 
     #map{
@@ -205,6 +206,11 @@
     }
 
     &-map{
+      p{
+        line-height: 0.9;
+        font-size: 14px;
+      }
+
       #map{
         height: 270px !important;
       }

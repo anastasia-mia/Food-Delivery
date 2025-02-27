@@ -30,6 +30,7 @@ export const AuthModal = ({type}: AuthModalProps) => {
     const openRegisterPopup = () => {
         dispatch(setIsRegisterPopDisplayed(true));
         dispatch(setIsLoginPopDisplayed(false));
+        dispatch(resetError());
     }
 
     return(

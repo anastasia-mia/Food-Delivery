@@ -46,6 +46,10 @@
   &-details {
     @include column-direction;
     gap: 10px;
+
+    p{
+      line-height: 0.9;
+    }
   }
 
   &-name {
@@ -145,6 +149,7 @@
       min-width: 80px;
       min-height: 80px;
       height: 80px;
+      width: 80px;
     }
 
     &-description {

@@ -22,6 +22,8 @@ const NavBar = () => {
         dispatch(logoutUser());
         dispatch(removeAllItems());
         dispatch(resetRestaurant());
+        localStorage.removeItem('coords');
+        window.dispatchEvent(new Event("storageChange"));
     }
 
     return (
