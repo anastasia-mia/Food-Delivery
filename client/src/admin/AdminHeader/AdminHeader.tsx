@@ -10,14 +10,16 @@ export const AdminHeader = () => {
 
     return(
         <header className="admin-header">
-            <div className="admin-header-burgermenu" onClick={() => dispatch(setIsAdminBurgerMenuDisplayed(true))}>
-                <span></span>
+            <div className="admin-header-container">
+                <div className="admin-header-burgermenu" onClick={() => dispatch(setIsAdminBurgerMenuDisplayed(true))}>
+                    <span></span>
+                </div>
+                <Link to="/">
+                    <div className="admin-header-logo">DELIVERY <span>Admin</span></div>
+                </Link>
+                <p className="admin-header-title">Admin Page</p>
+                <p className="admin-header-user">{user && `Welcome, ${user}!`}</p>
             </div>
-            <Link to="/">
-                <div className="admin-header-logo">DELIVERY <span>Admin</span></div>
-            </Link>
-            <p className="admin-header-title">Admin Page</p>
-            <p className="admin-header-user">{user && `Welcome, ${user}!`}</p>
         </header>
     )
 }
