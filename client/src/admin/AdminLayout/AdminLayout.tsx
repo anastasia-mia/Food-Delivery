@@ -18,19 +18,20 @@ export const AdminLayout = () => {
     }, []);
 
     return(
-        <div className="admin-layout-wrapper">
+        <>
             <AdminHeader />
-            <main className="admin-layout-main">
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Outlet/>
-                </Suspense>
-            </main>
-            {windowWidth > 768 || isAdminBurgerMenuDisplayed ? (
-                <div className={isAdminBurgerMenuDisplayed ? "popUp-background" : ""}>
-                    <AdminNavBar />
-                </div>
-            ) : null}
-        </div>
-
+            <div className="admin-layout-wrapper">
+                <main className="admin-layout-main">
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Outlet/>
+                    </Suspense>
+                </main>
+                {windowWidth > 768 || isAdminBurgerMenuDisplayed ? (
+                    <div className={isAdminBurgerMenuDisplayed ? "popUp-background" : ""}>
+                        <AdminNavBar />
+                    </div>
+                ) : null}
+            </div>
+        </>
     )
 }

@@ -6,12 +6,14 @@ import {formatDate} from "../../utils/formatDate.ts";
 import {IOrder} from "../../interfaces/orderInterfaces.ts";
 import {Pagination} from "../../components/Pagination/Pagination.tsx";
 import useWindowWidth from "../../hooks/useWindowWidth.ts";
+import useScrollToTop from "../../hooks/useScrollToTop.ts";
 
 export const AdminOrders = () => {
     const [orders, setOrders] = useState<IOrder[]>([]);
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState<boolean>(false);
     const windowWidth = useWindowWidth();
+    useScrollToTop();
 
     useEffect(() => {
         axiosInstance.get('/getAllOrders', {params: {page}}).then((res) => {

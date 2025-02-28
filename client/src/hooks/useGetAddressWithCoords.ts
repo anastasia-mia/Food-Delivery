@@ -14,7 +14,6 @@ const useGetAddressWithCoords = (setAddress: (address: string) => void) => {
                 }
             }else {
                 setAddress("");
-                console.log('AAA')
             }
         };
 

@@ -6,6 +6,7 @@ import axiosInstance from "../../../axiosConfig.ts";
 import {IChat} from "../../interfaces/chatInterfaces.ts";
 import {formatDate} from "../../utils/formatDate.ts";
 import useWindowWidth from "../../hooks/useWindowWidth.ts";
+import useScrollToTop from "../../hooks/useScrollToTop.ts";
 
 
 export const AdminMessages = () => {
@@ -13,6 +14,7 @@ export const AdminMessages = () => {
     const [hasNextPage, setHasNextPage] = useState<boolean>(false);
     const [chats, setChats] = useState<IChat[]>([]);
     const windowWidth = useWindowWidth();
+    useScrollToTop();
 
     useEffect(() => {
         axiosInstance.delete("/delete/chats");

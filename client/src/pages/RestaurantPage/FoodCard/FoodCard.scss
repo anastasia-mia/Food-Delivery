@@ -103,7 +103,7 @@
 
     &:hover:before{
       @include absolute-position(top -10px, right 0);
-      content: 'Your order isn\'t here';
+      content: 'Order from elsewhere';
       font-size: 12px;
       color: red;
     }

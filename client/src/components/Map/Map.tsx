@@ -12,11 +12,24 @@ import {AppDispatch} from "../../redux/store.ts";
 import useMap from "../../hooks/useMap.ts";
 import {setUpMapRouting} from "./setUpMapRouting.ts";
 import {getRandomCoordinates} from "../../utils/getRandomCoordinates.ts";
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
 
 const Map = ({coords, setAddress, setCoords}: IMapProps) => {
         const [restaurantAddress, setRestaurantAddress] = useState<string>('')
         const dispatch: AppDispatch = useDispatch();
         const {mapRef, mapInstance} = useMap({coords, setCoords, setAddress});
+        const customIcon = L.icon({
+            iconUrl: markerIcon,
+            iconRetinaUrl: markerIcon2x,
+            shadowUrl: markerShadow,
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+        });
 
         useEffect(() => {
             dispatch(addRestaurantAddress(restaurantAddress));
@@ -35,7 +48,7 @@ const Map = ({coords, setAddress, setCoords}: IMapProps) => {
             if (!setAddress) {
                 mapInstance.current.setView([51.505, -0.09], 5);
                 const randomCoords = getRandomCoordinates(coords.lat, coords.lon, 1, 4);
-                L.marker([randomCoords.lat, randomCoords.lng]).addTo(mapInstance.current)
+                L.marker([randomCoords.lat, randomCoords.lng], {icon: customIcon}).addTo(mapInstance.current)
                     .bindPopup('Restaurant')
                     .openPopup();
 
@@ -43,7 +56,7 @@ const Map = ({coords, setAddress, setCoords}: IMapProps) => {
                     fetchAddress(randomCoords.lat, randomCoords.lng, setRestaurantAddress);
                 }
 
-                L.marker([coords.lat, coords.lon]).addTo(mapInstance.current)
+                L.marker([coords.lat, coords.lon], {icon: customIcon}).addTo(mapInstance.current)
                     .bindPopup('You')
                     .openPopup();
 
