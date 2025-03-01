@@ -3,7 +3,10 @@ import { io } from "socket.io-client";
 import {IMessage} from "../interfaces/chatInterfaces.ts";
 import axiosInstance from "../../axiosConfig.ts";
 
-export const socket = io(import.meta.env.VITE_API_URL, { path: "/socket", transports: ["websocket"] });
+export const socket = io(import.meta.env.VITE_API_SOCKET_URL, {
+    path: "/socket",
+    transports: ["websocket", "polling"]
+});
 
 export const useChat = (chatId?: number) => {
     const [messages, setMessages] = useState<IMessage[]>([]);

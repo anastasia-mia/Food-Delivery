@@ -21,7 +21,7 @@
 @media screen and (max-width: 1280px){
   .admin-layout{
     &-main{
-      margin: 120px 40px 70px 280px;
+      margin: 120px 40px 40px 280px;
       width: calc(100% - 320px);
       padding: 20px;
     }
@@ -32,14 +32,14 @@
   .admin-layout{
 
     &-wrapper{
-      height: 100vh;
+      height: 100%;
       overflow: auto;
     }
 
     &-main{
       height: auto;
       width: calc(100% - 64px);
-      margin: 120px auto 70px auto;
+      margin: 120px auto 40px auto;
       padding: 15px;
     }
   }
@@ -49,7 +49,7 @@
   .admin-layout{
     &-main{
       width: calc(100% - 32px);
-      margin: 92px auto 70px auto;
+      margin: 92px auto 40px auto;
       padding: 10px;
     }
   }
