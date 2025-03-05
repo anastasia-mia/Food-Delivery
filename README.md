@@ -1,6 +1,8 @@
 # Food-Delivery
 A convenient web resource for ordering food from restaurants. Users can view the menu, add dishes to the cart, place an order and track the delivery status. One of the key features is the integration of a leaflet map, which allows you to choose your location. The application also implements real-time chat with the administrator.
 
+**Live Demo:** [🌐 Click here]([https://yourwebsite.com](https://demo-ztu.website/))
+
 ## Features
 - User registration and authentication
 - Restaurants and dishes browsing
